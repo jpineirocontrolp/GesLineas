@@ -3,23 +3,28 @@
     
 
     Public BotonLinea As DevExpress.XtraBars.Navigation.NavButton
-
+    Public BtBuscaOrdenes As DevExpress.XtraBars.Navigation.TileBarItem
+    Public btEnvasar As DevExpress.XtraBars.Navigation.TileBarItem
     Public Sub New()
 
         ' Llamada necesaria para el diseñador.
         InitializeComponent()
-        Me.CABECERAFABRICACIONTableAdapter.Fill(Me.ProduccionSql.CABECERAFABRICACION, gCodEmpresa, gEjercicio)
-        Me.PL_PARTESPRODUCCIONTableAdapter.Fill(Me.ProduccionSql.PL_PARTESPRODUCCION, gCodEmpresa, gEjercicio, 2, configuracion.Linea)
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        loaddata()
+    End Sub
+    Public Sub loaddata()
+        Me.CABECERAFABRICACIONTableAdapter.Fill(Me.ProduccionSql.CABECERAFABRICACION, gCodEmpresa, gEjercicio)
+        Me.PL_PARTESPRODUCCIONTableAdapter.Fill(Me.ProduccionSql.PL_PARTESPRODUCCION, gCodEmpresa, gEjercicio, configuracion.Linea, 2, 3)
 
     End Sub
-
     Private Sub GridView1_Click(sender As Object, e As EventArgs) Handles GridView1.Click
         NroOrden = GridView1.GetFocusedDataRow()("NroOrden").ToString()
         BotonLinea.Caption = "Cargada Orden Nro...:   " & NroOrden.ToString
-
+        BtBuscaOrdenes.Enabled = False
+        btEnvasar.Enabled = True
         miPrincipal.LoadData()
         miPrincipal.LabelControl1.Text = "Orden Nº: " & NroOrden.ToString
+        LocalizaLineaenProduccion(miPrincipal.GridView2)
         lciBackPicture_Click(sender, e)
     End Sub
 

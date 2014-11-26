@@ -1,8 +1,10 @@
 ﻿Imports DevExpress.XtraBars.Docking2010.Customization
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid.Views.Grid
+Imports System.Data.OleDb
 
 Public Class FormMain
-   
+
 
     Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
@@ -20,8 +22,9 @@ Public Class FormMain
             My.Settings.Item("produccionSqlConnectionString") = "Data Source=" & strSERVERPROD & ";Initial Catalog=" & strDATABASEPROD & ";User ID=" & strUIDPROD & ";Password=" & strPWDPROD & ";"
             My.Settings.Item("datosConnectionString") = xConnectionString
             configuracion.LoadSettings()
-            cargarControles()
-
+            cargarcontroles()
+            Me.PL_TURNOSTableAdapter.Fill(Me.ProduccionSql.PL_TURNOS, gCodEmpresa, gEjercicio)
+            Me.OPERARIOSTableAdapter.Fill(Me.ProduccionSql.OPERARIOS, gCodEmpresa, gEjercicio)
             If dbAdo.State = ConnectionState.Closed Then
                 dbAdo.ConnectionString = xConnectionString
                 dbAdo.Open()
@@ -33,6 +36,7 @@ Public Class FormMain
                 config()
             End If
             miPrincipal.Visible = True
+
             controencurso = miPrincipal
         Catch EX As Exception
             MsgBox(EX.Message)
@@ -71,32 +75,124 @@ Public Class FormMain
         Me.PanelControl1.Controls.Add(miPrincipal)
         miPrincipal.Dock = DockStyle.Fill
         miPrincipal.Visible = False
+        If NroOrden = 0 Then
+            Envasar.Enabled = False
+        Else
+            BuscarOrdenes.Enabled = True
+        End If
 
     End Sub
 
-    Private Sub Ordenes_ItemClick(sender As Object, e As TileItemEventArgs) Handles Ordenes.ItemClick
+    Private Sub BuscarOrdenes_ItemClick(sender As Object, e As TileItemEventArgs) Handles BuscarOrdenes.ItemClick
+        'If Then
+
         Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
             controencurso = misOrdenes
             misOrdenes.BotonLinea = navButtonOrden
-
+            misOrdenes.BtBuscaOrdenes = BuscarOrdenes
+            misOrdenes.btEnvasar = Envasar
             misOrdenes.Visible = True
             miPrincipal.Visible = False
+
         End Using
+        'End If
     End Sub
 
-    'Private Sub Home_ItemPress(sender As Object, e As TileItemEventArgs)
-    '    If controencurso.Name <> "Principal" Then
-    '        Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
 
-    '            controencurso.Visible = False
-    '            miPrincipal.Visible = True
-    '            Select Case controencurso.Name
-    '                Case "Ordenes"
 
-    '            End Select
-    '            controencurso = miPrincipal
-    '        End Using
+    Private Sub Envasar_ItemClick(sender As Object, e As TileItemEventArgs) Handles Envasar.ItemClick
+        Try
+            Dim blnContinuar As Boolean = False
+            Dim dbProd As New OleDbConnection
+            Dim cmd As New OleDbCommand
+            dbProd.ConnectionString = xConnectionProd
+            dbProd.Open()
+            ' poner controles editables
+            If miLinea <> 0 Then
+                If MsgBox("Desea finalizar el envasado de esta referencia?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    ' pongo la linea como finalizada
 
-    '    End If
-    'End Sub
+                    cmd = New OleDbCommand("update pl_partesproduccion set estado=4 where id=" & miLinea, dbProd)
+                    cmd.ExecuteNonQuery()
+                    miPrincipal.LoadData()
+                    'Dim row As DataRow = miPrincipal.GridView2.GetDataRow(miManejador)
+                    'row("ESTADO") = 4
+                    miPrincipal.GridControl2.RefreshDataSource()
+                    If OrdenFinalizada(miPrincipal.GridView2) Then
+                        MsgBox("Se ha terminado la orden de producción")
+                        BuscarOrdenes.Enabled = True
+                        Envasar.Enabled = False
+                        miPrincipal.GridControl2.DataSource = Nothing
+                        miPrincipal.GridControl2.RefreshDataSource()
+                        miPrincipal.GridControl1.DataSource = Nothing
+                        miPrincipal.GridControl1.RefreshDataSource()
+                        misOrdenes.loaddata()
+                        misOrdenes.GridControl1.RefreshDataSource()
+                        Exit Sub
+                    End If
+                    blnContinuar = True
+                Else
+                    blnContinuar = False
+                End If
+            Else
+                blnContinuar = True
+            End If
+            If controencurso.Name = "Principal" AndAlso blnContinuar Then
+                miPrincipal.cbAcciones.Properties.ReadOnly = False
+                miPrincipal.cbOperaciones.Properties.ReadOnly = False
+                miPrincipal.AceptaAccion.Enabled = True
+                miPrincipal.CancelaAccion.Enabled = True
+                ' cargo el primer elemento de la grid
+                Dim CurrentRow As Integer
+                ' Row = CType(.List.Item(CarsBindingSource1.Position), DataRowView).Row
+                CurrentRow = FindRowHandleByDataRow(miPrincipal.GridView2)
+                'CurrentRow = CarsBindingSource.Find("Model", TextEdit1.EditValue)
+                'CurrentRow = GridView1.GetRowHandle(CurrentRow)
+                miPrincipal.GridView2.FocusedRowHandle = CurrentRow
+                cmd = New OleDbCommand("update pl_partesproduccion set estado=3 where id=" & miLinea, dbProd)
+                cmd.ExecuteNonQuery()
+                miPrincipal.LoadData()
+                miPrincipal.GridControl2.RefreshDataSource()
+                ' PONER COMO PRIMERA ACCION CAMBIO
+
+                cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd)
+                miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+
+
+            Else
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Private Function FindRowHandleByDataRow(ByVal view As GridView) As Integer
+
+        Dim I As Integer
+        For I = 0 To view.DataRowCount - 1
+            If view.GetDataRow(I)("ESTADO") = 2 Then
+                Dim row As DataRowView = view.GetRow(I)
+                'Change the Phone field via the bound data source 
+                row.Row("ESTADO") = 3
+                miLinea = row.Row("ID")
+                miPrincipal.Observaciones.Text = row.Row("OBSERVACIONES")
+                miManejador = I
+                Return I
+            End If
+        Next
+        Return DevExpress.XtraGrid.GridControl.InvalidRowHandle
+
+    End Function
+    Private Function OrdenFinalizada(ByVal view As GridView) As Boolean
+
+        Dim I As Integer
+        For I = 0 To view.DataRowCount - 1
+            If view.GetDataRow(I)("ESTADO") <> 4 Then
+                Return False
+            End If
+        Next
+        Return True
+
+    End Function
 End Class

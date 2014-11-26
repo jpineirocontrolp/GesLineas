@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Data.OleDb
 Imports DevExpress.Utils.Animation
+Imports DevExpress.XtraGrid.Views.Grid
 
 Module basico
     Public xPath As String
@@ -16,15 +17,18 @@ Module basico
     Public strUIDPROD As String
     Public strPWDPROD As String
     Public dbAdo As New OleDbConnection
+    Public dbProd As New OleDbConnection
     Dim blnProdSqlServer As Boolean = False
     Public configuracion As New miConfiguracion
     Public clsNegocioProd As cpNegocioProdNet.clsNegocioProdNet
     Public controencurso As New Control
     Public WithEvents TransitionManager1 As New DevExpress.Utils.Animation.TransitionManager
+    Public miLinea As Integer = 0
     Public misOrdenes As Ordenes
     Public misSettings As SettingsUC
     Public miPrincipal As Principal
     Public NroOrden As Integer = 0
+    Public miManejador As Integer = 0
 
 
     Public Function LeerConfiguracion(File As String) As String
@@ -144,5 +148,26 @@ Module basico
                 Return New PushTransition()
         End Select
     End Function
+    Public Sub LocalizaLineaenProduccion(ByVal view As GridView)
+        Dim cmd As New OleDbCommand
+        Dim dbProd As New OleDbConnection
+        dbProd.ConnectionString = xConnectionProd
+        dbProd.Open()
+        Dim I As Integer
+        For I = 0 To view.DataRowCount - 1
+            If view.GetDataRow(I)("ESTADO") = 3 Then
+                Dim row As DataRowView = view.GetRow(I)
+                'Change the Phone field via the bound data source 
+                miLinea = row.Row("ID")
 
+                miPrincipal.Observaciones.Text = row.Row("OBSERVACIONES")
+                cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd)
+                miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+                Exit Sub
+
+            End If
+        Next
+        miLinea = 0
+
+    End Sub
 End Module
