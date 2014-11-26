@@ -54,14 +54,25 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString), _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=vwserver;Initial Catalog=produccionSql3;Persist Security Info=True;Us" & _
-            "er ID=sa;Password=A56dA2W14")> _
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=vwserver;Initial Catalog=produccionSql3;Persist Security Info=True;Us"& _ 
+            "er ID=sa;Password=A56dA2W14")>  _
         Public ReadOnly Property produccionSqlConnectionString() As String
             Get
-                Return CType(Me("produccionSqlConnectionString"), String)
+                Return CType(Me("produccionSqlConnectionString"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\almacen\Almacen\prog\bases\Aceites"& _ 
+            "SQL\datos.mde;Persist Security Info=True;Jet OLEDB:Database Password=77")>  _
+        Public ReadOnly Property datosConnectionString() As String
+            Get
+                Return CType(Me("datosConnectionString"),String)
             End Get
         End Property
     End Class

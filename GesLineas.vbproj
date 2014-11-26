@@ -15,7 +15,7 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
@@ -46,14 +46,40 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\AppIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="cpNegocioNet">
+      <HintPath>..\..\..\..\prog\V8\Dropbox\cpNegocioNet.dll</HintPath>
+    </Reference>
+    <Reference Include="cpNegocioProdNet">
+      <HintPath>..\..\..\..\prog\V8\Dropbox\cpNegocioProdNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -81,11 +107,28 @@
   <ItemGroup>
     <Compile Include="basico.vb" />
     <Compile Include="Configuracion.vb" />
+    <Compile Include="DatosDataset.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatosDataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.Designer.vb">
       <DependentUpon>FormMain.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMain.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Ordenes\Ordenes.Designer.vb">
+      <DependentUpon>Ordenes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Ordenes\Ordenes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\Principal\Principal.Designer.vb">
+      <DependentUpon>Principal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Principal\Principal.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Modules\Setting\SettingsUC.Designer.vb">
       <DependentUpon>SettingsUC.vb</DependentUpon>
@@ -118,6 +161,12 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Ordenes\Ordenes.resx">
+      <DependentUpon>Ordenes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Principal\Principal.resx">
+      <DependentUpon>Principal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Setting\SettingsUC.resx">
       <DependentUpon>SettingsUC.vb</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +180,17 @@
     <EmbeddedResource Include="Resources\SkinInfoBlob.resx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DatosDataset.xsc">
+      <DependentUpon>DatosDataset.xsd</DependentUpon>
+    </None>
+    <None Include="DatosDataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatosDataset.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DatosDataset.xss">
+      <DependentUpon>DatosDataset.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -139,6 +199,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="App.config" />
     <None Include="ProduccionSql.xsc">
@@ -193,7 +254,6 @@
     <Content Include="Resources\Products\VideoPlayers.png" />
     <Content Include="Resources\returnButton.png" />
     <Content Include="Resources\Separator.png" />
-    <Content Include="Resources\SkinInfoBlob.Designer.cs" />
     <Content Include="Resources\splitter3.png" />
     <Content Include="Resources\Status\Completed.png" />
     <Content Include="Resources\Status\Deferred.png" />
@@ -230,18 +290,7 @@
     <Content Include="Resources\Toolbar\ZoomIn.png" />
     <Content Include="Resources\Toolbar\ZoomOut.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\Controls\Reports\" />
-    <Folder Include="Modules\Customers\" />
-    <Folder Include="Modules\Dashboard\" />
-    <Folder Include="Modules\Employees\" />
-    <Folder Include="Modules\Notes\" />
-    <Folder Include="Modules\Opportunities\" />
-    <Folder Include="Modules\Products\" />
-    <Folder Include="Modules\Sales\" />
-    <Folder Include="Modules\SimpleUC\" />
-    <Folder Include="Modules\Tasks\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
