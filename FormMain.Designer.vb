@@ -24,15 +24,15 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim TileItemElement1 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim ToolTipItem1 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
-        Dim TileItemElement2 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement3 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem2 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim ToolTipItem2 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
+        Dim TileItemElement4 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim SuperToolTip3 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem3 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim ToolTipItem3 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
+        Dim TileItemElement5 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement6 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim SuperToolTip4 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem4 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim ToolTipItem4 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
         Me.TileNavPane1 = New DevExpress.XtraBars.Navigation.TileNavPane()
         Me.navButtonHome = New DevExpress.XtraBars.Navigation.NavButton()
         Me.navButtonOrden = New DevExpress.XtraBars.Navigation.NavButton()
@@ -44,22 +44,22 @@ Partial Class FormMain
         Me.TileBarGroup2 = New DevExpress.XtraBars.Navigation.TileBarGroup()
         Me.BuscarOrdenes = New DevExpress.XtraBars.Navigation.TileBarItem()
         Me.Envasar = New DevExpress.XtraBars.Navigation.TileBarItem()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.Roturas = New DevExpress.XtraBars.Navigation.TileBarItem()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.cmbTurno = New DevExpress.XtraEditors.LookUpEdit()
-        Me.cmbOperario = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.cmbOperarios = New DevExpress.XtraEditors.CheckedComboBoxEdit()
-        Me.ProduccionSql = New GesLineas.ProduccionSql()
         Me.PLTURNOSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.PL_TURNOSTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_TURNOSTableAdapter()
+        Me.ProduccionSql = New GesLineas.ProduccionSql()
+        Me.cmbOperarios = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.OPERARIOSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PL_TURNOSTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_TURNOSTableAdapter()
         Me.OPERARIOSTableAdapter = New GesLineas.ProduccionSqlTableAdapters.OPERARIOSTableAdapter()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmbTurno.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cmbOperario.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cmbOperarios.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLTURNOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cmbOperarios.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OPERARIOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -99,7 +99,7 @@ Partial Class FormMain
         Me.TileNavPane1.Name = "TileNavPane1"
         Me.TileNavPane1.OptionsPrimaryDropDown.BackColor = System.Drawing.Color.Empty
         Me.TileNavPane1.OptionsSecondaryDropDown.BackColor = System.Drawing.Color.Empty
-        Me.TileNavPane1.Size = New System.Drawing.Size(1585, 38)
+        Me.TileNavPane1.Size = New System.Drawing.Size(1553, 38)
         Me.TileNavPane1.TabIndex = 0
         Me.TileNavPane1.Text = "tileNavPane1"
         '
@@ -157,7 +157,7 @@ Partial Class FormMain
         Me.TileBar1.Name = "TileBar1"
         Me.TileBar1.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons
         Me.TileBar1.ShowGroupText = False
-        Me.TileBar1.Size = New System.Drawing.Size(1585, 88)
+        Me.TileBar1.Size = New System.Drawing.Size(1553, 88)
         Me.TileBar1.TabIndex = 1
         Me.TileBar1.Text = "TileBar1"
         '
@@ -173,34 +173,52 @@ Partial Class FormMain
         Me.BuscarOrdenes.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.BuscarOrdenes.AppearanceItem.Normal.Options.UseBackColor = True
         Me.BuscarOrdenes.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement1.Appearance.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        TileItemElement1.Appearance.Normal.Options.UseBackColor = True
-        TileItemElement1.Image = CType(resources.GetObject("TileItemElement1.Image"), System.Drawing.Image)
-        TileItemElement1.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter
-        TileItemElement1.Text = "Ordenes"
-        Me.BuscarOrdenes.Elements.Add(TileItemElement1)
+        TileItemElement4.Appearance.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        TileItemElement4.Appearance.Normal.Options.UseBackColor = True
+        TileItemElement4.Image = CType(resources.GetObject("TileItemElement4.Image"), System.Drawing.Image)
+        TileItemElement4.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter
+        TileItemElement4.Text = "Ordenes"
+        Me.BuscarOrdenes.Elements.Add(TileItemElement4)
         Me.BuscarOrdenes.Id = 2
         Me.BuscarOrdenes.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
         Me.BuscarOrdenes.Name = "BuscarOrdenes"
-        ToolTipTitleItem1.Text = "Cargar Ordenes de trabajo"
-        ToolTipItem1.LeftIndent = 6
-        ToolTipItem1.Text = "Pulse aqui para cargar las ordenes de trabajo disponibles para el proceso de prod" & _
+        ToolTipTitleItem3.Text = "Cargar Ordenes de trabajo"
+        ToolTipItem3.LeftIndent = 6
+        ToolTipItem3.Text = "Pulse aqui para cargar las ordenes de trabajo disponibles para el proceso de prod" & _
     "ucción"
-        SuperToolTip1.Items.Add(ToolTipTitleItem1)
-        SuperToolTip1.Items.Add(ToolTipItem1)
-        Me.BuscarOrdenes.SuperTip = SuperToolTip1
+        SuperToolTip3.Items.Add(ToolTipTitleItem3)
+        SuperToolTip3.Items.Add(ToolTipItem3)
+        Me.BuscarOrdenes.SuperTip = SuperToolTip3
         '
         'Envasar
         '
         Me.Envasar.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Envasar.AppearanceItem.Normal.Options.UseBackColor = True
         Me.Envasar.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement2.Image = CType(resources.GetObject("TileItemElement2.Image"), System.Drawing.Image)
-        TileItemElement2.Text = "Envasar"
-        Me.Envasar.Elements.Add(TileItemElement2)
+        TileItemElement5.Image = CType(resources.GetObject("TileItemElement5.Image"), System.Drawing.Image)
+        TileItemElement5.Text = "Envasar"
+        Me.Envasar.Elements.Add(TileItemElement5)
         Me.Envasar.Id = 4
         Me.Envasar.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
         Me.Envasar.Name = "Envasar"
+        '
+        'Roturas
+        '
+        Me.Roturas.AppearanceItem.Normal.BackColor = System.Drawing.Color.Red
+        Me.Roturas.AppearanceItem.Normal.Options.UseBackColor = True
+        Me.Roturas.DropDownOptions.BeakColor = System.Drawing.Color.Empty
+        TileItemElement6.Image = CType(resources.GetObject("TileItemElement6.Image"), System.Drawing.Image)
+        TileItemElement6.Text = "Roturas"
+        Me.Roturas.Elements.Add(TileItemElement6)
+        Me.Roturas.Id = 5
+        Me.Roturas.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
+        Me.Roturas.Name = "Roturas"
+        ToolTipTitleItem4.Text = "Roturas/Defectos"
+        ToolTipItem4.LeftIndent = 6
+        ToolTipItem4.Text = "Informa de las roturas/defectos encontrados en el proceso de envasado"
+        SuperToolTip4.Items.Add(ToolTipTitleItem4)
+        SuperToolTip4.Items.Add(ToolTipItem4)
+        Me.Roturas.SuperTip = SuperToolTip4
         '
         'PanelControl1
         '
@@ -209,111 +227,103 @@ Partial Class FormMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PanelControl1.Location = New System.Drawing.Point(0, 138)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1585, 686)
+        Me.PanelControl1.Size = New System.Drawing.Size(1553, 686)
         Me.PanelControl1.TabIndex = 2
-        '
-        'Roturas
-        '
-        Me.Roturas.AppearanceItem.Normal.BackColor = System.Drawing.Color.Red
-        Me.Roturas.AppearanceItem.Normal.Options.UseBackColor = True
-        Me.Roturas.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement3.Image = CType(resources.GetObject("TileItemElement3.Image"), System.Drawing.Image)
-        TileItemElement3.Text = "Roturas"
-        Me.Roturas.Elements.Add(TileItemElement3)
-        Me.Roturas.Id = 5
-        Me.Roturas.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
-        Me.Roturas.Name = "Roturas"
-        ToolTipTitleItem2.Text = "Roturas/Defectos"
-        ToolTipItem2.LeftIndent = 6
-        ToolTipItem2.Text = "Informa de las roturas/defectos encontrados en el proceso de envasado"
-        SuperToolTip2.Items.Add(ToolTipTitleItem2)
-        SuperToolTip2.Items.Add(ToolTipItem2)
-        Me.Roturas.SuperTip = SuperToolTip2
         '
         'cmbTurno
         '
-        Me.cmbTurno.Location = New System.Drawing.Point(866, 76)
+        Me.cmbTurno.Location = New System.Drawing.Point(1047, 76)
         Me.cmbTurno.Name = "cmbTurno"
         Me.cmbTurno.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbTurno.Properties.Appearance.Options.UseFont = True
         Me.cmbTurno.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cmbTurno.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("DESCRIPCION", "Turno")})
         Me.cmbTurno.Properties.DataSource = Me.PLTURNOSBindingSource
-        Me.cmbTurno.Properties.DisplayMember = "ID"
+        Me.cmbTurno.Properties.DisplayMember = "DESCRIPCION"
         Me.cmbTurno.Properties.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
-        Me.cmbTurno.Properties.ValueMember = "DESCRIPCION"
+        Me.cmbTurno.Properties.ValueMember = "ID"
         Me.cmbTurno.Size = New System.Drawing.Size(193, 42)
         Me.cmbTurno.TabIndex = 3
-        '
-        'cmbOperario
-        '
-        Me.cmbOperario.Location = New System.Drawing.Point(1240, 76)
-        Me.cmbOperario.Name = "cmbOperario"
-        Me.cmbOperario.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbOperario.Properties.Appearance.Options.UseFont = True
-        Me.cmbOperario.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cmbOperario.Properties.NullText = "[Vacío]"
-        Me.cmbOperario.Size = New System.Drawing.Size(100, 26)
-        Me.cmbOperario.TabIndex = 4
-        '
-        'cmbOperarios
-        '
-        Me.cmbOperarios.Location = New System.Drawing.Point(1098, 76)
-        Me.cmbOperarios.Name = "cmbOperarios"
-        Me.cmbOperarios.Properties.AllowMultiSelect = True
-        Me.cmbOperarios.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cmbOperarios.Properties.Appearance.Options.UseFont = True
-        Me.cmbOperarios.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cmbOperarios.Properties.DataSource = Me.OPERARIOSBindingSource
-        Me.cmbOperarios.Properties.DisplayMember = "ID"
-        Me.cmbOperarios.Properties.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
-        Me.cmbOperarios.Properties.ValueMember = "NOMBRE"
-        Me.cmbOperarios.Size = New System.Drawing.Size(194, 42)
-        Me.cmbOperarios.TabIndex = 5
-        '
-        'ProduccionSql
-        '
-        Me.ProduccionSql.DataSetName = "ProduccionSql"
-        Me.ProduccionSql.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'PLTURNOSBindingSource
         '
         Me.PLTURNOSBindingSource.DataMember = "PL_TURNOS"
         Me.PLTURNOSBindingSource.DataSource = Me.ProduccionSql
         '
-        'PL_TURNOSTableAdapter
+        'ProduccionSql
         '
-        Me.PL_TURNOSTableAdapter.ClearBeforeFill = True
+        Me.ProduccionSql.DataSetName = "ProduccionSql"
+        Me.ProduccionSql.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'cmbOperarios
+        '
+        Me.cmbOperarios.EditValue = ""
+        Me.cmbOperarios.Location = New System.Drawing.Point(1246, 76)
+        Me.cmbOperarios.Name = "cmbOperarios"
+        Me.cmbOperarios.Properties.AllowMultiSelect = True
+        Me.cmbOperarios.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbOperarios.Properties.Appearance.Options.UseFont = True
+        Me.cmbOperarios.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cmbOperarios.Properties.DataSource = Me.OPERARIOSBindingSource
+        Me.cmbOperarios.Properties.DisplayMember = "NOMBRE"
+        Me.cmbOperarios.Properties.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
+        Me.cmbOperarios.Properties.ValueMember = "ID"
+        Me.cmbOperarios.Size = New System.Drawing.Size(295, 42)
+        Me.cmbOperarios.TabIndex = 5
         '
         'OPERARIOSBindingSource
         '
         Me.OPERARIOSBindingSource.DataMember = "OPERARIOS"
         Me.OPERARIOSBindingSource.DataSource = Me.ProduccionSql
         '
+        'PL_TURNOSTableAdapter
+        '
+        Me.PL_TURNOSTableAdapter.ClearBeforeFill = True
+        '
         'OPERARIOSTableAdapter
         '
         Me.OPERARIOSTableAdapter.ClearBeforeFill = True
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(1047, 56)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(41, 20)
+        Me.LabelControl1.TabIndex = 6
+        Me.LabelControl1.Text = "Turno"
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(1246, 56)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(67, 20)
+        Me.LabelControl2.TabIndex = 7
+        Me.LabelControl2.Text = "Operarios"
         '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1585, 826)
+        Me.ClientSize = New System.Drawing.Size(1553, 826)
+        Me.Controls.Add(Me.LabelControl2)
+        Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.cmbOperarios)
         Me.Controls.Add(Me.cmbTurno)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.TileBar1)
         Me.Controls.Add(Me.TileNavPane1)
-        Me.Controls.Add(Me.cmbOperario)
         Me.Name = "FormMain"
         Me.Text = "FormMain"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmbTurno.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmbOperario.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmbOperarios.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PLTURNOSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cmbOperarios.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OPERARIOSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents TileNavPane1 As DevExpress.XtraBars.Navigation.TileNavPane
@@ -330,11 +340,12 @@ Partial Class FormMain
     Friend WithEvents Envasar As DevExpress.XtraBars.Navigation.TileBarItem
     Friend WithEvents Roturas As DevExpress.XtraBars.Navigation.TileBarItem
     Friend WithEvents cmbTurno As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents cmbOperario As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents cmbOperarios As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents PLTURNOSBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents ProduccionSql As GesLineas.ProduccionSql
     Friend WithEvents OPERARIOSBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents PL_TURNOSTableAdapter As GesLineas.ProduccionSqlTableAdapters.PL_TURNOSTableAdapter
     Friend WithEvents OPERARIOSTableAdapter As GesLineas.ProduccionSqlTableAdapters.OPERARIOSTableAdapter
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class

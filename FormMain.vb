@@ -85,17 +85,20 @@ Public Class FormMain
 
     Private Sub BuscarOrdenes_ItemClick(sender As Object, e As TileItemEventArgs) Handles BuscarOrdenes.ItemClick
         'If Then
+        If cmbOperarios.EditValue <> "" And cmbTurno.EditValue <> "" Then
+            Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
+                controencurso = misOrdenes
+                misOrdenes.BotonLinea = navButtonOrden
+                misOrdenes.BtBuscaOrdenes = BuscarOrdenes
+                misOrdenes.btEnvasar = Envasar
+                misOrdenes.Visible = True
+                miPrincipal.Visible = False
 
-        Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
-            controencurso = misOrdenes
-            misOrdenes.BotonLinea = navButtonOrden
-            misOrdenes.BtBuscaOrdenes = BuscarOrdenes
-            misOrdenes.btEnvasar = Envasar
-            misOrdenes.Visible = True
-            miPrincipal.Visible = False
-
-        End Using
-        'End If
+            End Using
+        Else
+            MsgBox("Debe de elegir un turno y un operario")
+            'End If
+        End If
     End Sub
 
 
@@ -105,6 +108,7 @@ Public Class FormMain
             Dim blnContinuar As Boolean = False
             Dim dbProd As New OleDbConnection
             Dim cmd As New OleDbCommand
+
             dbProd.ConnectionString = xConnectionProd
             dbProd.Open()
             ' poner controles editables
@@ -144,17 +148,14 @@ Public Class FormMain
                 miPrincipal.CancelaAccion.Enabled = True
                 ' cargo el primer elemento de la grid
                 Dim CurrentRow As Integer
-                ' Row = CType(.List.Item(CarsBindingSource1.Position), DataRowView).Row
+
                 CurrentRow = FindRowHandleByDataRow(miPrincipal.GridView2)
-                'CurrentRow = CarsBindingSource.Find("Model", TextEdit1.EditValue)
-                'CurrentRow = GridView1.GetRowHandle(CurrentRow)
                 miPrincipal.GridView2.FocusedRowHandle = CurrentRow
                 cmd = New OleDbCommand("update pl_partesproduccion set estado=3 where id=" & miLinea, dbProd)
                 cmd.ExecuteNonQuery()
                 miPrincipal.LoadData()
                 miPrincipal.GridControl2.RefreshDataSource()
                 ' PONER COMO PRIMERA ACCION CAMBIO
-
                 cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd)
                 miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
 
