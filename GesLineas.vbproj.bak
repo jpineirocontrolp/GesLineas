@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4C0B44F6-7EDE-40B8-BE18-ADCC28246787}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>GesLineas.My.MyApplication</StartupObject>
+    <RootNamespace>GesLineas</RootNamespace>
+    <AssemblyName>GesLineas</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>GesLineas.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>GesLineas.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="basico.vb" />
+    <Compile Include="Configuracion.vb" />
+    <Compile Include="FormMain.Designer.vb">
+      <DependentUpon>FormMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Setting\SettingsUC.Designer.vb">
+      <DependentUpon>SettingsUC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Setting\SettingsUC.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ProduccionSql.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProduccionSql.xsd</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Setting\SettingsUC.resx">
+      <DependentUpon>SettingsUC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SkinInfoBlob.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.config" />
+    <None Include="ProduccionSql.xsc">
+      <DependentUpon>ProduccionSql.xsd</DependentUpon>
+    </None>
+    <None Include="ProduccionSql.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProduccionSql.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="ProduccionSql.xss">
+      <DependentUpon>ProduccionSql.xsd</DependentUpon>
+    </None>
+    <None Include="Resources\Map\NorthAmerica.dbf" />
+    <None Include="Resources\Map\NorthAmerica.shp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\AppIcon.ico" />
+    <Content Include="Resources\ArrowLeft.png" />
+    <Content Include="Resources\ArrowRight.png" />
+    <Content Include="Resources\Calendar.png" />
+    <Content Include="Resources\Clear.png" />
+    <Content Include="Resources\Clear1.png" />
+    <Content Include="Resources\Contacts\Email.png" />
+    <Content Include="Resources\Contacts\HomePhone.png" />
+    <Content Include="Resources\Contacts\MobilePhone.png" />
+    <Content Include="Resources\Contacts\Skype.png" />
+    <Content Include="Resources\DateEditIcon.png" />
+    <Content Include="Resources\devAV-logo-100.png" />
+    <Content Include="Resources\Employees\All.png" />
+    <Content Include="Resources\Employees\Comission.png" />
+    <Content Include="Resources\Employees\OnLeave.png" />
+    <Content Include="Resources\Employees\Probation.png" />
+    <Content Include="Resources\Employees\Salaried.png" />
+    <Content Include="Resources\Employees\Terminated.png" />
+    <Content Include="Resources\Menu\Customers.png" />
+    <Content Include="Resources\Menu\Dashboard.png" />
+    <Content Include="Resources\Menu\Employees.png" />
+    <Content Include="Resources\Menu\Opportunities.png" />
+    <Content Include="Resources\Menu\Products.png" />
+    <Content Include="Resources\Menu\Sales.png" />
+    <Content Include="Resources\Menu\Tasks.png" />
+    <Content Include="Resources\Priority\HighPriority.png" />
+    <Content Include="Resources\Priority\LowPriority.png" />
+    <Content Include="Resources\Priority\MediumPriority.png" />
+    <Content Include="Resources\Priority\NormalPriority.png" />
+    <Content Include="Resources\Products\All.png" />
+    <Content Include="Resources\Products\Automation.png" />
+    <Content Include="Resources\Products\Monitors.png" />
+    <Content Include="Resources\Products\Projectors.png" />
+    <Content Include="Resources\Products\TVs.png" />
+    <Content Include="Resources\Products\VideoPlayers.png" />
+    <Content Include="Resources\returnButton.png" />
+    <Content Include="Resources\Separator.png" />
+    <Content Include="Resources\SkinInfoBlob.Designer.cs" />
+    <Content Include="Resources\splitter3.png" />
+    <Content Include="Resources\Status\Completed.png" />
+    <Content Include="Resources\Status\Deferred.png" />
+    <Content Include="Resources\Status\InProgress.png" />
+    <Content Include="Resources\Status\NeedAssistance.png" />
+    <Content Include="Resources\Status\NotStarted.png" />
+    <Content Include="Resources\Tasks\AllTasks.png" />
+    <Content Include="Resources\Tasks\Completed.png" />
+    <Content Include="Resources\Tasks\Deferred.png" />
+    <Content Include="Resources\Tasks\HighPriority.png" />
+    <Content Include="Resources\Tasks\InProgress.png" />
+    <Content Include="Resources\Tasks\NotStarted.png" />
+    <Content Include="Resources\Tasks\Urgent.png" />
+    <Content Include="Resources\Toolbar\Cancel.png" />
+    <Content Include="Resources\Toolbar\CustomFilter.png" />
+    <Content Include="Resources\Toolbar\Delete.png" />
+    <Content Include="Resources\Toolbar\Edit.png" />
+    <Content Include="Resources\Toolbar\MailMerge.png" />
+    <Content Include="Resources\Toolbar\MapView.png" />
+    <Content Include="Resources\Toolbar\Meeting.png" />
+    <Content Include="Resources\Toolbar\New.png" />
+    <Content Include="Resources\Toolbar\Note.png" />
+    <Content Include="Resources\Toolbar\OrderList.png" />
+    <Content Include="Resources\Toolbar\PivotTable.png" />
+    <Content Include="Resources\Toolbar\Print.png" />
+    <Content Include="Resources\Toolbar\Reports.png" />
+    <Content Include="Resources\Toolbar\SalesMap.png" />
+    <Content Include="Resources\Toolbar\Save.png" />
+    <Content Include="Resources\Toolbar\SaveAndClose.png" />
+    <Content Include="Resources\Toolbar\Settings.png" />
+    <Content Include="Resources\Toolbar\SortAZ.png" />
+    <Content Include="Resources\Toolbar\SortZA.png" />
+    <Content Include="Resources\Toolbar\Task.png" />
+    <Content Include="Resources\Toolbar\ZoomIn.png" />
+    <Content Include="Resources\Toolbar\ZoomOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\Controls\Reports\" />
+    <Folder Include="Modules\Customers\" />
+    <Folder Include="Modules\Dashboard\" />
+    <Folder Include="Modules\Employees\" />
+    <Folder Include="Modules\Notes\" />
+    <Folder Include="Modules\Opportunities\" />
+    <Folder Include="Modules\Products\" />
+    <Folder Include="Modules\Sales\" />
+    <Folder Include="Modules\SimpleUC\" />
+    <Folder Include="Modules\Tasks\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
