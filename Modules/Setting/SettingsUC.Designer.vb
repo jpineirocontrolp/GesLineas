@@ -24,17 +24,16 @@ Partial Class SettingsUC
         Me.ProduccionSql = New GesLineas.ProduccionSql()
         Me.CABECERAFABRICACIONTableAdapter = New GesLineas.ProduccionSqlTableAdapters.CABECERAFABRICACIONTableAdapter()
         Me.emptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.cmbLineas = New DevExpress.XtraEditors.GridLookUpEdit()
-        Me.GridLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PropertyGridControl1 = New DevExpress.XtraVerticalGrid.PropertyGridControl()
+        Me.PLACCIONESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PL_ACCIONESTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_ACCIONESTableAdapter()
         CType(Me.CABECERAFABRICACIONBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.emptySpaceItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cmbLineas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PropertyGridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'CABECERAFABRICACIONBindingSource
@@ -61,39 +60,10 @@ Partial Class SettingsUC
         Me.emptySpaceItem5.Text = "emptySpaceItem5"
         Me.emptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
         '
-        'cmbLineas
-        '
-        Me.cmbLineas.Location = New System.Drawing.Point(100, 64)
-        Me.cmbLineas.Name = "cmbLineas"
-        Me.cmbLineas.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cmbLineas.Properties.DataSource = Me.CABECERAFABRICACIONBindingSource
-        Me.cmbLineas.Properties.DisplayMember = "Descripcion"
-        Me.cmbLineas.Properties.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
-        Me.cmbLineas.Properties.ValueMember = "ID"
-        Me.cmbLineas.Properties.View = Me.GridLookUpEdit1View
-        Me.cmbLineas.Size = New System.Drawing.Size(397, 36)
-        Me.cmbLineas.TabIndex = 2
-        '
-        'GridLookUpEdit1View
-        '
-        Me.GridLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1})
-        Me.GridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridLookUpEdit1View.Name = "GridLookUpEdit1View"
-        Me.GridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(100, 44)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(213, 13)
-        Me.LabelControl1.TabIndex = 8
-        Me.LabelControl1.Text = "Indicar la linea por defecto para este puesto"
-        '
         'SimpleButton1
         '
         Me.SimpleButton1.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.SimpleButton1.Location = New System.Drawing.Point(100, 119)
+        Me.SimpleButton1.Location = New System.Drawing.Point(311, 570)
         Me.SimpleButton1.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(104, 61)
@@ -103,20 +73,29 @@ Partial Class SettingsUC
         'SimpleButton2
         '
         Me.SimpleButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.SimpleButton2.Location = New System.Drawing.Point(393, 119)
+        Me.SimpleButton2.Location = New System.Drawing.Point(536, 570)
         Me.SimpleButton2.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.SimpleButton2.Name = "SimpleButton2"
         Me.SimpleButton2.Size = New System.Drawing.Size(104, 61)
         Me.SimpleButton2.TabIndex = 10
         Me.SimpleButton2.Text = "Cancelar"
         '
-        'GridColumn1
+        'PropertyGridControl1
         '
-        Me.GridColumn1.Caption = "GridColumn1"
-        Me.GridColumn1.FieldName = "Descripcion"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
+        Me.PropertyGridControl1.Location = New System.Drawing.Point(3, 3)
+        Me.PropertyGridControl1.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
+        Me.PropertyGridControl1.Name = "PropertyGridControl1"
+        Me.PropertyGridControl1.Size = New System.Drawing.Size(637, 548)
+        Me.PropertyGridControl1.TabIndex = 11
+        '
+        'PLACCIONESBindingSource
+        '
+        Me.PLACCIONESBindingSource.DataMember = "PL_ACCIONES"
+        Me.PLACCIONESBindingSource.DataSource = Me.ProduccionSql
+        '
+        'PL_ACCIONESTableAdapter
+        '
+        Me.PL_ACCIONESTableAdapter.ClearBeforeFill = True
         '
         'SettingsUC
         '
@@ -124,19 +103,17 @@ Partial Class SettingsUC
         Me.Appearance.Options.UseBackColor = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.PropertyGridControl1)
         Me.Controls.Add(Me.SimpleButton2)
         Me.Controls.Add(Me.SimpleButton1)
-        Me.Controls.Add(Me.LabelControl1)
-        Me.Controls.Add(Me.cmbLineas)
         Me.Name = "SettingsUC"
-        Me.Size = New System.Drawing.Size(651, 200)
+        Me.Size = New System.Drawing.Size(651, 662)
         CType(Me.CABECERAFABRICACIONBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.emptySpaceItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cmbLineas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PropertyGridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -144,10 +121,9 @@ Partial Class SettingsUC
     Friend WithEvents ProduccionSql As GesLineas.ProduccionSql
     Friend WithEvents CABECERAFABRICACIONTableAdapter As GesLineas.ProduccionSqlTableAdapters.CABECERAFABRICACIONTableAdapter
     Private WithEvents emptySpaceItem5 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents cmbLineas As DevExpress.XtraEditors.GridLookUpEdit
-    Friend WithEvents GridLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PropertyGridControl1 As DevExpress.XtraVerticalGrid.PropertyGridControl
+    Friend WithEvents PLACCIONESBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents PL_ACCIONESTableAdapter As GesLineas.ProduccionSqlTableAdapters.PL_ACCIONESTableAdapter
 End Class

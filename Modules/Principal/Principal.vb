@@ -32,7 +32,11 @@ Public Class Principal
         myLookUp.DataSource = LST
         GridView2.Columns("ESTADO").ColumnEdit = myLookUp
     End Sub
-
+    Sub loadDataOperaciones()
+        Me.PL_CABECERAPRODUCIDATableAdapter.Fill(Me.ProduccionSql.PL_CABECERAPRODUCIDA, miLinea, gCodEmpresa, gEjercicio)
+        Me.PL_LINEASPRODUCIDASTableAdapter.Fill(Me.ProduccionSql.PL_LINEASPRODUCIDAS, gCodEmpresa, gEjercicio)
+        Me.PL_TURNOSTableAdapter.Fill(Me.ProduccionSql.PL_TURNOS, gCodEmpresa, gEjercicio)
+    End Sub
 
     Private Sub cbAcciones_EditValueChanged(sender As Object, e As EventArgs) Handles cbAcciones.EditValueChanged
         Me.PL_OPERACIONESTableAdapter.Fill(Me.ProduccionSql.PL_OPERACIONES, gCodEmpresa, gEjercicio, configuracion.Linea, cbAcciones.EditValue)

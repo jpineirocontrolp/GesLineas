@@ -23,8 +23,14 @@
         BtBuscaOrdenes.Enabled = False
         btEnvasar.Enabled = True
         miPrincipal.LoadData()
+
         miPrincipal.LabelControl1.Text = "Orden Nº: " & NroOrden.ToString
         LocalizaLineaenProduccion(miPrincipal.GridView2)
+        If miLinea <> 0 Then
+            InsertarLinea(configuracion.AccionCambioTurno, 0, Date.Now, Date.Now)
+
+        End If
+        miPrincipal.loadDataOperaciones()
         lciBackPicture_Click(sender, e)
     End Sub
 

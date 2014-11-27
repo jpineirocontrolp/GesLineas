@@ -21,6 +21,7 @@ Module basico
     Dim blnProdSqlServer As Boolean = False
     Public configuracion As New miConfiguracion
     Public clsNegocioProd As cpNegocioProdNet.clsNegocioProdNet
+    Public clsNegocioNet As cpNegocioNet.clsNegocioNet
     Public controencurso As New Control
     Public WithEvents TransitionManager1 As New DevExpress.Utils.Animation.TransitionManager
     Public miLinea As Integer = 0
@@ -29,7 +30,8 @@ Module basico
     Public miPrincipal As Principal
     Public NroOrden As Integer = 0
     Public miManejador As Integer = 0
-
+    Public miTrans As OleDbTransaction
+    Public idCabecera As Integer
 
     Public Function LeerConfiguracion(File As String) As String
         ' We need to read into this List.
@@ -170,4 +172,18 @@ Module basico
         miLinea = 0
 
     End Sub
+    Public Function InsertarLinea(Accion As Integer, operacion As Integer, Inicio As DateTime, final As DateTime) As Boolean
+        Dim cmd As New OleDbCommand
+        miTrans = dbProd.BeginTransaction
+        cmd = New OleDbCommand("INSERT iNTO PL_LINEASPRODUCIDAS( IDCABECERA, IDACCION, IDOPERACION, INICIO, FIN, CODEMPRESA, EJERCICIO) VALUES (" & idCabecera & "," & Accion & "," & operacion & ",'" & Inicio & "','" & final & "','" & gCodEmpresa & "', '" & gEjercicio & "')", dbProd, miTrans)
+        Try
+            cmd.ExecuteNonQuery()
+            miTrans.Commit()
+            Return True
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            miTrans.Rollback()
+            Return False
+        End Try
+    End Function
 End Module

@@ -29,7 +29,12 @@ Public Class FormMain
                 dbAdo.ConnectionString = xConnectionString
                 dbAdo.Open()
             End If
+            If dbProd.State = ConnectionState.Closed Then
+                dbProd.ConnectionString = xConnectionProd
+                dbProd.Open()
+            End If
             EjecutacpNegocioProdNet(clsNegocioProd)
+            EjecutacpNegocioNet(clsNegocioNet)
             If configuracion.Linea <> 0 Then
                 navButtonHome.Caption = Microsoft.VisualBasic.Left(clsNegocioProd.GetDatoTabla(configuracion.Linea, "CABECERAFABRICACION", gCodEmpresa, gEjercicio, "Descripcion", "ID", True) & Space(30), 30)
             Else
@@ -48,6 +53,8 @@ Public Class FormMain
     End Sub
 
     Private Sub navButtonClose_ElementClick(sender As Object, e As DevExpress.XtraBars.Navigation.NavElementEventArgs) Handles navButtonClose.ElementClick
+        clsNegocioNet.dispose()
+        clsNegocioProd.Dispose()
         Close()
     End Sub
     Public Sub config()
@@ -55,8 +62,7 @@ Public Class FormMain
 
         Dim result As DialogResult = FlyoutDialog.Show(Me, settingsUc)
         If result = System.Windows.Forms.DialogResult.OK Then
-            configuracion.Linea = settingsUc.cmbLineas.EditValue
-            configuracion.SaveSettings()
+            configuracion.LoadSettings()
             navButtonHome.Caption = Microsoft.VisualBasic.Left(clsNegocioProd.GetDatoTabla(configuracion.Linea, "CABECERAFABRICACION", gCodEmpresa, gEjercicio, "Descripcion", "ID", True) & Space(30), 30)
         Else
             navButtonHome.Caption = "Linea no configurada"
@@ -85,7 +91,7 @@ Public Class FormMain
 
     Private Sub BuscarOrdenes_ItemClick(sender As Object, e As TileItemEventArgs) Handles BuscarOrdenes.ItemClick
         'If Then
-        If cmbOperarios.EditValue <> "" And cmbTurno.EditValue <> "" Then
+        If cmbOperarios.EditValue.ToString <> "" And Not cmbTurno.EditValue Is Nothing Then
             Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
                 controencurso = misOrdenes
                 misOrdenes.BotonLinea = navButtonOrden
@@ -106,11 +112,7 @@ Public Class FormMain
     Private Sub Envasar_ItemClick(sender As Object, e As TileItemEventArgs) Handles Envasar.ItemClick
         Try
             Dim blnContinuar As Boolean = False
-            Dim dbProd As New OleDbConnection
             Dim cmd As New OleDbCommand
-
-            dbProd.ConnectionString = xConnectionProd
-            dbProd.Open()
             ' poner controles editables
             If miLinea <> 0 Then
                 If MsgBox("Desea finalizar el envasado de esta referencia?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
@@ -151,20 +153,35 @@ Public Class FormMain
 
                 CurrentRow = FindRowHandleByDataRow(miPrincipal.GridView2)
                 miPrincipal.GridView2.FocusedRowHandle = CurrentRow
-                cmd = New OleDbCommand("update pl_partesproduccion set estado=3 where id=" & miLinea, dbProd)
+                Dim idarticulo As Integer = clsNegocioProd.GetDatoTabla(miLinea, "PL_PARTESPRODUCCION", gCodEmpresa, gEjercicio, "ARTICULO", "ID")
+                miTrans = dbProd.BeginTransaction
+                cmd = New OleDbCommand("update pl_partesproduccion set estado=3 where id=" & miLinea, dbProd, miTrans)
                 cmd.ExecuteNonQuery()
-                miPrincipal.LoadData()
-                miPrincipal.GridControl2.RefreshDataSource()
-                ' PONER COMO PRIMERA ACCION CAMBIO
-                cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd)
-                miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+                If InsertaCabecera(idarticulo, miTrans) Then
+                    miTrans.Commit()
+                    miPrincipal.LoadData()
+                    miPrincipal.loadDataOperaciones()
+                    miPrincipal.GridControl2.RefreshDataSource()
+                    ' PONER COMO PRIMERA ACCION CAMBIO
+                    cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd)
+                    miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
 
+                Else
+                    miLinea = 0
+                    miTrans.Rollback()
+                    miPrincipal.LoadData()
+                    miPrincipal.GridControl2.RefreshDataSource()
+                End If
 
             Else
 
             End If
 
         Catch ex As Exception
+            If Not miTrans Is Nothing Then
+                miTrans.Rollback()
+            End If
+
             MsgBox(ex.Message)
         End Try
     End Sub
@@ -196,4 +213,34 @@ Public Class FormMain
         Return True
 
     End Function
+    Function InsertaCabecera(idArticulo As Integer, miTrans As OleDbTransaction) As Boolean
+        Dim cmd As New OleDbCommand
+
+        Dim misOperarios() As String = Split(cmbOperarios.EditValue, ",")
+        ' buscamos la cabecera por si hubo un cambio de turno
+
+        cmd = New OleDbCommand("INSERT INTO PL_CABECERAPRODUCIDA (  IDTURNO, IDORDEN, IDARTICULO, PALESPRODUCIDODS, CAJASPRODUCIDAS, CODEMPRESA, EJERCICIO,INICIO) VALUES     (" & cmbTurno.EditValue & "," & miLinea & "," & idArticulo & ", 0, 0,'" & gCodEmpresa & "', '" & gEjercicio & "','" & Date.Now & "')", dbProd, miTrans)
+        Try
+            cmd.ExecuteNonQuery()
+            cmd = New OleDbCommand("Select @@identity", dbProd, miTrans)
+            idCabecera = cmd.ExecuteScalar
+            ' inserto los operarios
+            For Each elemento In misOperarios
+                cmd = New OleDbCommand("INSERT INTO PL_CABECERAS_OPERARIOS( idCabecera, idOperario, idturno, CODEMPRESA, EJERCICIO) VALUES(" & idCabecera & "," & CInt(elemento) & "," & cmbTurno.EditValue & ",'" & gCodEmpresa & "', '" & gEjercicio & "')", dbProd, miTrans)
+                cmd.ExecuteNonQuery()
+            Next
+            Return True
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        End Try
+
+    End Function
+
+    Private Sub cmbTurno_EditValueChanged(sender As Object, e As EventArgs) Handles cmbTurno.EditValueChanged
+        If miLinea <> 0 Then
+            InsertarLinea(configuracion.AccionCambioTurno, 0, Date.Now, Date.Now)
+        End If
+    End Sub
+
 End Class
