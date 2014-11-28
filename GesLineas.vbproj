@@ -53,9 +53,6 @@
     <Reference Include="cpNegocioNet">
       <HintPath>..\..\..\..\prog\V8\Dropbox\cpNegocioNet.dll</HintPath>
     </Reference>
-    <Reference Include="cpNegocioProdNet">
-      <HintPath>..\..\..\..\prog\V8\Dropbox\cpNegocioProdNet.dll</HintPath>
-    </Reference>
     <Reference Include="DevExpress.Data.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -293,7 +290,12 @@
     <Content Include="Resources\Toolbar\ZoomIn.png" />
     <Content Include="Resources\Toolbar\ZoomOut.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\DLLS.net\Produccion\cpNegocioProdNet\cpNegocioProdNet.vbproj">
+      <Project>{495694b8-6975-4480-b1e1-80227b762383}</Project>
+      <Name>cpNegocioProdNet</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

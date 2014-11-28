@@ -110,40 +110,89 @@ Public Class FormMain
 
 
     Private Sub Envasar_ItemClick(sender As Object, e As TileItemEventArgs) Handles Envasar.ItemClick
+        Dim miLineacopia As Integer = miLinea
+        Dim idCabeceracopia As Integer = idCabecera
+        Dim idLineaCopia As Integer = idLinea
         Try
             Dim blnContinuar As Boolean = False
             Dim cmd As New OleDbCommand
             ' poner controles editables
+
             If miLinea <> 0 Then
                 If MsgBox("Desea finalizar el envasado de esta referencia?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                     ' pongo la linea como finalizada
+                    miTrans = dbProd.BeginTransaction
 
-                    cmd = New OleDbCommand("update pl_partesproduccion set estado=4 where id=" & miLinea, dbProd)
-                    cmd.ExecuteNonQuery()
-                    miPrincipal.LoadData()
-                    'Dim row As DataRow = miPrincipal.GridView2.GetDataRow(miManejador)
-                    'row("ESTADO") = 4
-                    miPrincipal.GridControl2.RefreshDataSource()
-                    If OrdenFinalizada(miPrincipal.GridView2) Then
-                        MsgBox("Se ha terminado la orden de producción")
-                        BuscarOrdenes.Enabled = True
-                        Envasar.Enabled = False
-                        miPrincipal.GridControl2.DataSource = Nothing
-                        miPrincipal.GridControl2.RefreshDataSource()
-                        miPrincipal.GridControl1.DataSource = Nothing
-                        miPrincipal.GridControl1.RefreshDataSource()
-                        misOrdenes.loaddata()
-                        misOrdenes.GridControl1.RefreshDataSource()
+                    If FinDeLinea() Then
+
+                        cmd = New OleDbCommand("update pl_partesproduccion set estado=4 where id=" & miLinea, dbProd, miTrans)
+                        cmd.ExecuteNonQuery()
+                        If OrdenFinalizada(miPrincipal.GridView2) Then
+                            miTrans.Commit()
+                            MsgBox("Se ha terminado la orden de producción")
+                            BuscarOrdenes.Enabled = True
+                            Envasar.Enabled = False
+                            miPrincipal.GridControl2.DataSource = Nothing
+                            miPrincipal.GridControl2.RefreshDataSource()
+                            miPrincipal.GridControl1.DataSource = Nothing
+                            miPrincipal.GridControl1.RefreshDataSource()
+                            misOrdenes.loaddata()
+                            misOrdenes.GridControl1.RefreshDataSource()
+                            Exit Sub
+                        End If
+                        cmd = New OleDbCommand("Select id from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd, miTrans)
+                        miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+
+                        FindRowHandleByDataRow(miPrincipal.GridView2)
+                        cmd = New OleDbCommand("Select ARTICULO FROM PL_PARTESPRODUCCION WHERE CodEmpresa= '" & gCodEmpresa & "' and Ejercicio='" & gEjercicio & "' and ID=" & miLinea, dbProd, miTrans)
+
+                        Dim idarticulo As Integer = cmd.ExecuteScalar
+                        cmd = New OleDbCommand("update pl_partesproduccion set estado=3 where id=" & miLinea, dbProd, miTrans)
+                        cmd.ExecuteNonQuery()
+                        If InsertaCabecera(idarticulo, miTrans) Then
+
+
+                        Else
+                            miTrans.Rollback()
+                            miLinea = miLineacopia
+                            idCabecera = idCabeceracopia
+                            idLinea = idLineaCopia
+                            Exit Sub
+                        End If
+                        If InsertarLinea(miPrincipal.cbAcciones.EditValue, 0, Date.Now, Nothing, 0, Nothing) Then
+                            miTrans.Commit()
+                        Else
+                            miLinea = miLineacopia
+                            idCabecera = idCabeceracopia
+                            idLinea = idLineaCopia
+                            miTrans.Rollback()
+                            Exit Sub
+                        End If
+                    Else
+                        miTrans.Rollback()
+                        miLinea = miLineacopia
+                        idCabecera = idCabeceracopia
+                        idLinea = idLineaCopia
                         Exit Sub
                     End If
+                    ' PONER COMO PRIMERA ACCION CAMBIO
+                    cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd)
+                    miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+
+                    miPrincipal.LoadData()
+                    miPrincipal.loadDataOperaciones()
+                    miPrincipal.GridControl2.RefreshDataSource()
+
+                    'miPrincipal.LoadData()
+                    ''Dim row As DataRow = miPrincipal.GridView2.GetDataRow(miManejador)
+                    ''row("ESTADO") = 4
+                    'miPrincipal.GridControl2.RefreshDataSource()
+                   
                     blnContinuar = True
                 Else
                     blnContinuar = False
                 End If
             Else
-                blnContinuar = True
-            End If
-            If controencurso.Name = "Principal" AndAlso blnContinuar Then
                 miPrincipal.cbAcciones.Properties.ReadOnly = False
                 miPrincipal.cbOperaciones.Properties.ReadOnly = False
                 miPrincipal.AceptaAccion.Enabled = True
@@ -157,23 +206,43 @@ Public Class FormMain
                 miTrans = dbProd.BeginTransaction
                 cmd = New OleDbCommand("update pl_partesproduccion set estado=3 where id=" & miLinea, dbProd, miTrans)
                 cmd.ExecuteNonQuery()
-                If InsertaCabecera(idarticulo, miTrans) Then
-                    miTrans.Commit()
-                    miPrincipal.LoadData()
-                    miPrincipal.loadDataOperaciones()
-                    miPrincipal.GridControl2.RefreshDataSource()
-                    ' PONER COMO PRIMERA ACCION CAMBIO
-                    cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd)
-                    miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+                If idCabecera = 0 Then
+                    If InsertaCabecera(idarticulo, miTrans) Then
+                        cmd = New OleDbCommand("Select id from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd, miTrans)
+                        miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+                        If InsertarLinea(miPrincipal.cbAcciones.EditValue, 0, Date.Now, Nothing, 0, Nothing) Then
+                            miTrans.Commit()
+                            miPrincipal.LoadData()
+                            miPrincipal.loadDataOperaciones()
+                            miPrincipal.GridControl2.RefreshDataSource()
 
-                Else
-                    miLinea = 0
-                    miTrans.Rollback()
-                    miPrincipal.LoadData()
-                    miPrincipal.GridControl2.RefreshDataSource()
+                        Else
+                            miTrans.Rollback()
+                            miLinea = miLineacopia
+                            idCabecera = idCabeceracopia
+                            idLinea = idLineaCopia
+                            miPrincipal.LoadData()
+                            miPrincipal.loadDataOperaciones()
+                            miPrincipal.GridControl2.RefreshDataSource()
+                            Exit Sub
+                        End If
+                        ' PONER COMO PRIMERA ACCION CAMBIO
+                        cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd, miTrans)
+                        miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+
+                    Else
+
+                        miLinea = miLineacopia
+                        idCabecera = idCabeceracopia
+                        idLinea = idLineaCopia
+                        miTrans.Rollback()
+                        miPrincipal.LoadData()
+                        miPrincipal.loadDataOperaciones()
+                        miPrincipal.GridControl2.RefreshDataSource()
+                        Exit Sub
+                    End If
+
                 End If
-
-            Else
 
             End If
 
@@ -181,8 +250,14 @@ Public Class FormMain
             If Not miTrans Is Nothing Then
                 miTrans.Rollback()
             End If
+            miLinea = miLineacopia
+            idCabecera = idCabeceracopia
+            idLinea = idLineaCopia
 
             MsgBox(ex.Message)
+            miPrincipal.LoadData()
+            miPrincipal.loadDataOperaciones()
+            miPrincipal.GridControl2.RefreshDataSource()
         End Try
     End Sub
     Private Function FindRowHandleByDataRow(ByVal view As GridView) As Integer
@@ -213,33 +288,19 @@ Public Class FormMain
         Return True
 
     End Function
-    Function InsertaCabecera(idArticulo As Integer, miTrans As OleDbTransaction) As Boolean
-        Dim cmd As New OleDbCommand
-
-        Dim misOperarios() As String = Split(cmbOperarios.EditValue, ",")
-        ' buscamos la cabecera por si hubo un cambio de turno
-
-        cmd = New OleDbCommand("INSERT INTO PL_CABECERAPRODUCIDA (  IDTURNO, IDORDEN, IDARTICULO, PALESPRODUCIDODS, CAJASPRODUCIDAS, CODEMPRESA, EJERCICIO,INICIO) VALUES     (" & cmbTurno.EditValue & "," & miLinea & "," & idArticulo & ", 0, 0,'" & gCodEmpresa & "', '" & gEjercicio & "','" & Date.Now & "')", dbProd, miTrans)
-        Try
-            cmd.ExecuteNonQuery()
-            cmd = New OleDbCommand("Select @@identity", dbProd, miTrans)
-            idCabecera = cmd.ExecuteScalar
-            ' inserto los operarios
-            For Each elemento In misOperarios
-                cmd = New OleDbCommand("INSERT INTO PL_CABECERAS_OPERARIOS( idCabecera, idOperario, idturno, CODEMPRESA, EJERCICIO) VALUES(" & idCabecera & "," & CInt(elemento) & "," & cmbTurno.EditValue & ",'" & gCodEmpresa & "', '" & gEjercicio & "')", dbProd, miTrans)
-                cmd.ExecuteNonQuery()
-            Next
-            Return True
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            Return False
-        End Try
-
-    End Function
+   
 
     Private Sub cmbTurno_EditValueChanged(sender As Object, e As EventArgs) Handles cmbTurno.EditValueChanged
         If miLinea <> 0 Then
-            InsertarLinea(configuracion.AccionCambioTurno, 0, Date.Now, Date.Now)
+            Dim misOperarios() As String = cmbOperarios.EditValue.ToString.Split(",")
+            miTrans = dbProd.BeginTransaction
+            If InsertarLinea(configuracion.AccionCambioTurno, 0, Date.Now, Date.Now, cmbTurno.EditValue, misOperarios) Then
+                miTrans.Commit()
+            Else
+                miTrans.Rollback()
+            End If
+            miPrincipal.loadDataOperaciones()
+            ExpandAllRows(miPrincipal.GridView1)
         End If
     End Sub
 

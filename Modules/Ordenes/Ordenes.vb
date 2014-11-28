@@ -1,6 +1,8 @@
-﻿Public Class Ordenes
+﻿Imports DevExpress.XtraGrid.Views.Grid
 
-    
+Public Class Ordenes
+
+
 
     Public BotonLinea As DevExpress.XtraBars.Navigation.NavButton
     Public BtBuscaOrdenes As DevExpress.XtraBars.Navigation.TileBarItem
@@ -26,11 +28,19 @@
 
         miPrincipal.LabelControl1.Text = "Orden Nº: " & NroOrden.ToString
         LocalizaLineaenProduccion(miPrincipal.GridView2)
-        If miLinea <> 0 Then
-            InsertarLinea(configuracion.AccionCambioTurno, 0, Date.Now, Date.Now)
+        If miLinea <> 0 And idCabecera <> 0 Then
+            Dim misOperarios() As String = FormMain.cmbOperarios.EditValue.ToString.Split(",")
+            miTrans = dbProd.BeginTransaction
+            If InsertarLinea(configuracion.AccionCambioTurno, 0, Date.Now, Date.Now, FormMain.cmbTurno.EditValue, misOperarios) Then
+                miTrans.Commit()
+            Else
+                miTrans.Rollback()
+                Exit Sub
+            End If
 
         End If
         miPrincipal.loadDataOperaciones()
+        ExpandAllRows(miPrincipal.GridView1)
         lciBackPicture_Click(sender, e)
     End Sub
 
@@ -46,4 +56,5 @@
 
         ' End If
     End Sub
+   
 End Class

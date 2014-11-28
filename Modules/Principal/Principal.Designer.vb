@@ -23,9 +23,21 @@ Partial Class Principal
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.colID1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colIDCABECERA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colIDACCION = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemLookUpEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.PLACCIONESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ProduccionSql = New GesLineas.ProduccionSql()
+        Me.colIDOPERACION = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemLookUpEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.PLOPERACIONESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.colINICIO1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colFIN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colCODEMPRESA1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colEJERCICIO1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.PLCABECERAPRODUCIDABindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.ProduccionSql = New GesLineas.ProduccionSql()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIDOPERARIO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -91,20 +103,22 @@ Partial Class Principal
         Me.CancelaAccion = New DevExpress.XtraEditors.SimpleButton()
         Me.AceptaAccion = New DevExpress.XtraEditors.SimpleButton()
         Me.cbOperaciones = New DevExpress.XtraEditors.LookUpEdit()
-        Me.PLOPERACIONESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.cbAcciones = New DevExpress.XtraEditors.LookUpEdit()
-        Me.PLACCIONESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PL_ACCIONESTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_ACCIONESTableAdapter()
         Me.PL_OPERACIONESTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_OPERACIONESTableAdapter()
         Me.PL_CABECERAPRODUCIDATableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_CABECERAPRODUCIDATableAdapter()
         Me.PL_LINEASPRODUCIDASTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_LINEASPRODUCIDASTableAdapter()
         Me.PL_TURNOSTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_TURNOSTableAdapter()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemLookUpEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemLookUpEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLCABECERAPRODUCIDABindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLTURNOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,16 +143,109 @@ Partial Class Principal
         CType(Me.SplitContainerControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl2.SuspendLayout()
         CType(Me.cbOperaciones.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbAcciones.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridView3
         '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colIDCABECERA, Me.colIDACCION, Me.colIDOPERACION, Me.colINICIO1, Me.colFIN, Me.colCODEMPRESA1, Me.colEJERCICIO1})
         Me.GridView3.GridControl = Me.GridControl1
         Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsBehavior.Editable = False
         Me.GridView3.ViewCaption = "Detalles"
+        '
+        'colID1
+        '
+        Me.colID1.FieldName = "ID"
+        Me.colID1.Name = "colID1"
+        Me.colID1.OptionsColumn.ReadOnly = True
+        '
+        'colIDCABECERA
+        '
+        Me.colIDCABECERA.FieldName = "IDCABECERA"
+        Me.colIDCABECERA.Name = "colIDCABECERA"
+        '
+        'colIDACCION
+        '
+        Me.colIDACCION.Caption = "Accion"
+        Me.colIDACCION.ColumnEdit = Me.RepositoryItemLookUpEdit4
+        Me.colIDACCION.FieldName = "IDACCION"
+        Me.colIDACCION.Name = "colIDACCION"
+        Me.colIDACCION.Visible = True
+        Me.colIDACCION.VisibleIndex = 0
+        '
+        'RepositoryItemLookUpEdit4
+        '
+        Me.RepositoryItemLookUpEdit4.AutoHeight = False
+        Me.RepositoryItemLookUpEdit4.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemLookUpEdit4.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("NOMBRE", "Nombre")})
+        Me.RepositoryItemLookUpEdit4.DataSource = Me.PLACCIONESBindingSource
+        Me.RepositoryItemLookUpEdit4.DisplayMember = "NOMBRE"
+        Me.RepositoryItemLookUpEdit4.Name = "RepositoryItemLookUpEdit4"
+        Me.RepositoryItemLookUpEdit4.ValueMember = "ID"
+        '
+        'PLACCIONESBindingSource
+        '
+        Me.PLACCIONESBindingSource.DataMember = "PL_ACCIONES"
+        Me.PLACCIONESBindingSource.DataSource = Me.ProduccionSql
+        '
+        'ProduccionSql
+        '
+        Me.ProduccionSql.DataSetName = "ProduccionSql"
+        Me.ProduccionSql.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'colIDOPERACION
+        '
+        Me.colIDOPERACION.Caption = "Operacion"
+        Me.colIDOPERACION.ColumnEdit = Me.RepositoryItemLookUpEdit5
+        Me.colIDOPERACION.FieldName = "IDOPERACION"
+        Me.colIDOPERACION.Name = "colIDOPERACION"
+        Me.colIDOPERACION.Visible = True
+        Me.colIDOPERACION.VisibleIndex = 1
+        '
+        'RepositoryItemLookUpEdit5
+        '
+        Me.RepositoryItemLookUpEdit5.AutoHeight = False
+        Me.RepositoryItemLookUpEdit5.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemLookUpEdit5.DataSource = Me.PLOPERACIONESBindingSource
+        Me.RepositoryItemLookUpEdit5.DisplayMember = "DESCRIPCION"
+        Me.RepositoryItemLookUpEdit5.Name = "RepositoryItemLookUpEdit5"
+        Me.RepositoryItemLookUpEdit5.ValueMember = "ID"
+        '
+        'PLOPERACIONESBindingSource
+        '
+        Me.PLOPERACIONESBindingSource.DataMember = "PL_OPERACIONES"
+        Me.PLOPERACIONESBindingSource.DataSource = Me.ProduccionSql
+        '
+        'colINICIO1
+        '
+        Me.colINICIO1.Caption = "Hora Inicio"
+        Me.colINICIO1.DisplayFormat.FormatString = "g"
+        Me.colINICIO1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.colINICIO1.FieldName = "INICIO"
+        Me.colINICIO1.Name = "colINICIO1"
+        Me.colINICIO1.Visible = True
+        Me.colINICIO1.VisibleIndex = 2
+        '
+        'colFIN
+        '
+        Me.colFIN.Caption = "Hora Fin"
+        Me.colFIN.DisplayFormat.FormatString = "g"
+        Me.colFIN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.colFIN.FieldName = "FIN"
+        Me.colFIN.Name = "colFIN"
+        Me.colFIN.Visible = True
+        Me.colFIN.VisibleIndex = 3
+        '
+        'colCODEMPRESA1
+        '
+        Me.colCODEMPRESA1.FieldName = "CODEMPRESA"
+        Me.colCODEMPRESA1.Name = "colCODEMPRESA1"
+        '
+        'colEJERCICIO1
+        '
+        Me.colEJERCICIO1.FieldName = "EJERCICIO"
+        Me.colEJERCICIO1.Name = "colEJERCICIO1"
         '
         'GridControl1
         '
@@ -154,7 +261,7 @@ Partial Class Principal
         Me.GridControl1.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[False]
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemLookUpEdit3})
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemLookUpEdit3, Me.RepositoryItemLookUpEdit4, Me.RepositoryItemLookUpEdit5})
         Me.GridControl1.Size = New System.Drawing.Size(931, 397)
         Me.GridControl1.TabIndex = 0
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView3})
@@ -163,11 +270,6 @@ Partial Class Principal
         '
         Me.PLCABECERAPRODUCIDABindingSource.DataMember = "PL_CABECERAPRODUCIDA"
         Me.PLCABECERAPRODUCIDABindingSource.DataSource = Me.ProduccionSql
-        '
-        'ProduccionSql
-        '
-        Me.ProduccionSql.DataSetName = "ProduccionSql"
-        Me.ProduccionSql.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'GridView1
         '
@@ -680,11 +782,6 @@ Partial Class Principal
         Me.cbOperaciones.Size = New System.Drawing.Size(342, 42)
         Me.cbOperaciones.TabIndex = 2
         '
-        'PLOPERACIONESBindingSource
-        '
-        Me.PLOPERACIONESBindingSource.DataMember = "PL_OPERACIONES"
-        Me.PLOPERACIONESBindingSource.DataSource = Me.ProduccionSql
-        '
         'LabelControl4
         '
         Me.LabelControl4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -723,11 +820,6 @@ Partial Class Principal
         Me.cbAcciones.Size = New System.Drawing.Size(279, 42)
         Me.cbAcciones.TabIndex = 0
         '
-        'PLACCIONESBindingSource
-        '
-        Me.PLACCIONESBindingSource.DataMember = "PL_ACCIONES"
-        Me.PLACCIONESBindingSource.DataSource = Me.ProduccionSql
-        '
         'PL_ACCIONESTableAdapter
         '
         Me.PL_ACCIONESTableAdapter.ClearBeforeFill = True
@@ -760,9 +852,13 @@ Partial Class Principal
         Me.Name = "Principal"
         Me.Size = New System.Drawing.Size(1504, 888)
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemLookUpEdit4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemLookUpEdit5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PLCABECERAPRODUCIDABindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PLTURNOSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -789,9 +885,7 @@ Partial Class Principal
         CType(Me.SplitContainerControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl2.ResumeLayout(False)
         CType(Me.cbOperaciones.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbAcciones.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -874,5 +968,15 @@ Partial Class Principal
     Friend WithEvents RepositoryItemLookUpEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents ARTICULOSBindingSource1 As System.Windows.Forms.BindingSource
     Friend WithEvents PL_TURNOSTableAdapter As GesLineas.ProduccionSqlTableAdapters.PL_TURNOSTableAdapter
+    Friend WithEvents colID1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colIDCABECERA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colIDACCION As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemLookUpEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents colIDOPERACION As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemLookUpEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents colINICIO1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colFIN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colCODEMPRESA1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colEJERCICIO1 As DevExpress.XtraGrid.Columns.GridColumn
 
 End Class

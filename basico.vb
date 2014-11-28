@@ -25,6 +25,7 @@ Module basico
     Public controencurso As New Control
     Public WithEvents TransitionManager1 As New DevExpress.Utils.Animation.TransitionManager
     Public miLinea As Integer = 0
+    Public idLinea As Integer = 0
     Public misOrdenes As Ordenes
     Public misSettings As SettingsUC
     Public miPrincipal As Principal
@@ -161,7 +162,7 @@ Module basico
                 Dim row As DataRowView = view.GetRow(I)
                 'Change the Phone field via the bound data source 
                 miLinea = row.Row("ID")
-
+                idCabecera = clsNegocioProd.GetDatoTabla(miLinea, "PL_CABECERAPRODUCIDA", gCodEmpresa, gEjercicio, "ID", "IDORDEN")
                 miPrincipal.Observaciones.Text = row.Row("OBSERVACIONES")
                 cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd)
                 miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
@@ -172,18 +173,78 @@ Module basico
         miLinea = 0
 
     End Sub
-    Public Function InsertarLinea(Accion As Integer, operacion As Integer, Inicio As DateTime, final As DateTime) As Boolean
+
+    Public Function InsertaCabecera(idArticulo As Integer, miTrans As OleDbTransaction) As Boolean
         Dim cmd As New OleDbCommand
-        miTrans = dbProd.BeginTransaction
-        cmd = New OleDbCommand("INSERT iNTO PL_LINEASPRODUCIDAS( IDCABECERA, IDACCION, IDOPERACION, INICIO, FIN, CODEMPRESA, EJERCICIO) VALUES (" & idCabecera & "," & Accion & "," & operacion & ",'" & Inicio & "','" & final & "','" & gCodEmpresa & "', '" & gEjercicio & "')", dbProd, miTrans)
+
+        Dim misOperarios() As String = Split(FormMain.cmbOperarios.EditValue, ",")
+        ' buscamos la cabecera por si hubo un cambio de turno
+
+        cmd = New OleDbCommand("INSERT INTO PL_CABECERAPRODUCIDA (  IDTURNO, IDORDEN, IDARTICULO, PALESPRODUCIDODS, CAJASPRODUCIDAS, CODEMPRESA, EJERCICIO,INICIO) VALUES     (" & FormMain.cmbTurno.EditValue & "," & miLinea & "," & idArticulo & ", 0, 0,'" & gCodEmpresa & "', '" & gEjercicio & "','" & Date.Now & "')", dbProd, miTrans)
         Try
             cmd.ExecuteNonQuery()
-            miTrans.Commit()
+            cmd = New OleDbCommand("Select @@identity", dbProd, miTrans)
+            idCabecera = cmd.ExecuteScalar
+            ' inserto los operarios
+            For Each elemento In misOperarios
+                cmd = New OleDbCommand("INSERT INTO PL_CABECERAS_OPERARIOS( idCabecera, idOperario, idturno, CODEMPRESA, EJERCICIO) VALUES(" & idCabecera & "," & CInt(elemento) & "," & FormMain.cmbTurno.EditValue & ",'" & gCodEmpresa & "', '" & gEjercicio & "')", dbProd, miTrans)
+                cmd.ExecuteNonQuery()
+            Next
             Return True
         Catch ex As Exception
             MsgBox(ex.Message)
-            miTrans.Rollback()
+            Return False
+        End Try
+
+    End Function
+    Public Function InsertarLinea(Accion As Integer, operacion As Integer, Inicio As DateTime, final As DateTime, miturno As Integer, misOperarios() As String) As Boolean
+        Dim cmd As New OleDbCommand
+
+
+        cmd = New OleDbCommand("INSERT iNTO PL_LINEASPRODUCIDAS( IDCABECERA, IDACCION, IDOPERACION, INICIO, FIN, CODEMPRESA, EJERCICIO) VALUES (" & idCabecera & "," & Accion & "," & operacion & ",'" & Inicio & "','" & final & "','" & gCodEmpresa & "', '" & gEjercicio & "')", dbProd, miTrans)
+        Try
+            cmd.ExecuteNonQuery()
+            cmd = New OleDbCommand("Select @@identity", dbProd, miTrans)
+            idLinea = cmd.ExecuteScalar
+            If miturno <> 0 Or Not misOperarios Is Nothing Then ' es cambio de turno, meto datos de turnos
+               
+
+                For Each elemento In misOperarios
+                    cmd = New OleDbCommand("INSERT INTO PL_CABECERAS_OPERARIOS( idLinea, idOperario, idturno, CODEMPRESA, EJERCICIO) VALUES(" & idLinea & "," & CInt(elemento) & "," & miturno & ",'" & gCodEmpresa & "', '" & gEjercicio & "')", dbProd, miTrans)
+                    cmd.ExecuteNonQuery()
+                Next
+            End If
+
+            Return True
+        Catch ex As Exception
+            MsgBox(ex.Message)
+
             Return False
         End Try
     End Function
+    Public Function FinDeLinea() As Boolean
+        Dim cmd As New OleDbCommand
+        If idLinea = 0 Then Return True
+        cmd = New OleDbCommand("UPDATE PL_LINEASPRODUCIDAS SET FIN='" & Date.Now & "' WHERE ID=" & idLinea, dbProd, miTrans)
+        Try
+            cmd.ExecuteNonQuery()
+
+            Return True
+        Catch ex As Exception
+            MsgBox(ex.Message)
+
+            Return False
+        End Try
+    End Function
+    Public Sub ExpandAllRows(view__1 As GridView)
+        view__1.BeginUpdate()
+        Try
+            Dim dataRowCount As Integer = view__1.DataRowCount
+            For rHandle As Integer = 0 To dataRowCount - 1
+                view__1.SetMasterRowExpanded(rHandle, True)
+            Next
+        Finally
+            view__1.EndUpdate()
+        End Try
+    End Sub
 End Module
