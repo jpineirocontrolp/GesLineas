@@ -36,6 +36,7 @@ Partial Class Principal
         Me.colFIN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCODEMPRESA1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colEJERCICIO1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colESTIMADO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.PLCABECERAPRODUCIDABindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -100,7 +101,6 @@ Partial Class Principal
         Me.Partes_de_produccionTableAdapter = New GesLineas.ProduccionSqlTableAdapters.Partes_de_produccionTableAdapter()
         Me.ARTICULOSTableAdapter = New GesLineas.DatosDatasetTableAdapters.ARTICULOSTableAdapter()
         Me.SplitContainerControl2 = New DevExpress.XtraEditors.SplitContainerControl()
-        Me.CancelaAccion = New DevExpress.XtraEditors.SimpleButton()
         Me.AceptaAccion = New DevExpress.XtraEditors.SimpleButton()
         Me.cbOperaciones = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
@@ -111,6 +111,8 @@ Partial Class Principal
         Me.PL_CABECERAPRODUCIDATableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_CABECERAPRODUCIDATableAdapter()
         Me.PL_LINEASPRODUCIDASTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_LINEASPRODUCIDASTableAdapter()
         Me.PL_TURNOSTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_TURNOSTableAdapter()
+        Me.PLOPERACIONES1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PL_OPERACIONES1TableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_OPERACIONES1TableAdapter()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,14 +146,16 @@ Partial Class Principal
         Me.SplitContainerControl2.SuspendLayout()
         CType(Me.cbOperaciones.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbAcciones.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PLOPERACIONES1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridView3
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colIDCABECERA, Me.colIDACCION, Me.colIDOPERACION, Me.colINICIO1, Me.colFIN, Me.colCODEMPRESA1, Me.colEJERCICIO1})
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colIDCABECERA, Me.colIDACCION, Me.colIDOPERACION, Me.colINICIO1, Me.colFIN, Me.colCODEMPRESA1, Me.colEJERCICIO1, Me.colESTIMADO})
         Me.GridView3.GridControl = Me.GridControl1
         Me.GridView3.Name = "GridView3"
         Me.GridView3.OptionsBehavior.Editable = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
         Me.GridView3.ViewCaption = "Detalles"
         '
         'colID1
@@ -207,7 +211,7 @@ Partial Class Principal
         '
         Me.RepositoryItemLookUpEdit5.AutoHeight = False
         Me.RepositoryItemLookUpEdit5.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemLookUpEdit5.DataSource = Me.PLOPERACIONESBindingSource
+        Me.RepositoryItemLookUpEdit5.DataSource = Me.PLOPERACIONES1BindingSource
         Me.RepositoryItemLookUpEdit5.DisplayMember = "DESCRIPCION"
         Me.RepositoryItemLookUpEdit5.Name = "RepositoryItemLookUpEdit5"
         Me.RepositoryItemLookUpEdit5.ValueMember = "ID"
@@ -220,7 +224,7 @@ Partial Class Principal
         'colINICIO1
         '
         Me.colINICIO1.Caption = "Hora Inicio"
-        Me.colINICIO1.DisplayFormat.FormatString = "g"
+        Me.colINICIO1.DisplayFormat.FormatString = "G"
         Me.colINICIO1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.colINICIO1.FieldName = "INICIO"
         Me.colINICIO1.Name = "colINICIO1"
@@ -230,7 +234,7 @@ Partial Class Principal
         'colFIN
         '
         Me.colFIN.Caption = "Hora Fin"
-        Me.colFIN.DisplayFormat.FormatString = "g"
+        Me.colFIN.DisplayFormat.FormatString = "G"
         Me.colFIN.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.colFIN.FieldName = "FIN"
         Me.colFIN.Name = "colFIN"
@@ -246,6 +250,15 @@ Partial Class Principal
         '
         Me.colEJERCICIO1.FieldName = "EJERCICIO"
         Me.colEJERCICIO1.Name = "colEJERCICIO1"
+        '
+        'colESTIMADO
+        '
+        Me.colESTIMADO.DisplayFormat.FormatString = "t"
+        Me.colESTIMADO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.colESTIMADO.FieldName = "ESTIMADO"
+        Me.colESTIMADO.Name = "colESTIMADO"
+        Me.colESTIMADO.Visible = True
+        Me.colESTIMADO.VisibleIndex = 4
         '
         'GridControl1
         '
@@ -277,6 +290,8 @@ Partial Class Principal
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsCustomization.AllowGroup = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'colID
         '
@@ -394,7 +409,7 @@ Partial Class Principal
         'colINICIO
         '
         Me.colINICIO.Caption = "Hora Inicio"
-        Me.colINICIO.DisplayFormat.FormatString = "g"
+        Me.colINICIO.DisplayFormat.FormatString = "G"
         Me.colINICIO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.colINICIO.FieldName = "INICIO"
         Me.colINICIO.Name = "colINICIO"
@@ -719,7 +734,6 @@ Partial Class Principal
         Me.SplitContainerControl2.Name = "SplitContainerControl2"
         Me.SplitContainerControl2.Panel1.Appearance.BackColor = System.Drawing.Color.White
         Me.SplitContainerControl2.Panel1.Appearance.Options.UseBackColor = True
-        Me.SplitContainerControl2.Panel1.Controls.Add(Me.CancelaAccion)
         Me.SplitContainerControl2.Panel1.Controls.Add(Me.PanelControl2)
         Me.SplitContainerControl2.Panel1.Controls.Add(Me.AceptaAccion)
         Me.SplitContainerControl2.Panel1.Controls.Add(Me.GridControl1)
@@ -736,20 +750,6 @@ Partial Class Principal
         Me.SplitContainerControl2.TabIndex = 1
         Me.SplitContainerControl2.Text = "SplitContainerControl2"
         '
-        'CancelaAccion
-        '
-        Me.CancelaAccion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CancelaAccion.Enabled = False
-        Me.CancelaAccion.Image = CType(resources.GetObject("CancelaAccion.Image"), System.Drawing.Image)
-        Me.CancelaAccion.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.CancelaAccion.Location = New System.Drawing.Point(1315, 311)
-        Me.CancelaAccion.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
-        Me.CancelaAccion.Name = "CancelaAccion"
-        Me.CancelaAccion.Size = New System.Drawing.Size(76, 68)
-        Me.CancelaAccion.TabIndex = 5
-        Me.CancelaAccion.ToolTip = "Cancelar"
-        '
         'AceptaAccion
         '
         Me.AceptaAccion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -757,7 +757,7 @@ Partial Class Principal
         Me.AceptaAccion.Enabled = False
         Me.AceptaAccion.Image = CType(resources.GetObject("AceptaAccion.Image"), System.Drawing.Image)
         Me.AceptaAccion.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.AceptaAccion.Location = New System.Drawing.Point(1180, 311)
+        Me.AceptaAccion.Location = New System.Drawing.Point(1353, 166)
         Me.AceptaAccion.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.AceptaAccion.Name = "AceptaAccion"
         Me.AceptaAccion.Size = New System.Drawing.Size(76, 68)
@@ -840,6 +840,15 @@ Partial Class Principal
         '
         Me.PL_TURNOSTableAdapter.ClearBeforeFill = True
         '
+        'PLOPERACIONES1BindingSource
+        '
+        Me.PLOPERACIONES1BindingSource.DataMember = "PL_OPERACIONES1"
+        Me.PLOPERACIONES1BindingSource.DataSource = Me.ProduccionSql
+        '
+        'PL_OPERACIONES1TableAdapter
+        '
+        Me.PL_OPERACIONES1TableAdapter.ClearBeforeFill = True
+        '
         'Principal
         '
         Me.Appearance.BackColor = System.Drawing.Color.White
@@ -886,6 +895,7 @@ Partial Class Principal
         Me.SplitContainerControl2.ResumeLayout(False)
         CType(Me.cbOperaciones.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbAcciones.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PLOPERACIONES1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -938,7 +948,6 @@ Partial Class Principal
     Friend WithEvents ARTICULOSTableAdapter As GesLineas.DatosDatasetTableAdapters.ARTICULOSTableAdapter
     Friend WithEvents SplitContainerControl2 As DevExpress.XtraEditors.SplitContainerControl
     Friend WithEvents cbAcciones As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents CancelaAccion As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents AceptaAccion As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents cbOperaciones As DevExpress.XtraEditors.LookUpEdit
@@ -978,5 +987,8 @@ Partial Class Principal
     Friend WithEvents colFIN As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colCODEMPRESA1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colEJERCICIO1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colESTIMADO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PLOPERACIONES1BindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents PL_OPERACIONES1TableAdapter As GesLineas.ProduccionSqlTableAdapters.PL_OPERACIONES1TableAdapter
 
 End Class

@@ -29,14 +29,19 @@ Public Class Ordenes
         miPrincipal.LabelControl1.Text = "Orden Nº: " & NroOrden.ToString
         LocalizaLineaenProduccion(miPrincipal.GridView2)
         If miLinea <> 0 And idCabecera <> 0 Then
-            Dim misOperarios() As String = FormMain.cmbOperarios.EditValue.ToString.Split(",")
-            miTrans = dbProd.BeginTransaction
-            If InsertarLinea(configuracion.AccionCambioTurno, 0, Date.Now, Date.Now, FormMain.cmbTurno.EditValue, misOperarios) Then
-                miTrans.Commit()
-            Else
-                miTrans.Rollback()
-                Exit Sub
-            End If
+            'Dim misOperarios() As String = FormMain.cmbOperarios.EditValue.ToString.Split(",")
+            'miTrans = dbProd.BeginTransaction
+            'If InsertarLinea(configuracion.AccionCambioTurno, 0, Date.Now, Date.Now, FormMain.cmbTurno.EditValue, misOperarios) Then
+            '    miTrans.Commit()
+            'Else
+            '    miTrans.Rollback()
+            '    Exit Sub
+            'End If
+            miPrincipal.cbAcciones.Properties.ReadOnly = False
+            miPrincipal.cbOperaciones.Properties.ReadOnly = False
+            miPrincipal.AceptaAccion.Enabled = True
+            CambioTurno()
+            CambioOperario()
 
         End If
         miPrincipal.loadDataOperaciones()
@@ -56,5 +61,5 @@ Public Class Ordenes
 
         ' End If
     End Sub
-   
+    
 End Class

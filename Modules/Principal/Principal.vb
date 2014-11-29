@@ -1,6 +1,7 @@
 ﻿Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Grid
+Imports System.Data.OleDb
 
 Public Class Principal
 
@@ -36,6 +37,9 @@ Public Class Principal
         Me.PL_CABECERAPRODUCIDATableAdapter.Fill(Me.ProduccionSql.PL_CABECERAPRODUCIDA, miLinea, gCodEmpresa, gEjercicio)
         Me.PL_LINEASPRODUCIDASTableAdapter.Fill(Me.ProduccionSql.PL_LINEASPRODUCIDAS, gCodEmpresa, gEjercicio)
         Me.PL_TURNOSTableAdapter.Fill(Me.ProduccionSql.PL_TURNOS, gCodEmpresa, gEjercicio)
+        Me.PL_OPERACIONES1TableAdapter.Fill(Me.ProduccionSql.PL_OPERACIONES1, gCodEmpresa, gEjercicio)
+        ExpandAllRows(GridView1)
+        GridView3.FocusedRowHandle = GridView3.DataRowCount - 1
     End Sub
 
     Private Sub cbAcciones_EditValueChanged(sender As Object, e As EventArgs) Handles cbAcciones.EditValueChanged
@@ -54,5 +58,65 @@ Public Class Principal
                 e.Appearance.BackColor = Color.LawnGreen
             End If
         End If
+    End Sub
+
+    Private Sub AceptaAccion_Click(sender As Object, e As EventArgs) Handles AceptaAccion.Click
+        Dim cmd As New OleDbCommand
+        Dim miLineacopia As Integer = miLinea
+        Dim idCabeceraCopia As Integer = idCabecera
+        Dim idLineaCopia As Integer = idLinea
+
+
+        Dim operacion As Integer = IIf(miPrincipal.cbOperaciones.EditValue Is Nothing, 0, miPrincipal.cbOperaciones.EditValue)
+        Dim accion As Integer = IIf(miPrincipal.cbAcciones.EditValue Is Nothing, 0, miPrincipal.cbAcciones.EditValue)
+        If operacion = 0 And accion = 0 Then
+            MsgBox("Debe de elegir al menos una acción")
+            Exit Sub
+        End If
+        Try
+            miTrans = dbProd.BeginTransaction
+            If FinDeLinea() Then
+                If InsertarLinea(accion, operacion, Date.Now, Nothing, 0, Nothing) Then
+                    miTrans.Commit()
+                  
+                    cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and id=" & accion, dbProd)
+                    If Not IsDBNull(cmd.ExecuteScalar) Then miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar Else miPrincipal.cbAcciones.EditValue = 0
+                    miPrincipal.cbOperaciones.EditValue = 0
+
+                    miPrincipal.LoadData()
+                    miPrincipal.loadDataOperaciones()
+                    miPrincipal.GridControl2.RefreshDataSource()
+                Else
+                    miLinea = miLineacopia
+                    idCabecera = idCabeceraCopia
+                    idLinea = idLineaCopia
+                    miTrans.Rollback()
+                    miPrincipal.LoadData()
+                    miPrincipal.loadDataOperaciones()
+                    miPrincipal.GridControl2.RefreshDataSource()
+                    Exit Sub
+                End If
+            Else
+                miTrans.Rollback()
+                miLinea = miLineacopia
+                idCabecera = idCabeceraCopia
+                idLinea = idLineaCopia
+                miPrincipal.LoadData()
+                miPrincipal.loadDataOperaciones()
+                miPrincipal.GridControl2.RefreshDataSource()
+                Exit Sub
+            End If
+        Catch ex As Exception
+            MsgBox("Debe de elegir al menos una accion")
+            miTrans.Rollback()
+            miLinea = miLineacopia
+            idCabecera = idCabeceraCopia
+            idLinea = idLineaCopia
+            miPrincipal.LoadData()
+            miPrincipal.loadDataOperaciones()
+            miPrincipal.GridControl2.RefreshDataSource()
+        End Try
+      
+
     End Sub
 End Class

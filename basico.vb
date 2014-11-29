@@ -29,6 +29,7 @@ Module basico
     Public misOrdenes As Ordenes
     Public misSettings As SettingsUC
     Public miPrincipal As Principal
+    Public misRoturas As Roturas
     Public NroOrden As Integer = 0
     Public miManejador As Integer = 0
     Public miTrans As OleDbTransaction
@@ -199,9 +200,18 @@ Module basico
     End Function
     Public Function InsertarLinea(Accion As Integer, operacion As Integer, Inicio As DateTime, final As DateTime, miturno As Integer, misOperarios() As String) As Boolean
         Dim cmd As New OleDbCommand
+        Dim Horas As String
+        If operacion <> 0 Then
+            cmd = New OleDbCommand("Select estimado from pl_operaciones where id=" & operacion, dbProd, miTrans)
+            If IsDBNull(cmd.ExecuteScalar) Then Horas = "00:00:00" Else Horas = cmd.ExecuteScalar.ToString
+        Else
+            cmd = New OleDbCommand("Select estimado from pl_acciones where id=" & Accion, dbProd, miTrans)
+            If IsDBNull(cmd.ExecuteScalar) Then Horas = "00:00:00" Else Horas = cmd.ExecuteScalar.ToString
+
+        End If
 
 
-        cmd = New OleDbCommand("INSERT iNTO PL_LINEASPRODUCIDAS( IDCABECERA, IDACCION, IDOPERACION, INICIO, FIN, CODEMPRESA, EJERCICIO) VALUES (" & idCabecera & "," & Accion & "," & operacion & ",'" & Inicio & "','" & final & "','" & gCodEmpresa & "', '" & gEjercicio & "')", dbProd, miTrans)
+        cmd = New OleDbCommand("INSERT iNTO PL_LINEASPRODUCIDAS( IDCABECERA, IDACCION, IDOPERACION, INICIO, FIN, CODEMPRESA, EJERCICIO,ESTIMADO) VALUES (" & idCabecera & "," & Accion & "," & operacion & ",'" & Inicio & "','" & final & "','" & gCodEmpresa & "', '" & gEjercicio & "','" & Horas.ToString & "')", dbProd, miTrans)
         Try
             cmd.ExecuteNonQuery()
             cmd = New OleDbCommand("Select @@identity", dbProd, miTrans)
@@ -245,6 +255,62 @@ Module basico
             Next
         Finally
             view__1.EndUpdate()
+
         End Try
+    End Sub
+    Public Sub CambioOperario()
+        Try
+            If miLinea <> 0 Then
+                Dim misOperarios() As String = FormMain.cmbOperarios.EditValue.ToString.Split(",")
+                Dim cmd As New OleDbCommand
+                miTrans = dbProd.BeginTransaction
+                If FinDeLinea() Then
+                    If InsertarLinea(configuracion.AccionCambioOperario, 0, Date.Now, Nothing, FormMain.cmbTurno.EditValue, misOperarios) Then
+                        miTrans.Commit()
+                        cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and id=" & configuracion.AccionCambioOperario, dbProd)
+                        If Not IsDBNull(cmd.ExecuteScalar) Then miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar Else miPrincipal.cbAcciones.EditValue = -1
+                    Else
+                        miTrans.Rollback()
+                    End If
+                    miPrincipal.loadDataOperaciones()
+                Else
+                    miTrans.Rollback()
+                    miPrincipal.loadDataOperaciones()
+                End If
+            End If
+        Catch ex As Exception
+            miTrans.Rollback()
+            MsgBox(ex.Message)
+            miPrincipal.loadDataOperaciones()
+
+
+        End Try
+    End Sub
+    Public Sub CambioTurno()
+        Try
+            If miLinea <> 0 Then
+                Dim misOperarios() As String = FormMain.cmbOperarios.EditValue.ToString.Split(",")
+                Dim cmd As New OleDbCommand
+                miTrans = dbProd.BeginTransaction
+                If FinDeLinea() Then
+                    If InsertarLinea(configuracion.AccionCambioTurno, 0, Date.Now, Nothing, FormMain.cmbTurno.EditValue, misOperarios) Then
+                        miTrans.Commit()
+                        cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and id=" & configuracion.AccionCambioTurno, dbProd)
+                        If Not IsDBNull(cmd.ExecuteScalar) Then miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar Else miPrincipal.cbAcciones.EditValue = -1
+                    Else
+                        miTrans.Rollback()
+                    End If
+                    miPrincipal.loadDataOperaciones()
+                Else
+                    miTrans.Rollback()
+                    miPrincipal.loadDataOperaciones()
+                End If
+            End If
+        Catch ex As Exception
+            miTrans.Rollback()
+            miPrincipal.loadDataOperaciones()
+            MsgBox(ex.Message)
+        End Try
+
     End Sub
 End Module

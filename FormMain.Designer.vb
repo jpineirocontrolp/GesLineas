@@ -24,15 +24,15 @@ Partial Class FormMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim TileItemElement4 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim SuperToolTip3 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem3 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim ToolTipItem3 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
-        Dim TileItemElement5 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement6 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim SuperToolTip4 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem4 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim ToolTipItem4 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
+        Dim TileItemElement1 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim ToolTipItem1 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
+        Dim TileItemElement2 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement3 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem2 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim ToolTipItem2 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
         Me.TileNavPane1 = New DevExpress.XtraBars.Navigation.TileNavPane()
         Me.navButtonHome = New DevExpress.XtraBars.Navigation.NavButton()
         Me.navButtonOrden = New DevExpress.XtraBars.Navigation.NavButton()
@@ -173,31 +173,31 @@ Partial Class FormMain
         Me.BuscarOrdenes.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.BuscarOrdenes.AppearanceItem.Normal.Options.UseBackColor = True
         Me.BuscarOrdenes.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement4.Appearance.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        TileItemElement4.Appearance.Normal.Options.UseBackColor = True
-        TileItemElement4.Image = CType(resources.GetObject("TileItemElement4.Image"), System.Drawing.Image)
-        TileItemElement4.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter
-        TileItemElement4.Text = "Ordenes"
-        Me.BuscarOrdenes.Elements.Add(TileItemElement4)
+        TileItemElement1.Appearance.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        TileItemElement1.Appearance.Normal.Options.UseBackColor = True
+        TileItemElement1.Image = CType(resources.GetObject("TileItemElement1.Image"), System.Drawing.Image)
+        TileItemElement1.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter
+        TileItemElement1.Text = "Ordenes"
+        Me.BuscarOrdenes.Elements.Add(TileItemElement1)
         Me.BuscarOrdenes.Id = 2
         Me.BuscarOrdenes.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
         Me.BuscarOrdenes.Name = "BuscarOrdenes"
-        ToolTipTitleItem3.Text = "Cargar Ordenes de trabajo"
-        ToolTipItem3.LeftIndent = 6
-        ToolTipItem3.Text = "Pulse aqui para cargar las ordenes de trabajo disponibles para el proceso de prod" & _
+        ToolTipTitleItem1.Text = "Cargar Ordenes de trabajo"
+        ToolTipItem1.LeftIndent = 6
+        ToolTipItem1.Text = "Pulse aqui para cargar las ordenes de trabajo disponibles para el proceso de prod" & _
     "ucción"
-        SuperToolTip3.Items.Add(ToolTipTitleItem3)
-        SuperToolTip3.Items.Add(ToolTipItem3)
-        Me.BuscarOrdenes.SuperTip = SuperToolTip3
+        SuperToolTip1.Items.Add(ToolTipTitleItem1)
+        SuperToolTip1.Items.Add(ToolTipItem1)
+        Me.BuscarOrdenes.SuperTip = SuperToolTip1
         '
         'Envasar
         '
         Me.Envasar.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Envasar.AppearanceItem.Normal.Options.UseBackColor = True
         Me.Envasar.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement5.Image = CType(resources.GetObject("TileItemElement5.Image"), System.Drawing.Image)
-        TileItemElement5.Text = "Envasar"
-        Me.Envasar.Elements.Add(TileItemElement5)
+        TileItemElement2.Image = CType(resources.GetObject("TileItemElement2.Image"), System.Drawing.Image)
+        TileItemElement2.Text = "Envasar"
+        Me.Envasar.Elements.Add(TileItemElement2)
         Me.Envasar.Id = 4
         Me.Envasar.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
         Me.Envasar.Name = "Envasar"
@@ -207,18 +207,18 @@ Partial Class FormMain
         Me.Roturas.AppearanceItem.Normal.BackColor = System.Drawing.Color.Red
         Me.Roturas.AppearanceItem.Normal.Options.UseBackColor = True
         Me.Roturas.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement6.Image = CType(resources.GetObject("TileItemElement6.Image"), System.Drawing.Image)
-        TileItemElement6.Text = "Roturas"
-        Me.Roturas.Elements.Add(TileItemElement6)
+        TileItemElement3.Image = CType(resources.GetObject("TileItemElement3.Image"), System.Drawing.Image)
+        TileItemElement3.Text = "Roturas"
+        Me.Roturas.Elements.Add(TileItemElement3)
         Me.Roturas.Id = 5
         Me.Roturas.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
         Me.Roturas.Name = "Roturas"
-        ToolTipTitleItem4.Text = "Roturas/Defectos"
-        ToolTipItem4.LeftIndent = 6
-        ToolTipItem4.Text = "Informa de las roturas/defectos encontrados en el proceso de envasado"
-        SuperToolTip4.Items.Add(ToolTipTitleItem4)
-        SuperToolTip4.Items.Add(ToolTipItem4)
-        Me.Roturas.SuperTip = SuperToolTip4
+        ToolTipTitleItem2.Text = "Roturas/Defectos"
+        ToolTipItem2.LeftIndent = 6
+        ToolTipItem2.Text = "Informa de las roturas/defectos encontrados en el proceso de envasado"
+        SuperToolTip2.Items.Add(ToolTipTitleItem2)
+        SuperToolTip2.Items.Add(ToolTipItem2)
+        Me.Roturas.SuperTip = SuperToolTip2
         '
         'PanelControl1
         '
@@ -314,8 +314,9 @@ Partial Class FormMain
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.TileBar1)
         Me.Controls.Add(Me.TileNavPane1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormMain"
-        Me.Text = "FormMain"
+        Me.Text = "Captura de datos"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cmbTurno.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PLTURNOSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()

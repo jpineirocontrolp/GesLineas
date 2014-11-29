@@ -81,8 +81,13 @@ Public Class FormMain
         Me.PanelControl1.Controls.Add(miPrincipal)
         miPrincipal.Dock = DockStyle.Fill
         miPrincipal.Visible = False
+        Me.PanelControl1.Controls.Add(misRoturas)
+        misRoturas.Dock = DockStyle.Fill
+        misRoturas.Visible = True
+
         If NroOrden = 0 Then
             Envasar.Enabled = False
+            btRoturas.Enabled = False
         Else
             BuscarOrdenes.Enabled = True
         End If
@@ -138,6 +143,9 @@ Public Class FormMain
                             miPrincipal.GridControl1.RefreshDataSource()
                             misOrdenes.loaddata()
                             misOrdenes.GridControl1.RefreshDataSource()
+                            miPrincipal.cbAcciones.Properties.ReadOnly = True
+                            miPrincipal.cbOperaciones.Properties.ReadOnly = True
+                            miPrincipal.AceptaAccion.Enabled = False
                             Exit Sub
                         End If
                         cmd = New OleDbCommand("Select id from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd, miTrans)
@@ -196,7 +204,7 @@ Public Class FormMain
                 miPrincipal.cbAcciones.Properties.ReadOnly = False
                 miPrincipal.cbOperaciones.Properties.ReadOnly = False
                 miPrincipal.AceptaAccion.Enabled = True
-                miPrincipal.CancelaAccion.Enabled = True
+
                 ' cargo el primer elemento de la grid
                 Dim CurrentRow As Integer
 
@@ -291,17 +299,10 @@ Public Class FormMain
    
 
     Private Sub cmbTurno_EditValueChanged(sender As Object, e As EventArgs) Handles cmbTurno.EditValueChanged
-        If miLinea <> 0 Then
-            Dim misOperarios() As String = cmbOperarios.EditValue.ToString.Split(",")
-            miTrans = dbProd.BeginTransaction
-            If InsertarLinea(configuracion.AccionCambioTurno, 0, Date.Now, Date.Now, cmbTurno.EditValue, misOperarios) Then
-                miTrans.Commit()
-            Else
-                miTrans.Rollback()
-            End If
-            miPrincipal.loadDataOperaciones()
-            ExpandAllRows(miPrincipal.GridView1)
-        End If
+        CambioTurno()
     End Sub
 
+    Private Sub cmbOperarios_EditValueChanged(sender As Object, e As EventArgs) Handles cmbOperarios.EditValueChanged
+        CambioOperario()
+    End Sub
 End Class
