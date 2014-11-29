@@ -44,7 +44,7 @@ Partial Class FormMain
         Me.TileBarGroup2 = New DevExpress.XtraBars.Navigation.TileBarGroup()
         Me.BuscarOrdenes = New DevExpress.XtraBars.Navigation.TileBarItem()
         Me.Envasar = New DevExpress.XtraBars.Navigation.TileBarItem()
-        Me.Roturas = New DevExpress.XtraBars.Navigation.TileBarItem()
+        Me.btRoturas = New DevExpress.XtraBars.Navigation.TileBarItem()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.cmbTurno = New DevExpress.XtraEditors.LookUpEdit()
         Me.PLTURNOSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -165,7 +165,7 @@ Partial Class FormMain
         '
         Me.TileBarGroup2.Items.Add(Me.BuscarOrdenes)
         Me.TileBarGroup2.Items.Add(Me.Envasar)
-        Me.TileBarGroup2.Items.Add(Me.Roturas)
+        Me.TileBarGroup2.Items.Add(Me.btRoturas)
         Me.TileBarGroup2.Name = "TileBarGroup2"
         '
         'BuscarOrdenes
@@ -202,23 +202,23 @@ Partial Class FormMain
         Me.Envasar.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
         Me.Envasar.Name = "Envasar"
         '
-        'Roturas
+        'btRoturas
         '
-        Me.Roturas.AppearanceItem.Normal.BackColor = System.Drawing.Color.Red
-        Me.Roturas.AppearanceItem.Normal.Options.UseBackColor = True
-        Me.Roturas.DropDownOptions.BeakColor = System.Drawing.Color.Empty
+        Me.btRoturas.AppearanceItem.Normal.BackColor = System.Drawing.Color.Red
+        Me.btRoturas.AppearanceItem.Normal.Options.UseBackColor = True
+        Me.btRoturas.DropDownOptions.BeakColor = System.Drawing.Color.Empty
         TileItemElement3.Image = CType(resources.GetObject("TileItemElement3.Image"), System.Drawing.Image)
         TileItemElement3.Text = "Roturas"
-        Me.Roturas.Elements.Add(TileItemElement3)
-        Me.Roturas.Id = 5
-        Me.Roturas.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
-        Me.Roturas.Name = "Roturas"
+        Me.btRoturas.Elements.Add(TileItemElement3)
+        Me.btRoturas.Id = 5
+        Me.btRoturas.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
+        Me.btRoturas.Name = "btRoturas"
         ToolTipTitleItem2.Text = "Roturas/Defectos"
         ToolTipItem2.LeftIndent = 6
         ToolTipItem2.Text = "Informa de las roturas/defectos encontrados en el proceso de envasado"
         SuperToolTip2.Items.Add(ToolTipTitleItem2)
         SuperToolTip2.Items.Add(ToolTipItem2)
-        Me.Roturas.SuperTip = SuperToolTip2
+        Me.btRoturas.SuperTip = SuperToolTip2
         '
         'PanelControl1
         '
@@ -261,14 +261,14 @@ Partial Class FormMain
         Me.cmbOperarios.Location = New System.Drawing.Point(1246, 76)
         Me.cmbOperarios.Name = "cmbOperarios"
         Me.cmbOperarios.Properties.AllowMultiSelect = True
-        Me.cmbOperarios.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbOperarios.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbOperarios.Properties.Appearance.Options.UseFont = True
         Me.cmbOperarios.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cmbOperarios.Properties.DataSource = Me.OPERARIOSBindingSource
         Me.cmbOperarios.Properties.DisplayMember = "NOMBRE"
         Me.cmbOperarios.Properties.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.cmbOperarios.Properties.ValueMember = "ID"
-        Me.cmbOperarios.Size = New System.Drawing.Size(295, 42)
+        Me.cmbOperarios.Size = New System.Drawing.Size(295, 48)
         Me.cmbOperarios.TabIndex = 5
         '
         'OPERARIOSBindingSource
@@ -339,7 +339,7 @@ Partial Class FormMain
     Friend WithEvents NavButton2 As DevExpress.XtraBars.Navigation.NavButton
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents Envasar As DevExpress.XtraBars.Navigation.TileBarItem
-    Friend WithEvents Roturas As DevExpress.XtraBars.Navigation.TileBarItem
+    Friend WithEvents btRoturas As DevExpress.XtraBars.Navigation.TileBarItem
     Friend WithEvents cmbTurno As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents cmbOperarios As DevExpress.XtraEditors.CheckedComboBoxEdit
     Friend WithEvents PLTURNOSBindingSource As System.Windows.Forms.BindingSource

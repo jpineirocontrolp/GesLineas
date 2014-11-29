@@ -81,6 +81,7 @@ Public Class FormMain
         Me.PanelControl1.Controls.Add(miPrincipal)
         miPrincipal.Dock = DockStyle.Fill
         miPrincipal.Visible = False
+        misRoturas = New Roturas
         Me.PanelControl1.Controls.Add(misRoturas)
         misRoturas.Dock = DockStyle.Fill
         misRoturas.Visible = True
@@ -101,6 +102,7 @@ Public Class FormMain
                 controencurso = misOrdenes
                 misOrdenes.BotonLinea = navButtonOrden
                 misOrdenes.BtBuscaOrdenes = BuscarOrdenes
+                misOrdenes.btbtRoturas = btRoturas
                 misOrdenes.btEnvasar = Envasar
                 misOrdenes.Visible = True
                 miPrincipal.Visible = False
@@ -125,13 +127,29 @@ Public Class FormMain
 
             If miLinea <> 0 Then
                 If MsgBox("Desea finalizar el envasado de esta referencia?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                    ' pido roturas
+                    miTrans = Nothing
+                    Dim roturas2 As New Roturas
+                    roturas2.btbtRoturas = btRoturas
+                    roturas2.btEnvasar = Envasar
+
+                    roturas2.loadData()
+                    Dim result As DialogResult = FlyoutDialog.Show(Me, roturas2)
+                    If result = System.Windows.Forms.DialogResult.Cancel Then
+                        Exit Sub
+                    End If
                     ' pongo la linea como finalizada
+
                     miTrans = dbProd.BeginTransaction
 
                     If FinDeLinea() Then
 
                         cmd = New OleDbCommand("update pl_partesproduccion set estado=4 where id=" & miLinea, dbProd, miTrans)
                         cmd.ExecuteNonQuery()
+                        Dim rowHandle As Integer = GetRowHandleByColumnValue(miPrincipal.GridView2, "id", miLinea, miPrincipal.GridControl2)
+                        ' Dim Col As DevExpress.XtraGrid.Columns.GridColumn = miPrincipal.GridView2.Columns("id")
+                        ' Dim rowhandle As Integer = miPrincipal.GridView2.LocateByValue(miLinea, Col, "id")
+                        miPrincipal.GridView2.SetRowCellValue(rowhandle, miPrincipal.GridView2.Columns("ESTADO"), 4)
                         If OrdenFinalizada(miPrincipal.GridView2) Then
                             miTrans.Commit()
                             MsgBox("Se ha terminado la orden de producción")
@@ -154,10 +172,10 @@ Public Class FormMain
                         FindRowHandleByDataRow(miPrincipal.GridView2)
                         cmd = New OleDbCommand("Select ARTICULO FROM PL_PARTESPRODUCCION WHERE CodEmpresa= '" & gCodEmpresa & "' and Ejercicio='" & gEjercicio & "' and ID=" & miLinea, dbProd, miTrans)
 
-                        Dim idarticulo As Integer = cmd.ExecuteScalar
+                        idArticulo = cmd.ExecuteScalar
                         cmd = New OleDbCommand("update pl_partesproduccion set estado=3 where id=" & miLinea, dbProd, miTrans)
                         cmd.ExecuteNonQuery()
-                        If InsertaCabecera(idarticulo, miTrans) Then
+                        If InsertaCabecera(idArticulo, miTrans) Then
 
 
                         Else
@@ -195,7 +213,7 @@ Public Class FormMain
                     ''Dim row As DataRow = miPrincipal.GridView2.GetDataRow(miManejador)
                     ''row("ESTADO") = 4
                     'miPrincipal.GridControl2.RefreshDataSource()
-                   
+
                     blnContinuar = True
                 Else
                     blnContinuar = False
@@ -210,7 +228,7 @@ Public Class FormMain
 
                 CurrentRow = FindRowHandleByDataRow(miPrincipal.GridView2)
                 miPrincipal.GridView2.FocusedRowHandle = CurrentRow
-                Dim idarticulo As Integer = clsNegocioProd.GetDatoTabla(miLinea, "PL_PARTESPRODUCCION", gCodEmpresa, gEjercicio, "ARTICULO", "ID")
+                idArticulo = clsNegocioProd.GetDatoTabla(miLinea, "PL_PARTESPRODUCCION", gCodEmpresa, gEjercicio, "ARTICULO", "ID")
                 miTrans = dbProd.BeginTransaction
                 cmd = New OleDbCommand("update pl_partesproduccion set estado=3 where id=" & miLinea, dbProd, miTrans)
                 cmd.ExecuteNonQuery()
@@ -304,5 +322,24 @@ Public Class FormMain
 
     Private Sub cmbOperarios_EditValueChanged(sender As Object, e As EventArgs) Handles cmbOperarios.EditValueChanged
         CambioOperario()
+    End Sub
+
+    Private Sub btRoturas_ItemClick(sender As Object, e As TileItemEventArgs) Handles btRoturas.ItemClick
+        If cmbOperarios.EditValue.ToString <> "" And Not cmbTurno.EditValue Is Nothing Then
+            Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
+                controencurso = misRoturas
+                Envasar.Enabled = False
+                btRoturas.Enabled = False
+                misRoturas.btbtRoturas = btRoturas
+                misRoturas.btEnvasar = Envasar
+                misRoturas.loadData()
+                misRoturas.Visible = True
+                miPrincipal.Visible = False
+
+            End Using
+        Else
+            MsgBox("Debe de elegir un turno y un operario")
+            'End If
+        End If
     End Sub
 End Class

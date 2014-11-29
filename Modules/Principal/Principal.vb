@@ -20,7 +20,6 @@ Public Class Principal
         Me.Partes_de_produccionTableAdapter.Fill(Me.ProduccionSql.Partes_de_produccion, configuracion.Linea, NroOrden, gCodEmpresa, gEjercicio)
         Me.ARTICULOSTableAdapter.Fill(Me.DatosDataset.ARTICULOS, gCodEmpresa, gEjercicio)
         Me.PL_ACCIONESTableAdapter.Fill(Me.ProduccionSql.PL_ACCIONES, gCodEmpresa, gEjercicio)
-
         Dim myLookUp As RepositoryItemLookUpEdit = New RepositoryItemLookUpEdit()
         Dim LST As New Dictionary(Of String, String)
         LST.Add("1", "Pendiente")
@@ -45,6 +44,28 @@ Public Class Principal
     Private Sub cbAcciones_EditValueChanged(sender As Object, e As EventArgs) Handles cbAcciones.EditValueChanged
         Me.PL_OPERACIONESTableAdapter.Fill(Me.ProduccionSql.PL_OPERACIONES, gCodEmpresa, gEjercicio, configuracion.Linea, cbAcciones.EditValue)
         cbOperaciones.Refresh()
+    End Sub
+
+    Private Sub GridView2_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GridView2.CustomColumnDisplayText
+       
+        If e.Column.FieldName = "Formato" Then
+            Try
+
+                Dim view As GridView = TryCast(sender, GridView)
+                Dim row As DataRowView = view.GetRow(view.GetRowHandle(e.ListSourceRowIndex))
+
+                If row.Row("idenvase") = 0 Then e.DisplayText = ""
+                Dim cmd As New OleDbCommand
+                cmd = New OleDbCommand("Select idenvase from PL_LINEASENVASES WHERE ID=" & row.Row("Idenvase"), dbProd)
+                Dim idEnvase As Integer = cmd.ExecuteScalar
+
+                cmd = New OleDbCommand("Select descripcion from envases where id=" & idEnvase, dbAdo)
+                e.DisplayText = cmd.ExecuteScalar
+            Catch ex As Exception
+                e.DisplayText = ""
+            End Try
+
+        End If
     End Sub
 
     Private Sub GridView2_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView2.RowStyle

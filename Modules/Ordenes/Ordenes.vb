@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.XtraGrid.Views.Grid
+Imports System.Data.OleDb
 
 Public Class Ordenes
 
@@ -7,6 +8,7 @@ Public Class Ordenes
     Public BotonLinea As DevExpress.XtraBars.Navigation.NavButton
     Public BtBuscaOrdenes As DevExpress.XtraBars.Navigation.TileBarItem
     Public btEnvasar As DevExpress.XtraBars.Navigation.TileBarItem
+    Public btbtRoturas As DevExpress.XtraBars.Navigation.TileBarItem
     Public Sub New()
 
         ' Llamada necesaria para el diseñador.
@@ -20,10 +22,12 @@ Public Class Ordenes
 
     End Sub
     Private Sub GridView1_Click(sender As Object, e As EventArgs) Handles GridView1.Click
+        Dim cmd As New OleDbCommand
         NroOrden = GridView1.GetFocusedDataRow()("NroOrden").ToString()
         BotonLinea.Caption = "Cargada Orden Nro...:   " & NroOrden.ToString
         BtBuscaOrdenes.Enabled = False
         btEnvasar.Enabled = True
+        btbtRoturas.Enabled = True
         miPrincipal.LoadData()
 
         miPrincipal.LabelControl1.Text = "Orden Nº: " & NroOrden.ToString
@@ -37,6 +41,9 @@ Public Class Ordenes
             '    miTrans.Rollback()
             '    Exit Sub
             'End If
+            cmd = New OleDbCommand("Select ARTICULO FROM PL_PARTESPRODUCCION WHERE CodEmpresa= '" & gCodEmpresa & "' and Ejercicio='" & gEjercicio & "' and ID=" & miLinea, dbProd)
+
+            idArticulo = cmd.ExecuteScalar
             miPrincipal.cbAcciones.Properties.ReadOnly = False
             miPrincipal.cbOperaciones.Properties.ReadOnly = False
             miPrincipal.AceptaAccion.Enabled = True
@@ -61,5 +68,5 @@ Public Class Ordenes
 
         ' End If
     End Sub
-    
+
 End Class

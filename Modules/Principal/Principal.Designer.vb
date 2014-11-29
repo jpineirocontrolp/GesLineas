@@ -20,7 +20,7 @@ Partial Class Principal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -31,7 +31,7 @@ Partial Class Principal
         Me.ProduccionSql = New GesLineas.ProduccionSql()
         Me.colIDOPERACION = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.PLOPERACIONESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PLOPERACIONES1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.colINICIO1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colFIN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCODEMPRESA1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -57,6 +57,7 @@ Partial Class Principal
         Me.colCODEMPRESA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colEJERCICIO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colINICIO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PLOPERACIONESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -92,7 +93,9 @@ Partial Class Principal
         Me.colETIQUETARCAJA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colTIPOETIQUETACAJA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colMENSAJELASER = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colid2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIdLinea = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemLookUpEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.Observaciones = New DevExpress.XtraEditors.MemoEdit()
@@ -111,14 +114,14 @@ Partial Class Principal
         Me.PL_CABECERAPRODUCIDATableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_CABECERAPRODUCIDATableAdapter()
         Me.PL_LINEASPRODUCIDASTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_LINEASPRODUCIDASTableAdapter()
         Me.PL_TURNOSTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_TURNOSTableAdapter()
-        Me.PLOPERACIONES1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PL_OPERACIONES1TableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_OPERACIONES1TableAdapter()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PLOPERACIONES1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLCABECERAPRODUCIDABindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,6 +132,7 @@ Partial Class Principal
         CType(Me.RepositoryItemLookUpEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ARTICULOSBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DatosDataset, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,6 +141,7 @@ Partial Class Principal
         CType(Me.ARTICULOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemGridLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemLookUpEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.Observaciones.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -146,7 +151,6 @@ Partial Class Principal
         Me.SplitContainerControl2.SuspendLayout()
         CType(Me.cbOperaciones.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbAcciones.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PLOPERACIONES1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridView3
@@ -216,10 +220,10 @@ Partial Class Principal
         Me.RepositoryItemLookUpEdit5.Name = "RepositoryItemLookUpEdit5"
         Me.RepositoryItemLookUpEdit5.ValueMember = "ID"
         '
-        'PLOPERACIONESBindingSource
+        'PLOPERACIONES1BindingSource
         '
-        Me.PLOPERACIONESBindingSource.DataMember = "PL_OPERACIONES"
-        Me.PLOPERACIONESBindingSource.DataSource = Me.ProduccionSql
+        Me.PLOPERACIONES1BindingSource.DataMember = "PL_OPERACIONES1"
+        Me.PLOPERACIONES1BindingSource.DataSource = Me.ProduccionSql
         '
         'colINICIO1
         '
@@ -267,9 +271,9 @@ Partial Class Principal
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridControl1.Cursor = System.Windows.Forms.Cursors.Default
         Me.GridControl1.DataSource = Me.PLCABECERAPRODUCIDABindingSource
-        GridLevelNode1.LevelTemplate = Me.GridView3
-        GridLevelNode1.RelationName = "FK_PL_LINEASPRODUCIDAS_PL_CABECERAPRODUCIDA"
-        Me.GridControl1.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        GridLevelNode2.LevelTemplate = Me.GridView3
+        GridLevelNode2.RelationName = "FK_PL_LINEASPRODUCIDAS_PL_CABECERAPRODUCIDA"
+        Me.GridControl1.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
         Me.GridControl1.Location = New System.Drawing.Point(3, 51)
         Me.GridControl1.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[False]
         Me.GridControl1.MainView = Me.GridView1
@@ -416,6 +420,11 @@ Partial Class Principal
         Me.colINICIO.Visible = True
         Me.colINICIO.VisibleIndex = 5
         '
+        'PLOPERACIONESBindingSource
+        '
+        Me.PLOPERACIONESBindingSource.DataMember = "PL_OPERACIONES"
+        Me.PLOPERACIONESBindingSource.DataSource = Me.ProduccionSql
+        '
         'SplitContainerControl1
         '
         Me.SplitContainerControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -446,14 +455,14 @@ Partial Class Principal
         Me.GridControl2.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[False]
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemGridLookUpEdit1, Me.RepositoryItemComboBox1})
+        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemGridLookUpEdit1, Me.RepositoryItemComboBox1, Me.RepositoryItemLookUpEdit6})
         Me.GridControl2.Size = New System.Drawing.Size(1496, 204)
         Me.GridControl2.TabIndex = 0
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colOrden, Me.colCODIGO, Me.colArticulo, Me.colPalesFabricar, Me.colCajasFabricar, Me.colFechaProduccion, Me.colTANQUE, Me.colLOTE, Me.colESTADO, Me.colIdEnvase, Me.colObservaciones, Me.colFechaConsumoPreferente, Me.colDESCRIPCION, Me.colGTINCLIENTE, Me.colCANTIDAD, Me.colCADUCIDAD, Me.colMENSAJEBOTELLA, Me.colMENSAJECAJA, Me.colTIPOETIQUETA, Me.colMARCA, Me.colGTINCAJA, Me.colGTINPALET, Me.colIdiomaMes, Me.colMARCARCAJA, Me.colFORMATOMESALFA, Me.colETIQUETARCAJA, Me.colTIPOETIQUETACAJA, Me.colMENSAJELASER, Me.colIdLinea})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colOrden, Me.colCODIGO, Me.colArticulo, Me.colPalesFabricar, Me.colCajasFabricar, Me.colFechaProduccion, Me.colTANQUE, Me.colLOTE, Me.colESTADO, Me.colIdEnvase, Me.colObservaciones, Me.colFechaConsumoPreferente, Me.colDESCRIPCION, Me.colGTINCLIENTE, Me.colCANTIDAD, Me.colCADUCIDAD, Me.colMENSAJEBOTELLA, Me.colMENSAJECAJA, Me.colTIPOETIQUETA, Me.colMARCA, Me.colGTINCAJA, Me.colGTINPALET, Me.colIdiomaMes, Me.colMARCARCAJA, Me.colFORMATOMESALFA, Me.colETIQUETARCAJA, Me.colTIPOETIQUETACAJA, Me.colMENSAJELASER, Me.colid2, Me.colIdLinea, Me.GridColumn1})
         Me.GridView2.GridControl = Me.GridControl2
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -476,6 +485,7 @@ Partial Class Principal
         Me.colOrden.Name = "colOrden"
         Me.colOrden.Visible = True
         Me.colOrden.VisibleIndex = 0
+        Me.colOrden.Width = 70
         '
         'colCODIGO
         '
@@ -483,7 +493,8 @@ Partial Class Principal
         Me.colCODIGO.FieldName = "CODIGO"
         Me.colCODIGO.Name = "colCODIGO"
         Me.colCODIGO.Visible = True
-        Me.colCODIGO.VisibleIndex = 5
+        Me.colCODIGO.VisibleIndex = 6
+        Me.colCODIGO.Width = 168
         '
         'colArticulo
         '
@@ -493,7 +504,7 @@ Partial Class Principal
         Me.colArticulo.Name = "colArticulo"
         Me.colArticulo.Visible = True
         Me.colArticulo.VisibleIndex = 2
-        Me.colArticulo.Width = 350
+        Me.colArticulo.Width = 358
         '
         'RepositoryItemGridLookUpEdit1
         '
@@ -523,6 +534,7 @@ Partial Class Principal
         Me.colPalesFabricar.Name = "colPalesFabricar"
         Me.colPalesFabricar.Visible = True
         Me.colPalesFabricar.VisibleIndex = 3
+        Me.colPalesFabricar.Width = 82
         '
         'colCajasFabricar
         '
@@ -530,6 +542,7 @@ Partial Class Principal
         Me.colCajasFabricar.Name = "colCajasFabricar"
         Me.colCajasFabricar.Visible = True
         Me.colCajasFabricar.VisibleIndex = 4
+        Me.colCajasFabricar.Width = 82
         '
         'colFechaProduccion
         '
@@ -546,7 +559,8 @@ Partial Class Principal
         Me.colLOTE.FieldName = "LOTE"
         Me.colLOTE.Name = "colLOTE"
         Me.colLOTE.Visible = True
-        Me.colLOTE.VisibleIndex = 6
+        Me.colLOTE.VisibleIndex = 7
+        Me.colLOTE.Width = 168
         '
         'colESTADO
         '
@@ -578,6 +592,9 @@ Partial Class Principal
         '
         Me.colFechaConsumoPreferente.FieldName = "FechaConsumoPreferente"
         Me.colFechaConsumoPreferente.Name = "colFechaConsumoPreferente"
+        Me.colFechaConsumoPreferente.Visible = True
+        Me.colFechaConsumoPreferente.VisibleIndex = 8
+        Me.colFechaConsumoPreferente.Width = 162
         '
         'colDESCRIPCION
         '
@@ -619,7 +636,8 @@ Partial Class Principal
         Me.colMARCA.FieldName = "MARCA"
         Me.colMARCA.Name = "colMARCA"
         Me.colMARCA.Visible = True
-        Me.colMARCA.VisibleIndex = 7
+        Me.colMARCA.VisibleIndex = 9
+        Me.colMARCA.Width = 121
         '
         'colGTINCAJA
         '
@@ -661,10 +679,21 @@ Partial Class Principal
         Me.colMENSAJELASER.FieldName = "MENSAJELASER"
         Me.colMENSAJELASER.Name = "colMENSAJELASER"
         '
+        'colid2
+        '
+        Me.colid2.FieldName = "id"
+        Me.colid2.Name = "colid2"
+        '
         'colIdLinea
         '
         Me.colIdLinea.FieldName = "IdLinea"
         Me.colIdLinea.Name = "colIdLinea"
+        '
+        'RepositoryItemLookUpEdit6
+        '
+        Me.RepositoryItemLookUpEdit6.AutoHeight = False
+        Me.RepositoryItemLookUpEdit6.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemLookUpEdit6.Name = "RepositoryItemLookUpEdit6"
         '
         'PanelControl1
         '
@@ -840,14 +869,19 @@ Partial Class Principal
         '
         Me.PL_TURNOSTableAdapter.ClearBeforeFill = True
         '
-        'PLOPERACIONES1BindingSource
-        '
-        Me.PLOPERACIONES1BindingSource.DataMember = "PL_OPERACIONES1"
-        Me.PLOPERACIONES1BindingSource.DataSource = Me.ProduccionSql
-        '
         'PL_OPERACIONES1TableAdapter
         '
         Me.PL_OPERACIONES1TableAdapter.ClearBeforeFill = True
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Formato"
+        Me.GridColumn1.FieldName = "Formato"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 5
+        Me.GridColumn1.Width = 168
         '
         'Principal
         '
@@ -865,7 +899,7 @@ Partial Class Principal
         CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PLOPERACIONES1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PLCABECERAPRODUCIDABindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -876,6 +910,7 @@ Partial Class Principal
         CType(Me.RepositoryItemLookUpEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ARTICULOSBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DatosDataset, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerControl1.ResumeLayout(False)
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -884,6 +919,7 @@ Partial Class Principal
         CType(Me.ARTICULOSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemGridLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemLookUpEdit6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -895,7 +931,6 @@ Partial Class Principal
         Me.SplitContainerControl2.ResumeLayout(False)
         CType(Me.cbOperaciones.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbAcciones.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PLOPERACIONES1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -990,5 +1025,8 @@ Partial Class Principal
     Friend WithEvents colESTIMADO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PLOPERACIONES1BindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents PL_OPERACIONES1TableAdapter As GesLineas.ProduccionSqlTableAdapters.PL_OPERACIONES1TableAdapter
+    Friend WithEvents colid2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemLookUpEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 
 End Class

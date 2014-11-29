@@ -2,6 +2,7 @@
 Imports System.Data.OleDb
 Imports DevExpress.Utils.Animation
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraGrid
 
 Module basico
     Public xPath As String
@@ -34,6 +35,7 @@ Module basico
     Public miManejador As Integer = 0
     Public miTrans As OleDbTransaction
     Public idCabecera As Integer
+    Public idArticulo As Integer
 
     Public Function LeerConfiguracion(File As String) As String
         ' We need to read into this List.
@@ -217,7 +219,7 @@ Module basico
             cmd = New OleDbCommand("Select @@identity", dbProd, miTrans)
             idLinea = cmd.ExecuteScalar
             If miturno <> 0 Or Not misOperarios Is Nothing Then ' es cambio de turno, meto datos de turnos
-               
+
 
                 For Each elemento In misOperarios
                     cmd = New OleDbCommand("INSERT INTO PL_CABECERAS_OPERARIOS( idLinea, idOperario, idturno, CODEMPRESA, EJERCICIO) VALUES(" & idLinea & "," & CInt(elemento) & "," & miturno & ",'" & gCodEmpresa & "', '" & gEjercicio & "')", dbProd, miTrans)
@@ -245,6 +247,17 @@ Module basico
 
             Return False
         End Try
+    End Function
+
+    Public Function GetRowHandleByColumnValue(ByVal view As GridView, ByVal ColumnFieldName As String, ByVal value As Object, gridcontrol As GridControl) As Integer
+        Dim result As Integer = gridcontrol.InvalidRowHandle
+        Dim i As Integer
+        For i = 0 To view.RowCount - 1
+            If view.GetDataRow(i)(ColumnFieldName).Equals(value) Then
+                Return i
+            End If
+        Next
+        Return result
     End Function
     Public Sub ExpandAllRows(view__1 As GridView)
         view__1.BeginUpdate()
