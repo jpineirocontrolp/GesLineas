@@ -31,6 +31,7 @@ Module basico
     Public misSettings As SettingsUC
     Public miPrincipal As Principal
     Public misRoturas As Roturas
+    Public misEtiquetas As Etiquetas
     Public NroOrden As Integer = 0
     Public miManejador As Integer = 0
     Public miTrans As OleDbTransaction

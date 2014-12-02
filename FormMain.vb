@@ -84,8 +84,11 @@ Public Class FormMain
         misRoturas = New Roturas
         Me.PanelControl1.Controls.Add(misRoturas)
         misRoturas.Dock = DockStyle.Fill
-        misRoturas.Visible = True
-
+        misRoturas.Visible = False
+        misEtiquetas = New Etiquetas
+        Me.PanelControl1.Controls.Add(misEtiquetas)
+        misEtiquetas.Dock = DockStyle.Fill
+        misEtiquetas.Visible = False
         If NroOrden = 0 Then
             Envasar.Enabled = False
             btRoturas.Enabled = False
@@ -164,6 +167,9 @@ Public Class FormMain
                             miPrincipal.cbAcciones.Properties.ReadOnly = True
                             miPrincipal.cbOperaciones.Properties.ReadOnly = True
                             miPrincipal.AceptaAccion.Enabled = False
+                            miLinea = 0
+                            idCabecera = 0
+                            idLinea = 0
                             Exit Sub
                         End If
                         cmd = New OleDbCommand("Select id from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd, miTrans)
@@ -344,31 +350,21 @@ Public Class FormMain
     End Sub
 
     Private Sub Etiquetas_ItemClick(sender As Object, e As TileItemEventArgs) Handles Etiquetas.ItemClick
-        Try
-            Dim rowHandle As Integer = GetRowHandleByColumnValue(miPrincipal.GridView2, "id", miLinea, miPrincipal.GridControl2)
-            ' Dim Col As DevExpress.XtraGrid.Columns.GridColumn = miPrincipal.GridView2.Columns("id")
-            ' Dim rowhandle As Integer = miPrincipal.GridView2.LocateByValue(miLinea, Col, "id")
-            Dim MITANQUE As Integer = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("TANQUE"))
-            Dim MIfecha As Integer = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("FechaConsumoPreferente"))
-            Dim MILote As Integer = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("LOTE"))
-            ' primero comprobamos que todo esta correcto
-            Dim cmd As New OleDbCommand
-            Dim idEtiqueta As Integer
-            Dim contador As String
-            Dim misOperarios() As String = cmbOperarios.EditValue.ToString.Split(",")
-            If idArticulo <> 0 And cmbOperarios.EditValue <> 0 And MITANQUE <> 0 Then
-                If clsNegocioProd.GeneraEtiquetaNumLote(misOperarios(0), MITANQUE, idArticulo, MIfecha, MILote, "0", miLinea) = 0 Then
-                    MsgBox("Ha habido un error generando la etiqueta")
-                Else
-                    cmd = New OleDbCommand("select contador from etiqnumlote where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and id=" & idEtiqueta & " and impresa<>1 ", dbProd)
-                    contador = cmd.ExecuteScalar
-                    clsNegocioProd.ImprimirEtiqueta(contador, 0, False, 0)
-                End If
-            Else
-                MsgBox("Campos obligatorios: Tanque,Articulo y operario")
-            End If
-        Catch ex As Exception
+        If miLinea <> 0 Then
+            Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
+                controencurso = misEtiquetas
+                Envasar.Enabled = False
+                btRoturas.Enabled = False
+                misEtiquetas.btbtRoturas = btRoturas
+                misEtiquetas.btEnvasar = Envasar
+                misEtiquetas.loaddata()
+                misEtiquetas.Visible = True
+                miPrincipal.Visible = False
 
-        End Try
+            End Using
+        Else
+            MsgBox("Debe de tener una linea en produccion")
+            'End If
+        End If
     End Sub
 End Class

@@ -124,6 +124,12 @@
     <Compile Include="FormMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Modules\Etiquetas\Etiquetas.Designer.vb">
+      <DependentUpon>Etiquetas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Etiquetas\Etiquetas.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Modules\Ordenes\Ordenes.Designer.vb">
       <DependentUpon>Ordenes.vb</DependentUpon>
     </Compile>
@@ -172,6 +178,9 @@
   <ItemGroup>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Etiquetas\Etiquetas.resx">
+      <DependentUpon>Etiquetas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Ordenes\Ordenes.resx">
       <DependentUpon>Ordenes.vb</DependentUpon>
@@ -305,9 +314,7 @@
     <Content Include="Resources\Toolbar\ZoomIn.png" />
     <Content Include="Resources\Toolbar\ZoomOut.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\Etiquetas\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
