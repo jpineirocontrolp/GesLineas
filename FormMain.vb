@@ -342,4 +342,33 @@ Public Class FormMain
             'End If
         End If
     End Sub
+
+    Private Sub Etiquetas_ItemClick(sender As Object, e As TileItemEventArgs) Handles Etiquetas.ItemClick
+        Try
+            Dim rowHandle As Integer = GetRowHandleByColumnValue(miPrincipal.GridView2, "id", miLinea, miPrincipal.GridControl2)
+            ' Dim Col As DevExpress.XtraGrid.Columns.GridColumn = miPrincipal.GridView2.Columns("id")
+            ' Dim rowhandle As Integer = miPrincipal.GridView2.LocateByValue(miLinea, Col, "id")
+            Dim MITANQUE As Integer = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("TANQUE"))
+            Dim MIfecha As Integer = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("FechaConsumoPreferente"))
+            Dim MILote As Integer = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("LOTE"))
+            ' primero comprobamos que todo esta correcto
+            Dim cmd As New OleDbCommand
+            Dim idEtiqueta As Integer
+            Dim contador As String
+            Dim misOperarios() As String = cmbOperarios.EditValue.ToString.Split(",")
+            If idArticulo <> 0 And cmbOperarios.EditValue <> 0 And MITANQUE <> 0 Then
+                If clsNegocioProd.GeneraEtiquetaNumLote(misOperarios(0), MITANQUE, idArticulo, MIfecha, MILote, "0", miLinea) = 0 Then
+                    MsgBox("Ha habido un error generando la etiqueta")
+                Else
+                    cmd = New OleDbCommand("select contador from etiqnumlote where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and id=" & idEtiqueta & " and impresa<>1 ", dbProd)
+                    contador = cmd.ExecuteScalar
+                    clsNegocioProd.ImprimirEtiqueta(contador, 0, False, 0)
+                End If
+            Else
+                MsgBox("Campos obligatorios: Tanque,Articulo y operario")
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

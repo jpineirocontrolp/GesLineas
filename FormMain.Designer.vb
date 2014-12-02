@@ -33,6 +33,10 @@ Partial Class FormMain
         Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
         Dim ToolTipTitleItem2 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
         Dim ToolTipItem2 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
+        Dim TileItemElement4 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim SuperToolTip3 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem3 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim ToolTipItem3 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
         Me.TileNavPane1 = New DevExpress.XtraBars.Navigation.TileNavPane()
         Me.navButtonHome = New DevExpress.XtraBars.Navigation.NavButton()
         Me.navButtonOrden = New DevExpress.XtraBars.Navigation.NavButton()
@@ -55,6 +59,9 @@ Partial Class FormMain
         Me.OPERARIOSTableAdapter = New GesLineas.ProduccionSqlTableAdapters.OPERARIOSTableAdapter()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TileBarGroup3 = New DevExpress.XtraBars.Navigation.TileBarGroup()
+        Me.TileBarGroup4 = New DevExpress.XtraBars.Navigation.TileBarGroup()
+        Me.Etiquetas = New DevExpress.XtraBars.Navigation.TileBarItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmbTurno.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLTURNOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,8 +159,10 @@ Partial Class FormMain
         Me.TileBar1.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.TileBar1.DropDownOptions.BeakColor = System.Drawing.Color.Empty
         Me.TileBar1.Groups.Add(Me.TileBarGroup2)
+        Me.TileBar1.Groups.Add(Me.TileBarGroup3)
+        Me.TileBar1.Groups.Add(Me.TileBarGroup4)
         Me.TileBar1.Location = New System.Drawing.Point(0, 44)
-        Me.TileBar1.MaxId = 6
+        Me.TileBar1.MaxId = 7
         Me.TileBar1.Name = "TileBar1"
         Me.TileBar1.ScrollMode = DevExpress.XtraEditors.TileControlScrollMode.ScrollButtons
         Me.TileBar1.ShowGroupText = False
@@ -232,6 +241,7 @@ Partial Class FormMain
         '
         'cmbTurno
         '
+        Me.cmbTurno.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmbTurno.Location = New System.Drawing.Point(1047, 76)
         Me.cmbTurno.Name = "cmbTurno"
         Me.cmbTurno.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -257,6 +267,7 @@ Partial Class FormMain
         '
         'cmbOperarios
         '
+        Me.cmbOperarios.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmbOperarios.EditValue = ""
         Me.cmbOperarios.Location = New System.Drawing.Point(1246, 76)
         Me.cmbOperarios.Name = "cmbOperarios"
@@ -286,6 +297,7 @@ Partial Class FormMain
         '
         'LabelControl1
         '
+        Me.LabelControl1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl1.Location = New System.Drawing.Point(1047, 56)
         Me.LabelControl1.Name = "LabelControl1"
@@ -295,12 +307,39 @@ Partial Class FormMain
         '
         'LabelControl2
         '
+        Me.LabelControl2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Segoe UI Semibold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl2.Location = New System.Drawing.Point(1246, 56)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(67, 20)
         Me.LabelControl2.TabIndex = 7
         Me.LabelControl2.Text = "Operarios"
+        '
+        'TileBarGroup3
+        '
+        Me.TileBarGroup3.Items.Add(Me.Etiquetas)
+        Me.TileBarGroup3.Name = "TileBarGroup3"
+        '
+        'TileBarGroup4
+        '
+        Me.TileBarGroup4.Name = "TileBarGroup4"
+        '
+        'Etiquetas
+        '
+        Me.Etiquetas.DropDownOptions.BeakColor = System.Drawing.Color.Empty
+        TileItemElement4.Image = CType(resources.GetObject("TileItemElement4.Image"), System.Drawing.Image)
+        TileItemElement4.Text = "Generar Etiqueta"
+        TileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter
+        Me.Etiquetas.Elements.Add(TileItemElement4)
+        Me.Etiquetas.Id = 6
+        Me.Etiquetas.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide
+        Me.Etiquetas.Name = "Etiquetas"
+        ToolTipTitleItem3.Text = "Generar Etiqueta"
+        ToolTipItem3.LeftIndent = 6
+        ToolTipItem3.Text = "Genera Etiqueta palet producido"
+        SuperToolTip3.Items.Add(ToolTipTitleItem3)
+        SuperToolTip3.Items.Add(ToolTipItem3)
+        Me.Etiquetas.SuperTip = SuperToolTip3
         '
         'FormMain
         '
@@ -349,4 +388,7 @@ Partial Class FormMain
     Friend WithEvents OPERARIOSTableAdapter As GesLineas.ProduccionSqlTableAdapters.OPERARIOSTableAdapter
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TileBarGroup3 As DevExpress.XtraBars.Navigation.TileBarGroup
+    Friend WithEvents Etiquetas As DevExpress.XtraBars.Navigation.TileBarItem
+    Friend WithEvents TileBarGroup4 As DevExpress.XtraBars.Navigation.TileBarGroup
 End Class

@@ -163,7 +163,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ProduccionSql.Designer.vb">
+    <Compile Include="ProduccionSql1.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProduccionSql.xsd</DependentUpon>
@@ -223,7 +223,7 @@
     <None Include="ProduccionSql.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProduccionSql.Designer.vb</LastGenOutput>
+      <LastGenOutput>ProduccionSql1.Designer.vb</LastGenOutput>
     </None>
     <None Include="ProduccionSql.xss">
       <DependentUpon>ProduccionSql.xsd</DependentUpon>
@@ -304,6 +304,9 @@
     <Content Include="Resources\Toolbar\Task.png" />
     <Content Include="Resources\Toolbar\ZoomIn.png" />
     <Content Include="Resources\Toolbar\ZoomOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\Etiquetas\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

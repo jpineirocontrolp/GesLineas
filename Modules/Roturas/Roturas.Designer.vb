@@ -50,17 +50,17 @@ Partial Class Roturas
         Me.PL_ROTURASTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_ROTURASTableAdapter()
         Me.MateriasPrimasTableAdapter = New GesLineas.ProduccionSqlTableAdapters.MateriasPrimasTableAdapter()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PLLOTESAUXILIARESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.PL_LOTESAUXILIARESTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_LOTESAUXILIARESTableAdapter()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colidcabecera1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colidmateriaprima1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.colLOTE1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCODEMPRESA1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colEJERCICIO1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCANTIDAD = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.PL_LOTESAUXILIARESTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_LOTESAUXILIARESTableAdapter()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,8 +74,8 @@ Partial Class Roturas
         CType(Me.txtCajas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPales.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLLOTESAUXILIARESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -244,7 +244,7 @@ Partial Class Roturas
         '
         Me.btCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btCancelar.Image = CType(resources.GetObject("btCancelar.Image"), System.Drawing.Image)
-        Me.btCancelar.Location = New System.Drawing.Point(557, 87)
+        Me.btCancelar.Location = New System.Drawing.Point(63, 75)
         Me.btCancelar.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.btCancelar.Name = "btCancelar"
         Me.btCancelar.Size = New System.Drawing.Size(190, 62)
@@ -255,7 +255,7 @@ Partial Class Roturas
         '
         Me.btAceptar.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.btAceptar.Image = CType(resources.GetObject("btAceptar.Image"), System.Drawing.Image)
-        Me.btAceptar.Location = New System.Drawing.Point(210, 87)
+        Me.btAceptar.Location = New System.Drawing.Point(557, 75)
         Me.btAceptar.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.btAceptar.Name = "btAceptar"
         Me.btAceptar.Size = New System.Drawing.Size(190, 62)
@@ -331,6 +331,11 @@ Partial Class Roturas
         Me.GridControl2.TabIndex = 59
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
+        'PLLOTESAUXILIARESBindingSource
+        '
+        Me.PLLOTESAUXILIARESBindingSource.DataMember = "PL_LOTESAUXILIARES"
+        Me.PLLOTESAUXILIARESBindingSource.DataSource = Me.ProduccionSql
+        '
         'GridView2
         '
         Me.GridView2.Appearance.Row.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -340,15 +345,6 @@ Partial Class Roturas
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom
         Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'PLLOTESAUXILIARESBindingSource
-        '
-        Me.PLLOTESAUXILIARESBindingSource.DataMember = "PL_LOTESAUXILIARES"
-        Me.PLLOTESAUXILIARESBindingSource.DataSource = Me.ProduccionSql
-        '
-        'PL_LOTESAUXILIARESTableAdapter
-        '
-        Me.PL_LOTESAUXILIARESTableAdapter.ClearBeforeFill = True
         '
         'colID1
         '
@@ -369,6 +365,17 @@ Partial Class Roturas
         Me.colidmateriaprima1.Name = "colidmateriaprima1"
         Me.colidmateriaprima1.Visible = True
         Me.colidmateriaprima1.VisibleIndex = 0
+        '
+        'RepositoryItemLookUpEdit2
+        '
+        Me.RepositoryItemLookUpEdit2.AutoHeight = False
+        Me.RepositoryItemLookUpEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemLookUpEdit2.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("DESCRIPCION", "Descripcion")})
+        Me.RepositoryItemLookUpEdit2.DataSource = Me.MateriasPrimasBindingSource
+        Me.RepositoryItemLookUpEdit2.DisplayMember = "DESCRIPCION"
+        Me.RepositoryItemLookUpEdit2.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
+        Me.RepositoryItemLookUpEdit2.Name = "RepositoryItemLookUpEdit2"
+        Me.RepositoryItemLookUpEdit2.ValueMember = "Id"
         '
         'colLOTE1
         '
@@ -396,16 +403,9 @@ Partial Class Roturas
         Me.colCANTIDAD.Visible = True
         Me.colCANTIDAD.VisibleIndex = 2
         '
-        'RepositoryItemLookUpEdit2
+        'PL_LOTESAUXILIARESTableAdapter
         '
-        Me.RepositoryItemLookUpEdit2.AutoHeight = False
-        Me.RepositoryItemLookUpEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemLookUpEdit2.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("DESCRIPCION", "Descripcion")})
-        Me.RepositoryItemLookUpEdit2.DataSource = Me.MateriasPrimasBindingSource
-        Me.RepositoryItemLookUpEdit2.DisplayMember = "DESCRIPCION"
-        Me.RepositoryItemLookUpEdit2.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
-        Me.RepositoryItemLookUpEdit2.Name = "RepositoryItemLookUpEdit2"
-        Me.RepositoryItemLookUpEdit2.ValueMember = "Id"
+        Me.PL_LOTESAUXILIARESTableAdapter.ClearBeforeFill = True
         '
         'Roturas
         '
@@ -434,8 +434,8 @@ Partial Class Roturas
         CType(Me.txtCajas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPales.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PLLOTESAUXILIARESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

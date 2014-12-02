@@ -69,6 +69,8 @@ Partial Public Class ProduccionSql
     
     Private relationFK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA As Global.System.Data.DataRelation
     
+    Private relationFK_PL_LOTESAUXILIARES_MATERIASPRIMAS As Global.System.Data.DataRelation
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -509,6 +511,7 @@ Partial Public Class ProduccionSql
         Me.relationFK_PL_ROTURAS_PL_CABECERAPRODUCIDA = Me.Relations("FK_PL_ROTURAS_PL_CABECERAPRODUCIDA")
         Me.relationFK_PL_ROTURAS_MATERIASPRIMAS = Me.Relations("FK_PL_ROTURAS_MATERIASPRIMAS")
         Me.relationFK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA = Me.Relations("FK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA")
+        Me.relationFK_PL_LOTESAUXILIARES_MATERIASPRIMAS = Me.Relations("FK_PL_LOTESAUXILIARES_MATERIASPRIMAS")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -563,6 +566,8 @@ Partial Public Class ProduccionSql
         Me.Relations.Add(Me.relationFK_PL_ROTURAS_MATERIASPRIMAS)
         Me.relationFK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA = New Global.System.Data.DataRelation("FK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA", New Global.System.Data.DataColumn() {Me.tablePL_CABECERAPRODUCIDA.IDColumn}, New Global.System.Data.DataColumn() {Me.tablePL_LOTESAUXILIARES.idcabeceraColumn}, false)
         Me.Relations.Add(Me.relationFK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA)
+        Me.relationFK_PL_LOTESAUXILIARES_MATERIASPRIMAS = New Global.System.Data.DataRelation("FK_PL_LOTESAUXILIARES_MATERIASPRIMAS", New Global.System.Data.DataColumn() {Me.tableMateriasPrimas.IdColumn}, New Global.System.Data.DataColumn() {Me.tablePL_LOTESAUXILIARES.idmateriaprimaColumn}, false)
+        Me.Relations.Add(Me.relationFK_PL_LOTESAUXILIARES_MATERIASPRIMAS)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5325,11 +5330,14 @@ Partial Public Class ProduccionSql
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddPL_LOTESAUXILIARESRow(ByVal parentPL_CABECERAPRODUCIDARowByFK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA As PL_CABECERAPRODUCIDARow, ByVal idmateriaprima As Integer, ByVal LOTE As String, ByVal CODEMPRESA As String, ByVal EJERCICIO As String, ByVal CANTIDAD As Decimal) As PL_LOTESAUXILIARESRow
+        Public Overloads Function AddPL_LOTESAUXILIARESRow(ByVal parentPL_CABECERAPRODUCIDARowByFK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA As PL_CABECERAPRODUCIDARow, ByVal parentMateriasPrimasRowByFK_PL_LOTESAUXILIARES_MATERIASPRIMAS As MateriasPrimasRow, ByVal LOTE As String, ByVal CODEMPRESA As String, ByVal EJERCICIO As String, ByVal CANTIDAD As Decimal) As PL_LOTESAUXILIARESRow
             Dim rowPL_LOTESAUXILIARESRow As PL_LOTESAUXILIARESRow = CType(Me.NewRow,PL_LOTESAUXILIARESRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, idmateriaprima, LOTE, CODEMPRESA, EJERCICIO, CANTIDAD}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Nothing, Nothing, LOTE, CODEMPRESA, EJERCICIO, CANTIDAD}
             If (Not (parentPL_CABECERAPRODUCIDARowByFK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA) Is Nothing) Then
                 columnValuesArray(1) = parentPL_CABECERAPRODUCIDARowByFK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA(0)
+            End If
+            If (Not (parentMateriasPrimasRowByFK_PL_LOTESAUXILIARES_MATERIASPRIMAS) Is Nothing) Then
+                columnValuesArray(2) = parentMateriasPrimasRowByFK_PL_LOTESAUXILIARES_MATERIASPRIMAS(3)
             End If
             rowPL_LOTESAUXILIARESRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowPL_LOTESAUXILIARESRow)
@@ -8463,6 +8471,16 @@ Partial Public Class ProduccionSql
                 Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_PL_ROTURAS_MATERIASPRIMAS")),PL_ROTURASRow())
             End If
         End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function GetPL_LOTESAUXILIARESRows() As PL_LOTESAUXILIARESRow()
+            If (Me.Table.ChildRelations("FK_PL_LOTESAUXILIARES_MATERIASPRIMAS") Is Nothing) Then
+                Return New PL_LOTESAUXILIARESRow(-1) {}
+            Else
+                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_PL_LOTESAUXILIARES_MATERIASPRIMAS")),PL_LOTESAUXILIARESRow())
+            End If
+        End Function
     End Class
     
     '''<summary>
@@ -8590,6 +8608,17 @@ Partial Public Class ProduccionSql
             End Get
             Set
                 Me.SetParentRow(value, Me.Table.ParentRelations("FK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property MateriasPrimasRow() As MateriasPrimasRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_PL_LOTESAUXILIARES_MATERIASPRIMAS")),MateriasPrimasRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("FK_PL_LOTESAUXILIARES_MATERIASPRIMAS"))
             End Set
         End Property
         
@@ -9730,29 +9759,29 @@ Namespace ProduccionSqlTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        PL_PARTESPRODUCCION.IdLinea, TANQUES.CODIGO, PL_PARTESPRODUCCION.Ar" & _
-                "ticulo, PL_PARTESPRODUCCION.PalesFabricar, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         PL_PARTESP" & _
-                "RODUCCION.CajasFabricar, PL_PARTESPRODUCCION.FechaProduccion, PL_PARTESPRODUCCIO" & _
-                "N.Orden, PL_PARTESPRODUCCION.TANQUE, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         PL_PARTESPRODUCC" & _
-                "ION.LOTE, PL_PARTESPRODUCCION.ESTADO, PL_LINEASENVASES.IdEnvase, PL_PARTESPRODUC" & _
-                "CION.Observaciones, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         PL_PARTESPRODUCCION.FechaConsumoP" & _
-                "referente, PL_PARTESPRODUCCION.DESCRIPCION, PL_PARTESPRODUCCION.GTINCLIENTE, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " " & _
-                "                        PL_PARTESPRODUCCION.CANTIDAD, PL_PARTESPRODUCCION.CADUCI" & _
-                "DAD, PL_PARTESPRODUCCION.MENSAJEBOTELLA, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         PL_PARTESPRO" & _
-                "DUCCION.MENSAJECAJA, PL_PARTESPRODUCCION.TIPOETIQUETA, PL_PARTESPRODUCCION.MARCA" & _
-                ", PL_PARTESPRODUCCION.GTINCAJA, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         PL_PARTESPRODUCCION.G" & _
-                "TINPALET, PL_PARTESPRODUCCION.IdiomaMes, PL_PARTESPRODUCCION.MARCARCAJA, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "     " & _
-                "                    PL_PARTESPRODUCCION.FORMATOMESALFA, PL_PARTESPRODUCCION.ETIQ" & _
-                "UETARCAJA, PL_PARTESPRODUCCION.TIPOETIQUETACAJA, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         PL_P" & _
-                "ARTESPRODUCCION.MENSAJELASER, PL_PARTESPRODUCCION.NroOrden, PL_PARTESPRODUCCION." & _
-                "id" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            PL_PARTESPRODUCCION LEFT OUTER JOIN" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                       " & _
-                "  TANQUES ON PL_PARTESPRODUCCION.TANQUE = TANQUES.ID LEFT OUTER JOIN" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "          " & _
-                "               CABECERAFABRICACION ON PL_PARTESPRODUCCION.IdLinea = CABECERAFABR" & _
-                "ICACION.ID LEFT OUTER JOIN" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         PL_LINEASENVASES ON PL_PART" & _
-                "ESPRODUCCION.idEnvase = PL_LINEASENVASES.Id" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (PL_PARTESPRODUCCION.I" & _
-                "dLinea = @Param1) AND (PL_PARTESPRODUCCION.NroOrden = @Param2) AND (PL_PARTESPRO" & _
-                "DUCCION.CodEmpresa = @Param3) " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         AND (PL_PARTESPRODUCCIO" & _
-                "N.Ejercicio = @Param4)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "ORDER BY PL_PARTESPRODUCCION.Orden"
+            Me._commandCollection(0).CommandText = "SELECT        PL_PARTESPRODUCCION.IdLinea, TANQUES.CODIGO, PL_PARTESPRODUCCION.Ar"& _ 
+                "ticulo, PL_PARTESPRODUCCION.PalesFabricar, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PL_PARTESP"& _ 
+                "RODUCCION.CajasFabricar, PL_PARTESPRODUCCION.FechaProduccion, PL_PARTESPRODUCCIO"& _ 
+                "N.Orden, PL_PARTESPRODUCCION.TANQUE, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PL_PARTESPRODUCC"& _ 
+                "ION.LOTE, PL_PARTESPRODUCCION.ESTADO, PL_LINEASENVASES.IdEnvase, PL_PARTESPRODUC"& _ 
+                "CION.Observaciones, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PL_PARTESPRODUCCION.FechaConsumoP"& _ 
+                "referente, PL_PARTESPRODUCCION.DESCRIPCION, PL_PARTESPRODUCCION.GTINCLIENTE, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                        PL_PARTESPRODUCCION.CANTIDAD, PL_PARTESPRODUCCION.CADUCI"& _ 
+                "DAD, PL_PARTESPRODUCCION.MENSAJEBOTELLA, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PL_PARTESPRO"& _ 
+                "DUCCION.MENSAJECAJA, PL_PARTESPRODUCCION.TIPOETIQUETA, PL_PARTESPRODUCCION.MARCA"& _ 
+                ", PL_PARTESPRODUCCION.GTINCAJA, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PL_PARTESPRODUCCION.G"& _ 
+                "TINPALET, PL_PARTESPRODUCCION.IdiomaMes, PL_PARTESPRODUCCION.MARCARCAJA, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
+                "                    PL_PARTESPRODUCCION.FORMATOMESALFA, PL_PARTESPRODUCCION.ETIQ"& _ 
+                "UETARCAJA, PL_PARTESPRODUCCION.TIPOETIQUETACAJA, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PL_P"& _ 
+                "ARTESPRODUCCION.MENSAJELASER, PL_PARTESPRODUCCION.NroOrden, PL_PARTESPRODUCCION."& _ 
+                "id"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            PL_PARTESPRODUCCION LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                       "& _ 
+                "  TANQUES ON PL_PARTESPRODUCCION.TANQUE = TANQUES.ID LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
+                "               CABECERAFABRICACION ON PL_PARTESPRODUCCION.IdLinea = CABECERAFABR"& _ 
+                "ICACION.ID LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         PL_LINEASENVASES ON PL_PART"& _ 
+                "ESPRODUCCION.idEnvase = PL_LINEASENVASES.Id"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (PL_PARTESPRODUCCION.I"& _ 
+                "dLinea = @Param1) AND (PL_PARTESPRODUCCION.NroOrden = @Param2) AND (PL_PARTESPRO"& _ 
+                "DUCCION.CodEmpresa = @Param3) "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         AND (PL_PARTESPRODUCCIO"& _ 
+                "N.Ejercicio = @Param4)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY PL_PARTESPRODUCCION.Orden"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Param1", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "IdLinea", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Param2", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "NroOrden", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
