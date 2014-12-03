@@ -49,6 +49,9 @@ Partial Class FormMain
         Me.BuscarOrdenes = New DevExpress.XtraBars.Navigation.TileBarItem()
         Me.Envasar = New DevExpress.XtraBars.Navigation.TileBarItem()
         Me.btRoturas = New DevExpress.XtraBars.Navigation.TileBarItem()
+        Me.TileBarGroup3 = New DevExpress.XtraBars.Navigation.TileBarGroup()
+        Me.Etiquetas = New DevExpress.XtraBars.Navigation.TileBarItem()
+        Me.TileBarGroup4 = New DevExpress.XtraBars.Navigation.TileBarGroup()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.cmbTurno = New DevExpress.XtraEditors.LookUpEdit()
         Me.PLTURNOSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -59,9 +62,6 @@ Partial Class FormMain
         Me.OPERARIOSTableAdapter = New GesLineas.ProduccionSqlTableAdapters.OPERARIOSTableAdapter()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TileBarGroup3 = New DevExpress.XtraBars.Navigation.TileBarGroup()
-        Me.TileBarGroup4 = New DevExpress.XtraBars.Navigation.TileBarGroup()
-        Me.Etiquetas = New DevExpress.XtraBars.Navigation.TileBarItem()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmbTurno.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLTURNOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -229,6 +229,32 @@ Partial Class FormMain
         SuperToolTip2.Items.Add(ToolTipItem2)
         Me.btRoturas.SuperTip = SuperToolTip2
         '
+        'TileBarGroup3
+        '
+        Me.TileBarGroup3.Items.Add(Me.Etiquetas)
+        Me.TileBarGroup3.Name = "TileBarGroup3"
+        '
+        'Etiquetas
+        '
+        Me.Etiquetas.DropDownOptions.BeakColor = System.Drawing.Color.Empty
+        TileItemElement4.Image = CType(resources.GetObject("TileItemElement4.Image"), System.Drawing.Image)
+        TileItemElement4.Text = "Generar Etiqueta"
+        TileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter
+        Me.Etiquetas.Elements.Add(TileItemElement4)
+        Me.Etiquetas.Id = 6
+        Me.Etiquetas.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide
+        Me.Etiquetas.Name = "Etiquetas"
+        ToolTipTitleItem3.Text = "Generar Etiqueta"
+        ToolTipItem3.LeftIndent = 6
+        ToolTipItem3.Text = "Genera Etiqueta palet producido"
+        SuperToolTip3.Items.Add(ToolTipTitleItem3)
+        SuperToolTip3.Items.Add(ToolTipItem3)
+        Me.Etiquetas.SuperTip = SuperToolTip3
+        '
+        'TileBarGroup4
+        '
+        Me.TileBarGroup4.Name = "TileBarGroup4"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -242,6 +268,7 @@ Partial Class FormMain
         'cmbTurno
         '
         Me.cmbTurno.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbTurno.CausesValidation = False
         Me.cmbTurno.Location = New System.Drawing.Point(1047, 76)
         Me.cmbTurno.Name = "cmbTurno"
         Me.cmbTurno.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -268,6 +295,7 @@ Partial Class FormMain
         'cmbOperarios
         '
         Me.cmbOperarios.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbOperarios.CausesValidation = False
         Me.cmbOperarios.EditValue = ""
         Me.cmbOperarios.Location = New System.Drawing.Point(1246, 76)
         Me.cmbOperarios.Name = "cmbOperarios"
@@ -314,32 +342,6 @@ Partial Class FormMain
         Me.LabelControl2.Size = New System.Drawing.Size(67, 20)
         Me.LabelControl2.TabIndex = 7
         Me.LabelControl2.Text = "Operarios"
-        '
-        'TileBarGroup3
-        '
-        Me.TileBarGroup3.Items.Add(Me.Etiquetas)
-        Me.TileBarGroup3.Name = "TileBarGroup3"
-        '
-        'TileBarGroup4
-        '
-        Me.TileBarGroup4.Name = "TileBarGroup4"
-        '
-        'Etiquetas
-        '
-        Me.Etiquetas.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement4.Image = CType(resources.GetObject("TileItemElement4.Image"), System.Drawing.Image)
-        TileItemElement4.Text = "Generar Etiqueta"
-        TileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter
-        Me.Etiquetas.Elements.Add(TileItemElement4)
-        Me.Etiquetas.Id = 6
-        Me.Etiquetas.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide
-        Me.Etiquetas.Name = "Etiquetas"
-        ToolTipTitleItem3.Text = "Generar Etiqueta"
-        ToolTipItem3.LeftIndent = 6
-        ToolTipItem3.Text = "Genera Etiqueta palet producido"
-        SuperToolTip3.Items.Add(ToolTipTitleItem3)
-        SuperToolTip3.Items.Add(ToolTipItem3)
-        Me.Etiquetas.SuperTip = SuperToolTip3
         '
         'FormMain
         '

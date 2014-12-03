@@ -50,6 +50,9 @@
     <ApplicationIcon>Resources\AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ActualizaProd">
+      <HintPath>..\..\..\..\prog\V8\Dropbox\ActualizaProd.dll</HintPath>
+    </Reference>
     <Reference Include="cpNegocioNet">
       <HintPath>..\..\..\..\prog\V8\Dropbox\cpNegocioNet.dll</HintPath>
     </Reference>
@@ -169,7 +172,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ProduccionSql1.Designer.vb">
+    <Compile Include="ProduccionSql.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProduccionSql.xsd</DependentUpon>
@@ -232,7 +235,7 @@
     <None Include="ProduccionSql.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProduccionSql1.Designer.vb</LastGenOutput>
+      <LastGenOutput>ProduccionSql.Designer.vb</LastGenOutput>
     </None>
     <None Include="ProduccionSql.xss">
       <DependentUpon>ProduccionSql.xsd</DependentUpon>

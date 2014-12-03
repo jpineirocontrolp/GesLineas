@@ -5636,6 +5636,10 @@ Partial Public Class ProduccionSql
         
         Private columnNroOrden As Global.System.Data.DataColumn
         
+        Private columnIdLinea As Global.System.Data.DataColumn
+        
+        Private columnImpresa As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -5776,6 +5780,22 @@ Partial Public Class ProduccionSql
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IdLineaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIdLinea
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ImpresaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnImpresa
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -5812,9 +5832,9 @@ Partial Public Class ProduccionSql
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddPalesPendientesTicarRow(ByVal IdOperario As Integer, ByVal IdTanque As Integer, ByVal IdArti As Integer, ByVal NumLote As String, ByVal Contador As String, ByVal Ubicacion As String, ByVal IdLinProd As Integer, ByVal Codempresa As String, ByVal Ejercicio As String, ByVal Unidades As Integer, ByVal IDPL_PARTESPRODUCCION As Integer, ByVal NroOrden As Integer) As PalesPendientesTicarRow
+        Public Overloads Function AddPalesPendientesTicarRow(ByVal IdOperario As Integer, ByVal IdTanque As Integer, ByVal IdArti As Integer, ByVal NumLote As String, ByVal Contador As String, ByVal Ubicacion As String, ByVal IdLinProd As Integer, ByVal Codempresa As String, ByVal Ejercicio As String, ByVal Unidades As Integer, ByVal IDPL_PARTESPRODUCCION As Integer, ByVal NroOrden As Integer, ByVal IdLinea As Integer, ByVal Impresa As Boolean) As PalesPendientesTicarRow
             Dim rowPalesPendientesTicarRow As PalesPendientesTicarRow = CType(Me.NewRow,PalesPendientesTicarRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, IdOperario, IdTanque, IdArti, NumLote, Contador, Ubicacion, IdLinProd, Codempresa, Ejercicio, Unidades, IDPL_PARTESPRODUCCION, NroOrden}
+            Dim columnValuesArray() As Object = New Object() {Nothing, IdOperario, IdTanque, IdArti, NumLote, Contador, Ubicacion, IdLinProd, Codempresa, Ejercicio, Unidades, IDPL_PARTESPRODUCCION, NroOrden, IdLinea, Impresa}
             rowPalesPendientesTicarRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowPalesPendientesTicarRow)
             Return rowPalesPendientesTicarRow
@@ -5856,6 +5876,8 @@ Partial Public Class ProduccionSql
             Me.columnUnidades = MyBase.Columns("Unidades")
             Me.columnIDPL_PARTESPRODUCCION = MyBase.Columns("IDPL_PARTESPRODUCCION")
             Me.columnNroOrden = MyBase.Columns("NroOrden")
+            Me.columnIdLinea = MyBase.Columns("IdLinea")
+            Me.columnImpresa = MyBase.Columns("Impresa")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5887,6 +5909,10 @@ Partial Public Class ProduccionSql
             MyBase.Columns.Add(Me.columnIDPL_PARTESPRODUCCION)
             Me.columnNroOrden = New Global.System.Data.DataColumn("NroOrden", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNroOrden)
+            Me.columnIdLinea = New Global.System.Data.DataColumn("IdLinea", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIdLinea)
+            Me.columnImpresa = New Global.System.Data.DataColumn("Impresa", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnImpresa)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = -1
@@ -9710,6 +9736,36 @@ Partial Public Class ProduccionSql
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property IdLinea() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablePalesPendientesTicar.IdLineaColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'IdLinea' de la tabla 'PalesPendientesTicar' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePalesPendientesTicar.IdLineaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Impresa() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tablePalesPendientesTicar.ImpresaColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Impresa' de la tabla 'PalesPendientesTicar' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePalesPendientesTicar.ImpresaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsIdOperarioNull() As Boolean
             Return Me.IsNull(Me.tablePalesPendientesTicar.IdOperarioColumn)
         End Function
@@ -9850,6 +9906,30 @@ Partial Public Class ProduccionSql
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetNroOrdenNull()
             Me(Me.tablePalesPendientesTicar.NroOrdenColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsIdLineaNull() As Boolean
+            Return Me.IsNull(Me.tablePalesPendientesTicar.IdLineaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetIdLineaNull()
+            Me(Me.tablePalesPendientesTicar.IdLineaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsImpresaNull() As Boolean
+            Return Me.IsNull(Me.tablePalesPendientesTicar.ImpresaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetImpresaNull()
+            Me(Me.tablePalesPendientesTicar.ImpresaColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -14205,6 +14285,8 @@ Namespace ProduccionSqlTableAdapters
             tableMapping.ColumnMappings.Add("Unidades", "Unidades")
             tableMapping.ColumnMappings.Add("IDPL_PARTESPRODUCCION", "IDPL_PARTESPRODUCCION")
             tableMapping.ColumnMappings.Add("NroOrden", "NroOrden")
+            tableMapping.ColumnMappings.Add("IdLinea", "IdLinea")
+            tableMapping.ColumnMappings.Add("Impresa", "Impresa")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -14221,62 +14303,83 @@ Namespace ProduccionSqlTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        EtiqNumLote.ID, EtiqNumLote.IdOperario, EtiqNumLote.IdTanque, EtiqN" & _
-                "umLote.IdArti, EtiqNumLote.NumLote, EtiqNumLote.Contador, EtiqNumLote.Ubicacion," & _
-                " " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         EtiqNumLote.IdLinProd, EtiqNumLote.Codempresa, EtiqN" & _
-                "umLote.Ejercicio, EtiqNumLote.Unidades, EtiqNumLote.IDPL_PARTESPRODUCCION, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "   " & _
-                "                      PL_PARTESPRODUCCION.NroOrden" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            EtiqNumLote " & _
-                "INNER JOIN" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         PL_PARTESPRODUCCION ON EtiqNumLote.IDPL_PAR" & _
-                "TESPRODUCCION = PL_PARTESPRODUCCION.id" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (EtiqNumLote.Codempresa = @" & _
-                "CodEmpresa) AND (EtiqNumLote.Ejercicio = @Ejercicio) AND (PL_PARTESPRODUCCION.id" & _
-                " = @Linea)"
+            Me._commandCollection(0).CommandText = "SELECT        EtiqNumLote.ID, EtiqNumLote.IdOperario, EtiqNumLote.IdTanque, EtiqN"& _ 
+                "umLote.IdArti, EtiqNumLote.NumLote, EtiqNumLote.Contador, EtiqNumLote.Ubicacion,"& _ 
+                " "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         EtiqNumLote.IdLinProd, EtiqNumLote.Codempresa, EtiqN"& _ 
+                "umLote.Ejercicio, EtiqNumLote.Unidades, EtiqNumLote.IDPL_PARTESPRODUCCION, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
+                "                      PL_PARTESPRODUCCION.NroOrden, PL_PARTESPRODUCCION.IdLinea,"& _ 
+                " EtiqNumLote.Impresa"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            EtiqNumLote INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
+                "       PL_PARTESPRODUCCION ON EtiqNumLote.IDPL_PARTESPRODUCCION = PL_PARTESPRODU"& _ 
+                "CCION.id"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (EtiqNumLote.Codempresa = @CodEmpresa) AND (EtiqNumLote.E"& _ 
+                "jercicio = @Ejercicio) AND (PL_PARTESPRODUCCION.IdLinea = @Lineaproduccion) AND "& _ 
+                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (PL_PARTESPRODUCCION.NroOrden = @NroOrden) AND (EtiqN"& _ 
+                "umLote.IdLinProd = 0)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CodEmpresa", Global.System.Data.SqlDbType.NVarChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Codempresa", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Ejercicio", Global.System.Data.SqlDbType.NVarChar, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Ejercicio", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Linea", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "id", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CodEmpresa", Global.System.Data.SqlDbType.NVarChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Codempresa", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Ejercicio", Global.System.Data.SqlDbType.NVarChar, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Ejercicio", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Lineaproduccion", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "IdLinea", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@NroOrden", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "NroOrden", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, True)> _
-        Public Overridable Overloads Function Fill(ByVal dataTable As ProduccionSql.PalesPendientesTicarDataTable, ByVal CodEmpresa As String, ByVal Ejercicio As String, ByVal Linea As Integer) As Integer
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As ProduccionSql.PalesPendientesTicarDataTable, ByVal CodEmpresa As String, ByVal Ejercicio As String, ByVal Lineaproduccion As Global.System.Nullable(Of Integer), ByVal NroOrden As Global.System.Nullable(Of Integer)) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (CodEmpresa Is Nothing) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(CodEmpresa, String)
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(CodEmpresa,String)
             End If
             If (Ejercicio Is Nothing) Then
                 Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.SelectCommand.Parameters(1).Value = CType(Ejercicio, String)
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(Ejercicio,String)
             End If
-            Me.Adapter.SelectCommand.Parameters(2).Value = CType(Linea, Integer)
-            If (Me.ClearBeforeFill = True) Then
-                dataTable.Clear()
+            If (Lineaproduccion.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(2).Value = CType(Lineaproduccion.Value,Integer)
+            Else
+                Me.Adapter.SelectCommand.Parameters(2).Value = Global.System.DBNull.Value
+            End If
+            If (NroOrden.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(3).Value = CType(NroOrden.Value,Integer)
+            Else
+                Me.Adapter.SelectCommand.Parameters(3).Value = Global.System.DBNull.Value
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], True)> _
-        Public Overridable Overloads Function GetData(ByVal CodEmpresa As String, ByVal Ejercicio As String, ByVal Linea As Integer) As ProduccionSql.PalesPendientesTicarDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData(ByVal CodEmpresa As String, ByVal Ejercicio As String, ByVal Lineaproduccion As Global.System.Nullable(Of Integer), ByVal NroOrden As Global.System.Nullable(Of Integer)) As ProduccionSql.PalesPendientesTicarDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (CodEmpresa Is Nothing) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(CodEmpresa, String)
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(CodEmpresa,String)
             End If
             If (Ejercicio Is Nothing) Then
                 Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.SelectCommand.Parameters(1).Value = CType(Ejercicio, String)
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(Ejercicio,String)
             End If
-            Me.Adapter.SelectCommand.Parameters(2).Value = CType(Linea, Integer)
+            If (Lineaproduccion.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(2).Value = CType(Lineaproduccion.Value,Integer)
+            Else
+                Me.Adapter.SelectCommand.Parameters(2).Value = Global.System.DBNull.Value
+            End If
+            If (NroOrden.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(3).Value = CType(NroOrden.Value,Integer)
+            Else
+                Me.Adapter.SelectCommand.Parameters(3).Value = Global.System.DBNull.Value
+            End If
             Dim dataTable As ProduccionSql.PalesPendientesTicarDataTable = New ProduccionSql.PalesPendientesTicarDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable

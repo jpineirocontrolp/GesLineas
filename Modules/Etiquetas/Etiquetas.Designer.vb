@@ -22,12 +22,12 @@ Partial Class Etiquetas
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Etiquetas))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.btCancelar = New DevExpress.XtraEditors.SimpleButton()
         Me.btImprimir = New DevExpress.XtraEditors.SimpleButton()
         Me.txtCajas = New DevExpress.XtraEditors.TextEdit()
         Me.txtPales = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.btCancelar = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.PalesPendientesTicarBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ProduccionSql = New GesLineas.ProduccionSql()
@@ -50,6 +50,8 @@ Partial Class Etiquetas
         Me.colUnidades = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIDPL_PARTESPRODUCCION = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colNroOrden = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colImpresa = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PalesPendientesTicarTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PalesPendientesTicarTableAdapter()
         Me.TANQUESTableAdapter = New GesLineas.ProduccionSqlTableAdapters.TANQUESTableAdapter()
         Me.ARTICULOSTableAdapter = New GesLineas.DatosDatasetTableAdapters.ARTICULOSTableAdapter()
@@ -68,6 +70,7 @@ Partial Class Etiquetas
         CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ARTICULOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DatosDataset, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -82,18 +85,6 @@ Partial Class Etiquetas
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(946, 175)
         Me.PanelControl1.TabIndex = 0
-        '
-        'btCancelar
-        '
-        Me.btCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btCancelar.Image = CType(resources.GetObject("btCancelar.Image"), System.Drawing.Image)
-        Me.btCancelar.Location = New System.Drawing.Point(791, 467)
-        Me.btCancelar.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
-        Me.btCancelar.Name = "btCancelar"
-        Me.btCancelar.Size = New System.Drawing.Size(138, 62)
-        Me.btCancelar.TabIndex = 12
-        Me.btCancelar.Text = "Salir"
         '
         'btImprimir
         '
@@ -158,6 +149,18 @@ Partial Class Etiquetas
         Me.LabelControl2.TabIndex = 7
         Me.LabelControl2.Text = "Nro. Etiquetas.:"
         '
+        'btCancelar
+        '
+        Me.btCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btCancelar.Image = CType(resources.GetObject("btCancelar.Image"), System.Drawing.Image)
+        Me.btCancelar.Location = New System.Drawing.Point(791, 467)
+        Me.btCancelar.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
+        Me.btCancelar.Name = "btCancelar"
+        Me.btCancelar.Size = New System.Drawing.Size(138, 62)
+        Me.btCancelar.TabIndex = 12
+        Me.btCancelar.Text = "Salir"
+        '
         'GridControl1
         '
         Me.GridControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -169,7 +172,7 @@ Partial Class Etiquetas
         Me.GridControl1.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2})
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemCheckEdit1})
         Me.GridControl1.Size = New System.Drawing.Size(748, 531)
         Me.GridControl1.TabIndex = 1
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -186,9 +189,11 @@ Partial Class Etiquetas
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colIdOperario, Me.colIdTanque, Me.colIdArti, Me.colNumLote, Me.colContador, Me.colUbicacion, Me.colIdLinProd, Me.colCodempresa, Me.colEjercicio, Me.colUnidades, Me.colIDPL_PARTESPRODUCCION, Me.colNroOrden})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colIdOperario, Me.colIdTanque, Me.colIdArti, Me.colNumLote, Me.colContador, Me.colUbicacion, Me.colIdLinProd, Me.colCodempresa, Me.colEjercicio, Me.colUnidades, Me.colIDPL_PARTESPRODUCCION, Me.colNroOrden, Me.colImpresa})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.MultiSelect = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'colID
         '
@@ -209,6 +214,7 @@ Partial Class Etiquetas
         Me.colIdTanque.Name = "colIdTanque"
         Me.colIdTanque.Visible = True
         Me.colIdTanque.VisibleIndex = 4
+        Me.colIdTanque.Width = 222
         '
         'RepositoryItemLookUpEdit1
         '
@@ -232,6 +238,7 @@ Partial Class Etiquetas
         Me.colIdArti.Name = "colIdArti"
         Me.colIdArti.Visible = True
         Me.colIdArti.VisibleIndex = 1
+        Me.colIdArti.Width = 536
         '
         'RepositoryItemLookUpEdit2
         '
@@ -258,6 +265,7 @@ Partial Class Etiquetas
         Me.colNumLote.Name = "colNumLote"
         Me.colNumLote.Visible = True
         Me.colNumLote.VisibleIndex = 3
+        Me.colNumLote.Width = 255
         '
         'colContador
         '
@@ -266,11 +274,15 @@ Partial Class Etiquetas
         Me.colContador.Name = "colContador"
         Me.colContador.Visible = True
         Me.colContador.VisibleIndex = 2
+        Me.colContador.Width = 249
         '
         'colUbicacion
         '
+        Me.colUbicacion.Caption = "Pico"
         Me.colUbicacion.FieldName = "Ubicacion"
         Me.colUbicacion.Name = "colUbicacion"
+        Me.colUbicacion.Visible = True
+        Me.colUbicacion.VisibleIndex = 6
         '
         'colIdLinProd
         '
@@ -304,6 +316,21 @@ Partial Class Etiquetas
         Me.colNroOrden.Name = "colNroOrden"
         Me.colNroOrden.Visible = True
         Me.colNroOrden.VisibleIndex = 0
+        Me.colNroOrden.Width = 112
+        '
+        'colImpresa
+        '
+        Me.colImpresa.Caption = "Impresa"
+        Me.colImpresa.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.colImpresa.FieldName = "Impresa"
+        Me.colImpresa.Name = "colImpresa"
+        Me.colImpresa.Visible = True
+        Me.colImpresa.VisibleIndex = 5
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         '
         'PalesPendientesTicarTableAdapter
         '
@@ -341,7 +368,7 @@ Partial Class Etiquetas
         Me.SimpleButton2.Name = "SimpleButton2"
         Me.SimpleButton2.Size = New System.Drawing.Size(138, 91)
         Me.SimpleButton2.TabIndex = 13
-        Me.SimpleButton2.Text = "Imprimir Etiquietas " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Pales Seleccionados"
+        Me.SimpleButton2.Text = "Ticar Etiquietas " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Pales Seleccionados"
         '
         'Etiquetas
         '
@@ -370,6 +397,7 @@ Partial Class Etiquetas
         CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ARTICULOSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DatosDataset, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -407,5 +435,7 @@ Partial Class Etiquetas
     Friend WithEvents ARTICULOSTableAdapter As GesLineas.DatosDatasetTableAdapters.ARTICULOSTableAdapter
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents colImpresa As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 
 End Class
