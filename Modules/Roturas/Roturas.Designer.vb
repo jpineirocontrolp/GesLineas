@@ -57,10 +57,14 @@ Partial Class Roturas
         Me.colidmateriaprima1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.colLOTE1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.colCODEMPRESA1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colEJERCICIO1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCANTIDAD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemLookUpEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.RepositoryItemImageComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
         Me.PL_LOTESAUXILIARESTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_LOTESAUXILIARESTableAdapter()
+        Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +81,10 @@ Partial Class Roturas
         CType(Me.PLLOTESAUXILIARESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemLookUpEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemImageComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -121,7 +129,7 @@ Partial Class Roturas
         Me.GridControl1.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit1})
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit1, Me.RepositoryItemButtonEdit2})
         Me.GridControl1.Size = New System.Drawing.Size(794, 614)
         Me.GridControl1.TabIndex = 57
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -193,6 +201,7 @@ Partial Class Roturas
         'colLOTE
         '
         Me.colLOTE.Caption = "Lote defectuoso"
+        Me.colLOTE.ColumnEdit = Me.RepositoryItemButtonEdit2
         Me.colLOTE.FieldName = "LOTE"
         Me.colLOTE.Name = "colLOTE"
         Me.colLOTE.Visible = True
@@ -326,7 +335,7 @@ Partial Class Roturas
         Me.GridControl2.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit2})
+        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit2, Me.RepositoryItemLookUpEdit3, Me.RepositoryItemImageComboBox1, Me.RepositoryItemButtonEdit1})
         Me.GridControl2.Size = New System.Drawing.Size(792, 379)
         Me.GridControl2.TabIndex = 59
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
@@ -380,10 +389,17 @@ Partial Class Roturas
         'colLOTE1
         '
         Me.colLOTE1.Caption = "Lote"
+        Me.colLOTE1.ColumnEdit = Me.RepositoryItemButtonEdit1
         Me.colLOTE1.FieldName = "LOTE"
         Me.colLOTE1.Name = "colLOTE1"
         Me.colLOTE1.Visible = True
         Me.colLOTE1.VisibleIndex = 1
+        '
+        'RepositoryItemButtonEdit1
+        '
+        Me.RepositoryItemButtonEdit1.AutoHeight = False
+        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
         '
         'colCODEMPRESA1
         '
@@ -403,9 +419,30 @@ Partial Class Roturas
         Me.colCANTIDAD.Visible = True
         Me.colCANTIDAD.VisibleIndex = 2
         '
+        'RepositoryItemLookUpEdit3
+        '
+        Me.RepositoryItemLookUpEdit3.AutoHeight = False
+        Me.RepositoryItemLookUpEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemLookUpEdit3.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ReferenciaLinea", "Lote"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Diferencia", "Cantidad Disponible"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("CodigoAlbaran", "Albaran"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("FECHA", "Fecha")})
+        Me.RepositoryItemLookUpEdit3.DisplayMember = "ReferenciaLinea"
+        Me.RepositoryItemLookUpEdit3.Name = "RepositoryItemLookUpEdit3"
+        Me.RepositoryItemLookUpEdit3.ValueMember = "ReferenciaLinea"
+        '
+        'RepositoryItemImageComboBox1
+        '
+        Me.RepositoryItemImageComboBox1.AutoHeight = False
+        Me.RepositoryItemImageComboBox1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemImageComboBox1.Name = "RepositoryItemImageComboBox1"
+        '
         'PL_LOTESAUXILIARESTableAdapter
         '
         Me.PL_LOTESAUXILIARESTableAdapter.ClearBeforeFill = True
+        '
+        'RepositoryItemButtonEdit2
+        '
+        Me.RepositoryItemButtonEdit2.AutoHeight = False
+        Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
         '
         'Roturas
         '
@@ -437,6 +474,10 @@ Partial Class Roturas
         CType(Me.PLLOTESAUXILIARESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemLookUpEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemImageComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -480,5 +521,9 @@ Partial Class Roturas
     Friend WithEvents colEJERCICIO1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colCANTIDAD As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PL_LOTESAUXILIARESTableAdapter As GesLineas.ProduccionSqlTableAdapters.PL_LOTESAUXILIARESTableAdapter
+    Friend WithEvents RepositoryItemLookUpEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents RepositoryItemImageComboBox1 As DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox
+    Friend WithEvents RepositoryItemButtonEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 
 End Class
