@@ -114,7 +114,7 @@ Public Class Etiquetas
         For Each rowhandle In view.GetSelectedRows
 
             Dim row As DataRowView = view.GetRow(rowhandle)
-            If row.Row("IMPRESA") = True Then
+            If row.Row("IMPRESA") = True And row.Row("idlinprod") = 0 Then
                 cmd = New OleDbCommand("SELECT IDARTICULO,IDTANQUE FROM LINEAFABRICACION WHERE IDARTICULO=" & row.Row("idarti") & " and idtanque=" & row.Row("idtanque") & " AND EJERCICIO='" & gEjercicio & "' AND CODEMPRESA='" & gCodEmpresa & "'", dbProd)
                 If cmd.ExecuteNonQuery = 0 Then
                     If MsgBox("El tanque seleccionado no coincide con el que este artículo tiene asociado a través de la tabla Lineas de Fabricación. ¿Desea continuar?", vbYesNo + vbExclamation, "Proceso de Producción") = MsgBoxResult.No Then
@@ -128,8 +128,8 @@ Public Class Etiquetas
                 cajas = clsNegocioNet.GetDatoTabla(row.Row("idarti"), "ARTICULOS", gCodEmpresa, gEjercicio, "CAJASPALET", "ID")
             End If
             udescja = cajas * clsNegocioNet.GetDatoTabla(row.Row("idarti"), "ARTICULOS", gCodEmpresa, gEjercicio, "UDES_CAJA", "ID")
-            txtArticulo = clsNegocioNet.GetDatoTabla(row.Row("idarti"), "ARTICULOS", gCodEmpresa, gEjercicio, "descripcion", "ID")
-            actualiza.ActualizaProduccionManual(row.Row("id"), row.Row("numlote"), txtArticulo, IIf(cajas = 0, udescja, cajas), Format(row.Row("FECHA") & " " & Date.Now.TimeOfDay, "dd/mm/yy hh:mm:ss"), row.Row("FECHA"))
+            txtArticulo = clsNegocioNet.GetDatoTabla(row.Row("idarti"), "ARTICULOS", gCodEmpresa, gEjercicio, "descripcion", "ID", True)
+            actualiza.ActualizaProduccionManual(row.Row("id"), row.Row("numlote"), txtArticulo, IIf(cajas = 0, udescja, cajas), Date.Now.ToString, Date.Today)
 
         Next
         actualiza.dispose()

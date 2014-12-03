@@ -57,6 +57,7 @@ Partial Class Etiquetas
         Me.ARTICULOSTableAdapter = New GesLineas.DatosDatasetTableAdapters.ARTICULOSTableAdapter()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.colFecha = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.txtCajas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,7 +190,7 @@ Partial Class Etiquetas
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colIdOperario, Me.colIdTanque, Me.colIdArti, Me.colNumLote, Me.colContador, Me.colUbicacion, Me.colIdLinProd, Me.colCodempresa, Me.colEjercicio, Me.colUnidades, Me.colIDPL_PARTESPRODUCCION, Me.colNroOrden, Me.colImpresa})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colIdOperario, Me.colIdTanque, Me.colIdArti, Me.colNumLote, Me.colContador, Me.colUbicacion, Me.colIdLinProd, Me.colCodempresa, Me.colEjercicio, Me.colUnidades, Me.colIDPL_PARTESPRODUCCION, Me.colNroOrden, Me.colImpresa, Me.colFecha})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsSelection.MultiSelect = True
@@ -370,6 +371,14 @@ Partial Class Etiquetas
         Me.SimpleButton2.TabIndex = 13
         Me.SimpleButton2.Text = "Ticar Etiquietas " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Pales Seleccionados"
         '
+        'colFecha
+        '
+        Me.colFecha.Caption = "Fecha"
+        Me.colFecha.FieldName = "Fecha"
+        Me.colFecha.Name = "colFecha"
+        Me.colFecha.Visible = True
+        Me.colFecha.VisibleIndex = 7
+        '
         'Etiquetas
         '
         Me.Appearance.BackColor = System.Drawing.Color.White
@@ -437,5 +446,6 @@ Partial Class Etiquetas
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents colImpresa As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents colFecha As DevExpress.XtraGrid.Columns.GridColumn
 
 End Class

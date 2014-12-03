@@ -5640,6 +5640,8 @@ Partial Public Class ProduccionSql
         
         Private columnImpresa As Global.System.Data.DataColumn
         
+        Private columnFecha As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -5796,6 +5798,14 @@ Partial Public Class ProduccionSql
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FechaColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFecha
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -5832,9 +5842,9 @@ Partial Public Class ProduccionSql
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddPalesPendientesTicarRow(ByVal IdOperario As Integer, ByVal IdTanque As Integer, ByVal IdArti As Integer, ByVal NumLote As String, ByVal Contador As String, ByVal Ubicacion As String, ByVal IdLinProd As Integer, ByVal Codempresa As String, ByVal Ejercicio As String, ByVal Unidades As Integer, ByVal IDPL_PARTESPRODUCCION As Integer, ByVal NroOrden As Integer, ByVal IdLinea As Integer, ByVal Impresa As Boolean) As PalesPendientesTicarRow
+        Public Overloads Function AddPalesPendientesTicarRow(ByVal IdOperario As Integer, ByVal IdTanque As Integer, ByVal IdArti As Integer, ByVal NumLote As String, ByVal Contador As String, ByVal Ubicacion As String, ByVal IdLinProd As Integer, ByVal Codempresa As String, ByVal Ejercicio As String, ByVal Unidades As Integer, ByVal IDPL_PARTESPRODUCCION As Integer, ByVal NroOrden As Integer, ByVal IdLinea As Integer, ByVal Impresa As Boolean, ByVal Fecha As Date) As PalesPendientesTicarRow
             Dim rowPalesPendientesTicarRow As PalesPendientesTicarRow = CType(Me.NewRow,PalesPendientesTicarRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, IdOperario, IdTanque, IdArti, NumLote, Contador, Ubicacion, IdLinProd, Codempresa, Ejercicio, Unidades, IDPL_PARTESPRODUCCION, NroOrden, IdLinea, Impresa}
+            Dim columnValuesArray() As Object = New Object() {Nothing, IdOperario, IdTanque, IdArti, NumLote, Contador, Ubicacion, IdLinProd, Codempresa, Ejercicio, Unidades, IDPL_PARTESPRODUCCION, NroOrden, IdLinea, Impresa, Fecha}
             rowPalesPendientesTicarRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowPalesPendientesTicarRow)
             Return rowPalesPendientesTicarRow
@@ -5878,6 +5888,7 @@ Partial Public Class ProduccionSql
             Me.columnNroOrden = MyBase.Columns("NroOrden")
             Me.columnIdLinea = MyBase.Columns("IdLinea")
             Me.columnImpresa = MyBase.Columns("Impresa")
+            Me.columnFecha = MyBase.Columns("Fecha")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5913,6 +5924,8 @@ Partial Public Class ProduccionSql
             MyBase.Columns.Add(Me.columnIdLinea)
             Me.columnImpresa = New Global.System.Data.DataColumn("Impresa", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnImpresa)
+            Me.columnFecha = New Global.System.Data.DataColumn("Fecha", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFecha)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AutoIncrement = true
             Me.columnID.AutoIncrementSeed = -1
@@ -9766,6 +9779,21 @@ Partial Public Class ProduccionSql
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Fecha() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablePalesPendientesTicar.FechaColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Fecha' de la tabla 'PalesPendientesTicar' es DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablePalesPendientesTicar.FechaColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsIdOperarioNull() As Boolean
             Return Me.IsNull(Me.tablePalesPendientesTicar.IdOperarioColumn)
         End Function
@@ -9930,6 +9958,18 @@ Partial Public Class ProduccionSql
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetImpresaNull()
             Me(Me.tablePalesPendientesTicar.ImpresaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsFechaNull() As Boolean
+            Return Me.IsNull(Me.tablePalesPendientesTicar.FechaColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetFechaNull()
+            Me(Me.tablePalesPendientesTicar.FechaColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -14287,6 +14327,7 @@ Namespace ProduccionSqlTableAdapters
             tableMapping.ColumnMappings.Add("NroOrden", "NroOrden")
             tableMapping.ColumnMappings.Add("IdLinea", "IdLinea")
             tableMapping.ColumnMappings.Add("Impresa", "Impresa")
+            tableMapping.ColumnMappings.Add("Fecha", "Fecha")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -14303,17 +14344,16 @@ Namespace ProduccionSqlTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        EtiqNumLote.ID, EtiqNumLote.IdOperario, EtiqNumLote.IdTanque, EtiqN"& _ 
-                "umLote.IdArti, EtiqNumLote.NumLote, EtiqNumLote.Contador, EtiqNumLote.Ubicacion,"& _ 
-                " "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         EtiqNumLote.IdLinProd, EtiqNumLote.Codempresa, EtiqN"& _ 
-                "umLote.Ejercicio, EtiqNumLote.Unidades, EtiqNumLote.IDPL_PARTESPRODUCCION, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
-                "                      PL_PARTESPRODUCCION.NroOrden, PL_PARTESPRODUCCION.IdLinea,"& _ 
-                " EtiqNumLote.Impresa"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            EtiqNumLote INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                  "& _ 
-                "       PL_PARTESPRODUCCION ON EtiqNumLote.IDPL_PARTESPRODUCCION = PL_PARTESPRODU"& _ 
-                "CCION.id"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (EtiqNumLote.Codempresa = @CodEmpresa) AND (EtiqNumLote.E"& _ 
-                "jercicio = @Ejercicio) AND (PL_PARTESPRODUCCION.IdLinea = @Lineaproduccion) AND "& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (PL_PARTESPRODUCCION.NroOrden = @NroOrden) AND (EtiqN"& _ 
-                "umLote.IdLinProd = 0)"
+            Me._commandCollection(0).CommandText = "SELECT        EtiqNumLote.ID, EtiqNumLote.IdOperario, EtiqNumLote.IdTanque, EtiqN" & _
+                "umLote.IdArti, EtiqNumLote.NumLote, EtiqNumLote.Contador, EtiqNumLote.Ubicacion," & _
+                " " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         EtiqNumLote.IdLinProd, EtiqNumLote.Codempresa, EtiqN" & _
+                "umLote.Ejercicio, EtiqNumLote.Unidades, EtiqNumLote.IDPL_PARTESPRODUCCION, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "   " & _
+                "                      PL_PARTESPRODUCCION.NroOrden, PL_PARTESPRODUCCION.IdLinea," & _
+                " EtiqNumLote.Impresa, EtiqNumLote.Fecha" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            EtiqNumLote INNER JOIN" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         PL_PARTESPRODUCCION ON EtiqNumLote.IDPL_PARTESPRODUCCI" & _
+                "ON = PL_PARTESPRODUCCION.id" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (EtiqNumLote.Codempresa = @CodEmpresa)" & _
+                " AND (EtiqNumLote.Ejercicio = @Ejercicio) AND (PL_PARTESPRODUCCION.IdLinea = @Li" & _
+                "neaproduccion) AND " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         (PL_PARTESPRODUCCION.NroOrden = @N" & _
+                "roOrden)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CodEmpresa", Global.System.Data.SqlDbType.NVarChar, 2, Global.System.Data.ParameterDirection.Input, 0, 0, "Codempresa", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Ejercicio", Global.System.Data.SqlDbType.NVarChar, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "Ejercicio", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
