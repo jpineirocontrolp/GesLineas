@@ -20,6 +20,7 @@ Public Class Principal
         Me.Partes_de_produccionTableAdapter.Fill(Me.ProduccionSql.Partes_de_produccion, configuracion.Linea, NroOrden, gCodEmpresa, gEjercicio)
         Me.ARTICULOSTableAdapter.Fill(Me.DatosDataset.ARTICULOS, gCodEmpresa, gEjercicio)
         Me.PL_ACCIONESTableAdapter.Fill(Me.ProduccionSql.PL_ACCIONES, gCodEmpresa, gEjercicio)
+        Me.TANQUESTableAdapter.Fill(Me.ProduccionSql.TANQUES, gCodEmpresa, gEjercicio)
         Dim myLookUp As RepositoryItemLookUpEdit = New RepositoryItemLookUpEdit()
         Dim LST As New Dictionary(Of String, String)
         LST.Add("1", "Pendiente")
@@ -31,6 +32,26 @@ Public Class Principal
         myLookUp.Columns.Add(New LookUpColumnInfo("Value", 1, "Pendiente"))
         myLookUp.DataSource = LST
         GridView2.Columns("ESTADO").ColumnEdit = myLookUp
+        Dim da As OleDbDataAdapter
+        Dim cmd As OleDbCommand
+        da = New OleDbDataAdapter("SELECT id,IdLinea,IdEnvase    from pl_lineasenvases where CODEMPRESA='" & gCodEmpresa & "' AND eJERCICIO='" & gEjercicio & "'", dbProd)
+        Dim dtFormatos As New DataTable
+        da.Fill(dtFormatos)
+        dtFormatos.Columns.Add("Descripcion", GetType(String))
+        For Each item In dtFormatos.Rows
+            cmd = New OleDbCommand("Select descripcion from envases where id=" & item("idenvase") & " and codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "'", dbAdo)
+            item("Descripcion") = cmd.ExecuteScalar
+        Next
+        Dim gle As RepositoryItemLookUpEdit = New RepositoryItemLookUpEdit
+        gle.DataSource = dtFormatos
+        gle.ValueMember = "id"
+        gle.DisplayMember = "Descripcion"
+        GridView2.Columns("idEnvase").ColumnEdit = gle
+
+
+
+
+
     End Sub
     Sub loadDataOperaciones()
         Me.PL_CABECERAPRODUCIDATableAdapter.Fill(Me.ProduccionSql.PL_CABECERAPRODUCIDA, miLinea, gCodEmpresa, gEjercicio)
@@ -48,24 +69,43 @@ Public Class Principal
 
     Private Sub GridView2_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GridView2.CustomColumnDisplayText
        
-        If e.Column.FieldName = "Formato" Then
-            Try
+        'If e.Column.FieldName = "Formato" Then
+        '    Try
 
-                Dim view As GridView = TryCast(sender, GridView)
-                Dim row As DataRowView = view.GetRow(view.GetRowHandle(e.ListSourceRowIndex))
+        '        'Dim view As GridView = TryCast(sender, GridView)
+        '        'Dim row As DataRowView = view.GetRow(view.GetRowHandle(e.ListSourceRowIndex))
 
-                If row.Row("idenvase") = 0 Then e.DisplayText = ""
-                Dim cmd As New OleDbCommand
-                cmd = New OleDbCommand("Select idenvase from PL_LINEASENVASES WHERE ID=" & row.Row("Idenvase"), dbProd)
-                Dim idEnvase As Integer = cmd.ExecuteScalar
+        '        'If row.Row("idenvase") = 0 Then e.DisplayText = ""
+        '        'Dim cmd As New OleDbCommand
+        '        'cmd = New OleDbCommand("Select idenvase from PL_LINEASENVASES WHERE ID=" & row.Row("Idenvase"), dbProd)
+        '        'Dim idEnvase As Integer = cmd.ExecuteScalar
 
-                cmd = New OleDbCommand("Select descripcion from envases where id=" & idEnvase, dbAdo)
-                e.DisplayText = cmd.ExecuteScalar
-            Catch ex As Exception
-                e.DisplayText = ""
-            End Try
+        '        'cmd = New OleDbCommand("Select descripcion from envases where id=" & idEnvase, dbAdo)
+        '        'e.DisplayText = cmd.ExecuteScalar
+        '    Catch ex As Exception
+        '        e.DisplayText = ""
+        '    End Try
 
-        End If
+        'End If
+    End Sub
+
+    Private Sub GridView2_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GridView2.CustomUnboundColumnData
+        'If e.Column.FieldName = "Formato" Then
+        '    Try
+        '        Dim row As DataRowView = DirectCast(e.Row, DataRowView)
+        '        If row.Row("idenvase") = 0 Then e.Value = ""
+        '        Dim cmd As New OleDbCommand
+        '        cmd = New OleDbCommand("Select idenvase from PL_LINEASENVASES WHERE ID=" & row.Row("Idenvase"), dbProd)
+        '        Dim idEnvase As Integer = cmd.ExecuteScalar
+
+        '        cmd = New OleDbCommand("Select descripcion from envases where id=" & idEnvase, dbAdo)
+        '        e.Value = cmd.ExecuteScalar
+        '        ' e.Value = Convert.ToBoolean(DirectCast(e.Row, DataRowView)("i5"))
+        '    Catch ex As Exception
+        '        e.Value = ""
+        '    End Try
+        'End If
+
     End Sub
 
     Private Sub GridView2_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView2.RowStyle

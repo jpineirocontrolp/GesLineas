@@ -5,7 +5,7 @@ Public Class FormBuscarLote
     Public lote As String
     Private Sub FormBuscarLote_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: esta línea de código carga datos en la tabla 'ProduccionSql.LotesMPADisponibles' Puede moverla o quitarla según sea necesario.
-        Me.LotesMPADisponiblesTableAdapter.Fill(Me.ProduccionSql.LotesMPADisponibles, codigoMateria)
+        Me.LotesMPADisponiblesTableAdapter.Fill(Me.ProduccionSql.LotesMPADisponibles)
 
     End Sub
 

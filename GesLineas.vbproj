@@ -50,9 +50,6 @@
     <ApplicationIcon>Resources\AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ActualizaProd">
-      <HintPath>..\..\..\..\prog\V8\Dropbox\ActualizaProd.dll</HintPath>
-    </Reference>
     <Reference Include="cpNegocioNet">
       <HintPath>..\..\..\..\prog\V8\Dropbox\cpNegocioNet.dll</HintPath>
     </Reference>
@@ -199,6 +196,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Principal\Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Roturas\Roturas.resx">
       <DependentUpon>Roturas.vb</DependentUpon>
@@ -326,7 +324,12 @@
     <Content Include="Resources\Toolbar\ZoomIn.png" />
     <Content Include="Resources\Toolbar\ZoomOut.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\servicioswindows.net\produccion\cpProdSvce\actualizaprod\ActualizaProd\ActualizaProd.vbproj">
+      <Project>{98d47da5-89ec-4f5f-bc1b-0af6fbe8cd25}</Project>
+      <Name>ActualizaProd</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

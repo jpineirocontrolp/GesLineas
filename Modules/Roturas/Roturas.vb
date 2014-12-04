@@ -9,6 +9,7 @@ Public Class Roturas
 
     Public btEnvasar As DevExpress.XtraBars.Navigation.TileBarItem
     Public btbtRoturas As DevExpress.XtraBars.Navigation.TileBarItem
+    Public btEtiquetas As DevExpress.XtraBars.Navigation.TileBarItem
     Public fin As Boolean = False
 
 
@@ -24,22 +25,22 @@ Public Class Roturas
         Me.PL_ROTURASTableAdapter.Fill(ProduccionSql.PL_ROTURAS, idCabecera, gCodEmpresa, gEjercicio)
         Me.MateriasPrimasTableAdapter.Fill(ProduccionSql.MateriasPrimas, gCodEmpresa, gEjercicio, idArticulo)
         Me.PL_LOTESAUXILIARESTableAdapter.Fill(ProduccionSql.PL_LOTESAUXILIARES, gCodEmpresa, gEjercicio, idCabecera)
-
-        'Dim gle As RepositoryItemLookUpEdit = New RepositoryItemLookUpEdit
-        'gle.DataSource = ProduccionSql.LotesMPADisponibles
-        'gle.ValueMember = "ReferenciaLinea"
-        'gle.DisplayMember = "ReferenciaLinea"
-        'gle.BestFitMode = BestFitMode.BestFit
-        'gle.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.True
-        'gle.TextEditStyle = TextEditStyles.Standard
-        'Dim coll As LookUpColumnInfoCollection
-        'coll = gle.Columns
-        'coll.Add(New LookUpColumnInfo("ReferenciaLinea", "Lote", 150))
-        'coll.Add(New LookUpColumnInfo("Diferencia", "Disponible", 70))
-        'coll.Add(New LookUpColumnInfo("FECHA"))
-        'coll.Add(New LookUpColumnInfo("CodigoAlbaran", "Albaran"))
-        'GridView2.Columns("LOTE").ColumnEdit = gle
-        'GridView1.Columns("LOTE").ColumnEdit = gle
+        Me.LotesMPADisponiblesTableAdapter.Fill(ProduccionSql.LotesMPADisponibles)
+        Dim gle As RepositoryItemLookUpEdit = New RepositoryItemLookUpEdit
+        gle.DataSource = ProduccionSql.LotesMPADisponibles
+        gle.ValueMember = "ID"
+        gle.DisplayMember = "ReferenciaLinea"
+        gle.BestFitMode = BestFitMode.BestFit
+        gle.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.True
+        gle.TextEditStyle = TextEditStyles.Standard
+        Dim coll As LookUpColumnInfoCollection
+        coll = gle.Columns
+        coll.Add(New LookUpColumnInfo("ReferenciaLinea", "Lote", 150))
+        coll.Add(New LookUpColumnInfo("Diferencia", "Disponible", 70))
+        coll.Add(New LookUpColumnInfo("FECHA"))
+        coll.Add(New LookUpColumnInfo("CodigoAlbaran", "Albaran"))
+        GridView2.Columns("ID_LINCOMPRALOTE").ColumnEdit = gle
+        GridView1.Columns("ID_LINCOMPRALOTE").ColumnEdit = gle
         Dim cmd As New OleDbCommand
         Dim dr As OleDbDataReader
         If idCabecera <> 0 Then
@@ -82,6 +83,7 @@ Public Class Roturas
         End Try
         btEnvasar.Enabled = True
         btbtRoturas.Enabled = True
+        btEtiquetas.Enabled = True
         Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
 
             controencurso.Visible = False
@@ -99,6 +101,7 @@ Public Class Roturas
     Private Sub btCancelar_Click(sender As Object, e As EventArgs) Handles btCancelar.Click
         btEnvasar.Enabled = True
         btbtRoturas.Enabled = True
+        btEtiquetas.Enabled = True
         Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
 
             controencurso.Visible = False
@@ -116,65 +119,95 @@ Public Class Roturas
         view.SetRowCellValue(e.RowHandle, view.Columns("EJERCICIO"), gEjercicio)
     End Sub
 
-    Private Sub GridControl2_Click(sender As Object, e As EventArgs) Handles GridControl2.Click
+   
+    Private clone As DataView
+    Private Sub GridView2_ShownEditor(sender As Object, e As EventArgs) Handles GridView2.ShownEditor
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView
+        Dim CodigoMateria As String
+        view = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        If view.FocusedColumn.FieldName = "ID_LINCOMPRALOTE" AndAlso TypeOf view.ActiveEditor Is DevExpress.XtraEditors.LookUpEdit Then
+            Dim edit As DevExpress.XtraEditors.LookUpEdit
+            Dim table As DataTable
+            Dim row As DataRow
 
+            edit = CType(view.ActiveEditor, DevExpress.XtraEditors.LookUpEdit)
+            table = CType(edit.Properties.DataSource, DataTable)
+            clone = New DataView(table)
+            row = view.GetDataRow(view.FocusedRowHandle)
+
+            CodigoMateria = clsNegocioProd.GetDatoTabla(row("idmateriaprima"), "MATERIASPRIMAS", gCodEmpresa, gEjercicio, "CODIGO", "ID", True)
+
+            clone.RowFilter = "[CODIGO] = " + CodigoMateria.ToString
+
+            edit.Properties.DataSource = clone
+
+
+            'Dim edit As DevExpress.XtraEditors.LookUpEdit
+            'edit = CType(view.ActiveEditor, DevExpress.XtraEditors.LookUpEdit)
+
+            '' Dim bs As BindingSource = CType(edit.Properties.DataSource, BindingSource)
+            '' Dim table As DataTable = (CType(bs.DataSource, DataSet)).Tables(bs.DataMember)
+            'Dim Table As DataTable = CType(edit.Properties.DataSource, DataTable)
+            'clone = New DataView(Table)
+            'Dim row As DataRow = view.GetDataRow(view.FocusedRowHandle)
+            'clone.RowFilter = "[IdLinea] = " & row("IdLinea").ToString()
+            'edit.Properties.DataSource = clone
+            'edit.ItemIndex = 0
+
+        End If
     End Sub
 
-    Private Sub GridView2_RowUpdated(sender As Object, e As Base.RowObjectEventArgs) Handles GridView2.RowUpdated
-
-    End Sub
-    'Private clone As DataView
-    'Private Sub GridView2_ShownEditor(sender As Object, e As EventArgs) Handles GridView2.ShownEditor
-    '    Dim view As DevExpress.XtraGrid.Views.Grid.GridView
-    '    Dim CodigoMateria As String
-    '    view = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
-    '    If view.FocusedColumn.FieldName = "LOTE" AndAlso TypeOf view.ActiveEditor Is DevExpress.XtraEditors.LookUpEdit Then
-    '        Dim edit As DevExpress.XtraEditors.LookUpEdit
-    '        Dim table As DataTable
-    '        Dim row As DataRow
-
-    '        edit = CType(view.ActiveEditor, DevExpress.XtraEditors.LookUpEdit)
-    '        table = CType(edit.Properties.DataSource, DataTable)
-    '        clone = New DataView(table)
-    '        row = view.GetDataRow(view.FocusedRowHandle)
-
-    '        CodigoMateria = clsNegocioProd.GetDatoTabla(row("idmateriaprima"), "MATERIASPRIMAS", gCodEmpresa, gEjercicio, "CODIGO", "ID", True)
-
-    '        clone.RowFilter = "[CODIGO] = " + CodigoMateria.ToString
-
-    '        edit.Properties.DataSource = clone
-
-
-    '        'Dim edit As DevExpress.XtraEditors.LookUpEdit
-    '        'edit = CType(view.ActiveEditor, DevExpress.XtraEditors.LookUpEdit)
-
-    '        '' Dim bs As BindingSource = CType(edit.Properties.DataSource, BindingSource)
-    '        '' Dim table As DataTable = (CType(bs.DataSource, DataSet)).Tables(bs.DataMember)
-    '        'Dim Table As DataTable = CType(edit.Properties.DataSource, DataTable)
-    '        'clone = New DataView(Table)
-    '        'Dim row As DataRow = view.GetDataRow(view.FocusedRowHandle)
-    '        'clone.RowFilter = "[IdLinea] = " & row("IdLinea").ToString()
-    '        'edit.Properties.DataSource = clone
-    '        'edit.ItemIndex = 0
-
-    '    End If
+    'Private Sub RepositoryItemButtonEdit1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit1.ButtonClick
+    '    Dim view As GridView = TryCast(GridView2, GridView)
+    '    Dim f As New FormBuscarLote
+    '    Dim row As DataRow = view.GetDataRow(view.FocusedRowHandle)
+    '    f.codigoMateria = clsNegocioProd.GetDatoTabla(row("idmateriaprima"), "MATERIASPRIMAS", gCodEmpresa, gEjercicio, "CODIGO", "ID", True)
+    '    f.ShowDialog()
+    '    view.SetRowCellValue(view.FocusedRowHandle, view.Columns("ID_"), f.lote)
     'End Sub
 
-    Private Sub RepositoryItemButtonEdit1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit1.ButtonClick
-        Dim view As GridView = TryCast(GridView2, GridView)
-        Dim f As New FormBuscarLote
-        Dim row As DataRow = view.GetDataRow(view.FocusedRowHandle)
-        f.codigoMateria = clsNegocioProd.GetDatoTabla(row("idmateriaprima"), "MATERIASPRIMAS", gCodEmpresa, gEjercicio, "CODIGO", "ID", True)
-        f.ShowDialog()
-        view.SetRowCellValue(view.FocusedRowHandle, view.Columns("LOTE"), f.lote)
-    End Sub
+    'Private Sub RepositoryItemButtonEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit2.ButtonClick
+    '    Dim view As GridView = TryCast(GridView1, GridView)
+    '    Dim f As New FormBuscarLote
+    '    Dim row As DataRow = view.GetDataRow(view.FocusedRowHandle)
+    '    f.codigoMateria = clsNegocioProd.GetDatoTabla(row("idmateriaprima"), "MATERIASPRIMAS", gCodEmpresa, gEjercicio, "CODIGO", "ID", True)
+    '    f.ShowDialog()
+    '    view.SetRowCellValue(view.FocusedRowHandle, view.Columns("LOTE"), f.lote)
+    'End Sub
 
-    Private Sub RepositoryItemButtonEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit2.ButtonClick
-        Dim view As GridView = TryCast(GridView1, GridView)
-        Dim f As New FormBuscarLote
-        Dim row As DataRow = view.GetDataRow(view.FocusedRowHandle)
-        f.codigoMateria = clsNegocioProd.GetDatoTabla(row("idmateriaprima"), "MATERIASPRIMAS", gCodEmpresa, gEjercicio, "CODIGO", "ID", True)
-        f.ShowDialog()
-        view.SetRowCellValue(view.FocusedRowHandle, view.Columns("LOTE"), f.lote)
+    Private Sub GridView1_ShownEditor(sender As Object, e As EventArgs) Handles GridView1.ShownEditor
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView
+        Dim CodigoMateria As String
+        view = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        If view.FocusedColumn.FieldName = "ID_LINCOMPRALOTE" AndAlso TypeOf view.ActiveEditor Is DevExpress.XtraEditors.LookUpEdit Then
+            Dim edit As DevExpress.XtraEditors.LookUpEdit
+            Dim table As DataTable
+            Dim row As DataRow
+
+            edit = CType(view.ActiveEditor, DevExpress.XtraEditors.LookUpEdit)
+            table = CType(edit.Properties.DataSource, DataTable)
+            clone = New DataView(table)
+            row = view.GetDataRow(view.FocusedRowHandle)
+
+            CodigoMateria = clsNegocioProd.GetDatoTabla(row("idmateriaprima"), "MATERIASPRIMAS", gCodEmpresa, gEjercicio, "CODIGO", "ID", True)
+
+            clone.RowFilter = "[CODIGO] = " + CodigoMateria.ToString
+
+            edit.Properties.DataSource = clone
+
+
+            'Dim edit As DevExpress.XtraEditors.LookUpEdit
+            'edit = CType(view.ActiveEditor, DevExpress.XtraEditors.LookUpEdit)
+
+            '' Dim bs As BindingSource = CType(edit.Properties.DataSource, BindingSource)
+            '' Dim table As DataTable = (CType(bs.DataSource, DataSet)).Tables(bs.DataMember)
+            'Dim Table As DataTable = CType(edit.Properties.DataSource, DataTable)
+            'clone = New DataView(Table)
+            'Dim row As DataRow = view.GetDataRow(view.FocusedRowHandle)
+            'clone.RowFilter = "[IdLinea] = " & row("IdLinea").ToString()
+            'edit.Properties.DataSource = clone
+            'edit.ItemIndex = 0
+
+        End If
     End Sub
 End Class

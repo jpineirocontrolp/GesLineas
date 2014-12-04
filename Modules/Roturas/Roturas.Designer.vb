@@ -35,6 +35,7 @@ Partial Class Roturas
         Me.MateriasPrimasBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.colCANTIDADMATERIAPRIMA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colLOTE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.colPTERMINADODEFECTUOSO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIDENVASE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colENVASESDEFECTUOSO = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -57,14 +58,15 @@ Partial Class Roturas
         Me.colidmateriaprima1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.colLOTE1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.colCODEMPRESA1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colEJERCICIO1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCANTIDAD = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.LotesMPADisponiblesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.RepositoryItemImageComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
+        Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.PL_LOTESAUXILIARESTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_LOTESAUXILIARESTableAdapter()
-        Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.LotesMPADisponiblesTableAdapter = New GesLineas.ProduccionSqlTableAdapters.LotesMPADisponiblesTableAdapter()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,6 +75,7 @@ Partial Class Roturas
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MateriasPrimasBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.txtCajas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,10 +84,10 @@ Partial Class Roturas
         CType(Me.PLLOTESAUXILIARESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LotesMPADisponiblesBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemImageComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -201,11 +204,16 @@ Partial Class Roturas
         'colLOTE
         '
         Me.colLOTE.Caption = "Lote defectuoso"
-        Me.colLOTE.ColumnEdit = Me.RepositoryItemButtonEdit2
-        Me.colLOTE.FieldName = "LOTE"
+        Me.colLOTE.FieldName = "ID_LINCOMPRALOTE"
         Me.colLOTE.Name = "colLOTE"
         Me.colLOTE.Visible = True
         Me.colLOTE.VisibleIndex = 2
+        '
+        'RepositoryItemButtonEdit2
+        '
+        Me.RepositoryItemButtonEdit2.AutoHeight = False
+        Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
         '
         'colPTERMINADODEFECTUOSO
         '
@@ -389,17 +397,10 @@ Partial Class Roturas
         'colLOTE1
         '
         Me.colLOTE1.Caption = "Lote"
-        Me.colLOTE1.ColumnEdit = Me.RepositoryItemButtonEdit1
-        Me.colLOTE1.FieldName = "LOTE"
+        Me.colLOTE1.FieldName = "ID_LINCOMPRALOTE"
         Me.colLOTE1.Name = "colLOTE1"
         Me.colLOTE1.Visible = True
         Me.colLOTE1.VisibleIndex = 1
-        '
-        'RepositoryItemButtonEdit1
-        '
-        Me.RepositoryItemButtonEdit1.AutoHeight = False
-        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
         '
         'colCODEMPRESA1
         '
@@ -424,9 +425,15 @@ Partial Class Roturas
         Me.RepositoryItemLookUpEdit3.AutoHeight = False
         Me.RepositoryItemLookUpEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemLookUpEdit3.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ReferenciaLinea", "Lote"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Diferencia", "Cantidad Disponible"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("CodigoAlbaran", "Albaran"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("FECHA", "Fecha")})
+        Me.RepositoryItemLookUpEdit3.DataSource = Me.LotesMPADisponiblesBindingSource
         Me.RepositoryItemLookUpEdit3.DisplayMember = "ReferenciaLinea"
         Me.RepositoryItemLookUpEdit3.Name = "RepositoryItemLookUpEdit3"
         Me.RepositoryItemLookUpEdit3.ValueMember = "ReferenciaLinea"
+        '
+        'LotesMPADisponiblesBindingSource
+        '
+        Me.LotesMPADisponiblesBindingSource.DataMember = "LotesMPADisponibles"
+        Me.LotesMPADisponiblesBindingSource.DataSource = Me.ProduccionSql
         '
         'RepositoryItemImageComboBox1
         '
@@ -434,15 +441,19 @@ Partial Class Roturas
         Me.RepositoryItemImageComboBox1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepositoryItemImageComboBox1.Name = "RepositoryItemImageComboBox1"
         '
+        'RepositoryItemButtonEdit1
+        '
+        Me.RepositoryItemButtonEdit1.AutoHeight = False
+        Me.RepositoryItemButtonEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit1.Name = "RepositoryItemButtonEdit1"
+        '
         'PL_LOTESAUXILIARESTableAdapter
         '
         Me.PL_LOTESAUXILIARESTableAdapter.ClearBeforeFill = True
         '
-        'RepositoryItemButtonEdit2
+        'LotesMPADisponiblesTableAdapter
         '
-        Me.RepositoryItemButtonEdit2.AutoHeight = False
-        Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
+        Me.LotesMPADisponiblesTableAdapter.ClearBeforeFill = True
         '
         'Roturas
         '
@@ -465,6 +476,7 @@ Partial Class Roturas
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MateriasPrimasBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -474,10 +486,10 @@ Partial Class Roturas
         CType(Me.PLLOTESAUXILIARESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LotesMPADisponiblesBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemImageComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemButtonEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemButtonEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -525,5 +537,7 @@ Partial Class Roturas
     Friend WithEvents RepositoryItemButtonEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents RepositoryItemImageComboBox1 As DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox
     Friend WithEvents RepositoryItemButtonEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents LotesMPADisponiblesBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents LotesMPADisponiblesTableAdapter As GesLineas.ProduccionSqlTableAdapters.LotesMPADisponiblesTableAdapter
 
 End Class

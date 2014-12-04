@@ -135,7 +135,7 @@ Public Class FormMain
                     Dim roturas2 As New Roturas
                     roturas2.btbtRoturas = btRoturas
                     roturas2.btEnvasar = Envasar
-
+                    roturas2.btEtiquetas = Etiquetas
                     roturas2.loadData()
                     Dim result As DialogResult = FlyoutDialog.Show(Me, roturas2)
                     If result = System.Windows.Forms.DialogResult.Cancel Then
@@ -336,6 +336,8 @@ Public Class FormMain
                 controencurso = misRoturas
                 Envasar.Enabled = False
                 btRoturas.Enabled = False
+                Etiquetas.Enabled = False
+                misRoturas.btEtiquetas = Etiquetas
                 misRoturas.btbtRoturas = btRoturas
                 misRoturas.btEnvasar = Envasar
                 misRoturas.loadData()
