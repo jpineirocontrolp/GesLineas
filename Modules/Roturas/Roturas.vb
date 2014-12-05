@@ -4,6 +4,7 @@ Imports System.Data.OleDb
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraEditors
 
 Public Class Roturas
 
@@ -11,8 +12,8 @@ Public Class Roturas
     Public btbtRoturas As DevExpress.XtraBars.Navigation.TileBarItem
     Public btEtiquetas As DevExpress.XtraBars.Navigation.TileBarItem
     Public fin As Boolean = False
-
-
+    Dim udesEscandallo As Decimal
+    Dim editando As Boolean = False
 
     Public Sub New()
 
@@ -41,6 +42,21 @@ Public Class Roturas
         coll.Add(New LookUpColumnInfo("CodigoAlbaran", "Albaran"))
         GridView2.Columns("ID_LINCOMPRALOTE").ColumnEdit = gle
         GridView1.Columns("ID_LINCOMPRALOTE").ColumnEdit = gle
+
+        Dim gle1 As RepositoryItemLookUpEdit = New RepositoryItemLookUpEdit
+        gle1.DataSource = ProduccionSql.MateriasPrimas
+        gle1.ValueMember = "Id"
+        gle1.DisplayMember = "DESCRIPCION"
+        gle1.BestFitMode = BestFitMode.BestFit
+        gle1.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.True
+        gle1.TextEditStyle = TextEditStyles.Standard
+        coll = New LookUpColumnInfoCollection
+        coll = gle1.Columns
+        coll.Add(New LookUpColumnInfo("DESCRIPCION", "Descripcion"))
+        coll.Add(New LookUpColumnInfo("UNIDADES", "Unidades"))
+
+        GridView2.Columns("idmateriaprima").ColumnEdit = gle1
+        AddHandler gle1.EditValueChanged, AddressOf OnchangeMateriaPrima
         Dim cmd As New OleDbCommand
         Dim dr As OleDbDataReader
         If idCabecera <> 0 Then
@@ -112,6 +128,39 @@ Public Class Roturas
         End Using
     End Sub
 
+    Private Sub GridView2_CellValueChanged(sender As Object, e As Base.CellValueChangedEventArgs) Handles GridView2.CellValueChanged
+
+    End Sub
+    ' Returns the total amount for a specific row.
+    Private Function getTotalValue() As Decimal
+        Dim udesCja As Double
+        Dim cjaspalet As Double
+        udesCja = clsNegocioNet.GetDatoTabla(idArticulo, "ARTICULOS", gCodEmpresa, gEjercicio, "UDES_CAJA", "ID")
+        cjaspalet = clsNegocioNet.GetDatoTabla(idArticulo, "ARTICULOS", gCodEmpresa, gEjercicio, "CAJASPALET", "ID")
+        Dim TotalUdes As Double = udesCja * cjaspalet * txtPales.EditValue
+        TotalUdes = TotalUdes + (udesCja * txtCajas.EditValue)
+        Return Math.Round(udesEscandallo * TotalUdes, 0)
+    End Function
+    Private Sub GridView2_CustomUnboundColumnData(sender As Object, e As Base.CustomColumnDataEventArgs) Handles GridView2.CustomUnboundColumnData
+        Dim view As GridView = TryCast(sender, GridView)
+        If e.Column.FieldName = "Producido" Then
+
+            If Not view.IsEditing Then
+                Dim myLookup As RepositoryItemLookUpEdit = TryCast(view.Columns("idmateriaprima").ColumnEdit, RepositoryItemLookUpEdit)
+
+                Dim row As DataRowView = myLookup.GetDataSourceRowByKeyValue(e.Row("idmateriaprima"))
+                If IsDBNull(e.Row("idmateriaprima")) Then
+                    udesEscandallo = 0
+                Else
+                    udesEscandallo = row.Row("UNIDADES")
+                End If
+            End If
+            e.Value = getTotalValue()
+
+        End If
+
+    End Sub
+
     Private Sub GridView2_InitNewRow(sender As Object, e As Grid.InitNewRowEventArgs) Handles GridView2.InitNewRow
         Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, Grid.GridView)
         view.SetRowCellValue(e.RowHandle, view.Columns("idcabecera"), idCabecera)
@@ -119,7 +168,7 @@ Public Class Roturas
         view.SetRowCellValue(e.RowHandle, view.Columns("EJERCICIO"), gEjercicio)
     End Sub
 
-   
+
     Private clone As DataView
     Private Sub GridView2_ShownEditor(sender As Object, e As EventArgs) Handles GridView2.ShownEditor
         Dim view As DevExpress.XtraGrid.Views.Grid.GridView
@@ -141,39 +190,25 @@ Public Class Roturas
 
             edit.Properties.DataSource = clone
 
+        ElseIf view.FocusedColumn.FieldName = "idmateriaprima" AndAlso TypeOf view.ActiveEditor Is DevExpress.XtraEditors.LookUpEdit Then
+            Dim edit As DevExpress.XtraEditors.LookUpEdit
+            Dim table As DataTable
+            Dim row As DataRow
 
-            'Dim edit As DevExpress.XtraEditors.LookUpEdit
-            'edit = CType(view.ActiveEditor, DevExpress.XtraEditors.LookUpEdit)
+            edit = CType(view.ActiveEditor, DevExpress.XtraEditors.LookUpEdit)
+            table = CType(edit.Properties.DataSource, DataTable)
+            clone = New DataView(table)
 
-            '' Dim bs As BindingSource = CType(edit.Properties.DataSource, BindingSource)
-            '' Dim table As DataTable = (CType(bs.DataSource, DataSet)).Tables(bs.DataMember)
-            'Dim Table As DataTable = CType(edit.Properties.DataSource, DataTable)
-            'clone = New DataView(Table)
-            'Dim row As DataRow = view.GetDataRow(view.FocusedRowHandle)
-            'clone.RowFilter = "[IdLinea] = " & row("IdLinea").ToString()
-            'edit.Properties.DataSource = clone
-            'edit.ItemIndex = 0
+            clone.RowFilter = "[CODIGO] <>'01'"
+
+            edit.Properties.DataSource = clone
+           
+
 
         End If
     End Sub
 
-    'Private Sub RepositoryItemButtonEdit1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit1.ButtonClick
-    '    Dim view As GridView = TryCast(GridView2, GridView)
-    '    Dim f As New FormBuscarLote
-    '    Dim row As DataRow = view.GetDataRow(view.FocusedRowHandle)
-    '    f.codigoMateria = clsNegocioProd.GetDatoTabla(row("idmateriaprima"), "MATERIASPRIMAS", gCodEmpresa, gEjercicio, "CODIGO", "ID", True)
-    '    f.ShowDialog()
-    '    view.SetRowCellValue(view.FocusedRowHandle, view.Columns("ID_"), f.lote)
-    'End Sub
 
-    'Private Sub RepositoryItemButtonEdit2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemButtonEdit2.ButtonClick
-    '    Dim view As GridView = TryCast(GridView1, GridView)
-    '    Dim f As New FormBuscarLote
-    '    Dim row As DataRow = view.GetDataRow(view.FocusedRowHandle)
-    '    f.codigoMateria = clsNegocioProd.GetDatoTabla(row("idmateriaprima"), "MATERIASPRIMAS", gCodEmpresa, gEjercicio, "CODIGO", "ID", True)
-    '    f.ShowDialog()
-    '    view.SetRowCellValue(view.FocusedRowHandle, view.Columns("LOTE"), f.lote)
-    'End Sub
 
     Private Sub GridView1_ShownEditor(sender As Object, e As EventArgs) Handles GridView1.ShownEditor
         Dim view As DevExpress.XtraGrid.Views.Grid.GridView
@@ -210,4 +245,22 @@ Public Class Roturas
 
         End If
     End Sub
+
+   
+
+    Private Sub OnchangeMateriaPrima(sender As Object, e As EventArgs)
+        Dim miLookUp As LookUpEdit = TryCast(sender, LookUpEdit)
+        Dim view As GridView = TryCast(GridView2, GridView)
+
+        '    Dim f As New FormBuscarLote
+        udesEscandallo = miLookUp.GetColumnValue("UNIDADES")
+
+
+        '    f.codigoMateria = clsNegocioProd.GetDatoTabla(row("idmateriaprima"), "MATERIASPRIMAS", gCodEmpresa, gEjercicio, "CODIGO", "ID", True)
+        '    f.ShowDialog()
+
+        view.SetRowCellValue(view.FocusedRowHandle, view.Columns("Producido"), udesEscandallo)
+    End Sub
+
+
 End Class

@@ -7,6 +7,7 @@ Public Class SettingsUC
     Dim WithEvents cmblinea As RepositoryItemSearchLookUpEdit = New RepositoryItemSearchLookUpEdit
     Dim WithEvents cmbAcciones As RepositoryItemSearchLookUpEdit = New RepositoryItemSearchLookUpEdit
     Dim cmbOperaciones As RepositoryItemSearchLookUpEdit = New RepositoryItemSearchLookUpEdit
+
     Dim miLinea As Integer
     Public Sub New()
 
@@ -76,6 +77,8 @@ Public Class SettingsUC
         PropertyGridControl1.GetRowByFieldName("Linea").Properties.RowEdit = cmblinea
         PropertyGridControl1.GetRowByFieldName("AccionCambioTurno").Properties.RowEdit = cmbAcciones
         PropertyGridControl1.GetRowByFieldName("AccionCambioOperario").Properties.RowEdit = cmbOperaciones
+        PropertyGridControl1.GetRowByFieldName("AccionAveria").Properties.RowEdit = cmbAcciones
+        PropertyGridControl1.GetRowByFieldName("AccionParada").Properties.RowEdit = cmbAcciones
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click

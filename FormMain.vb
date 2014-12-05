@@ -21,6 +21,8 @@ Public Class FormMain
             'My.Settings.Item("datosConnectionString") = xConnectionString
             My.Settings.Item("produccionSqlConnectionString") = "Data Source=" & strSERVERPROD & ";Initial Catalog=" & strDATABASEPROD & ";User ID=" & strUIDPROD & ";Password=" & strPWDPROD & ";"
             My.Settings.Item("datosConnectionString") = xConnectionString
+            xConnectionMantenimiento = "Data Source=" & strSERVERPROD & ";Initial Catalog=MANTENIMIENTO;User ID=" & strUIDPROD & ";Password=" & strPWDPROD & ";"
+            My.Settings.Item("MANTENIMIENTOConnectionString") = xConnectionMantenimiento
             configuracion.LoadSettings()
             cargarcontroles()
             Me.PL_TURNOSTableAdapter.Fill(Me.ProduccionSql.PL_TURNOS, gCodEmpresa, gEjercicio)
@@ -89,6 +91,10 @@ Public Class FormMain
         Me.PanelControl1.Controls.Add(misEtiquetas)
         misEtiquetas.Dock = DockStyle.Fill
         misEtiquetas.Visible = False
+        misAverias = New Averias
+        Me.PanelControl1.Controls.Add(misAverias)
+        misAverias.Dock = DockStyle.Fill
+        misAverias.Visible = False
         If NroOrden = 0 Then
             Envasar.Enabled = False
             btRoturas.Enabled = False
@@ -136,6 +142,8 @@ Public Class FormMain
                     roturas2.btbtRoturas = btRoturas
                     roturas2.btEnvasar = Envasar
                     roturas2.btEtiquetas = Etiquetas
+
+
                     roturas2.loadData()
                     Dim result As DialogResult = FlyoutDialog.Show(Me, roturas2)
                     If result = System.Windows.Forms.DialogResult.Cancel Then

@@ -20,7 +20,7 @@ Public Class Principal
         Me.Partes_de_produccionTableAdapter.Fill(Me.ProduccionSql.Partes_de_produccion, configuracion.Linea, NroOrden, gCodEmpresa, gEjercicio)
         Me.ARTICULOSTableAdapter.Fill(Me.DatosDataset.ARTICULOS, gCodEmpresa, gEjercicio)
         Me.PL_ACCIONESTableAdapter.Fill(Me.ProduccionSql.PL_ACCIONES, gCodEmpresa, gEjercicio)
-        Me.TANQUESTableAdapter.Fill(Me.ProduccionSql.TANQUES, gCodEmpresa, gEjercicio)
+        Me.TANQUES1TableAdapter.Fill(Me.ProduccionSql.TANQUES1, gCodEmpresa, gEjercicio)
         Dim myLookUp As RepositoryItemLookUpEdit = New RepositoryItemLookUpEdit()
         Dim LST As New Dictionary(Of String, String)
         LST.Add("1", "Pendiente")
@@ -48,8 +48,9 @@ Public Class Principal
         gle.DisplayMember = "Descripcion"
         GridView2.Columns("idEnvase").ColumnEdit = gle
 
-
-
+        GridView2.BestFitColumns()
+        GridView1.BestFitColumns()
+        GridView3.BestFitColumns()
 
 
     End Sub
@@ -67,46 +68,14 @@ Public Class Principal
         cbOperaciones.Refresh()
     End Sub
 
-    Private Sub GridView2_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GridView2.CustomColumnDisplayText
-       
-        'If e.Column.FieldName = "Formato" Then
-        '    Try
-
-        '        'Dim view As GridView = TryCast(sender, GridView)
-        '        'Dim row As DataRowView = view.GetRow(view.GetRowHandle(e.ListSourceRowIndex))
-
-        '        'If row.Row("idenvase") = 0 Then e.DisplayText = ""
-        '        'Dim cmd As New OleDbCommand
-        '        'cmd = New OleDbCommand("Select idenvase from PL_LINEASENVASES WHERE ID=" & row.Row("Idenvase"), dbProd)
-        '        'Dim idEnvase As Integer = cmd.ExecuteScalar
-
-        '        'cmd = New OleDbCommand("Select descripcion from envases where id=" & idEnvase, dbAdo)
-        '        'e.DisplayText = cmd.ExecuteScalar
-        '    Catch ex As Exception
-        '        e.DisplayText = ""
-        '    End Try
-
-        'End If
+    Private Sub GridView2_Click(sender As Object, e As EventArgs) Handles GridView2.Click
+        Dim view As GridView = TryCast(sender, GridView)
+        If Not view.IsEmpty Then
+            Observaciones.Text = view.GetDataRow(view.FocusedRowHandle)("Observaciones").ToString()
+        End If
     End Sub
 
-    Private Sub GridView2_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GridView2.CustomUnboundColumnData
-        'If e.Column.FieldName = "Formato" Then
-        '    Try
-        '        Dim row As DataRowView = DirectCast(e.Row, DataRowView)
-        '        If row.Row("idenvase") = 0 Then e.Value = ""
-        '        Dim cmd As New OleDbCommand
-        '        cmd = New OleDbCommand("Select idenvase from PL_LINEASENVASES WHERE ID=" & row.Row("Idenvase"), dbProd)
-        '        Dim idEnvase As Integer = cmd.ExecuteScalar
-
-        '        cmd = New OleDbCommand("Select descripcion from envases where id=" & idEnvase, dbAdo)
-        '        e.Value = cmd.ExecuteScalar
-        '        ' e.Value = Convert.ToBoolean(DirectCast(e.Row, DataRowView)("i5"))
-        '    Catch ex As Exception
-        '        e.Value = ""
-        '    End Try
-        'End If
-
-    End Sub
+    
 
     Private Sub GridView2_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView2.RowStyle
         Dim View As GridView = sender
@@ -134,19 +103,35 @@ Public Class Principal
             MsgBox("Debe de elegir al menos una acción")
             Exit Sub
         End If
+
         Try
             miTrans = dbProd.BeginTransaction
             If FinDeLinea() Then
                 If InsertarLinea(accion, operacion, Date.Now, Nothing, 0, Nothing) Then
                     miTrans.Commit()
-                  
-                    cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and id=" & accion, dbProd)
-                    If Not IsDBNull(cmd.ExecuteScalar) Then miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar Else miPrincipal.cbAcciones.EditValue = 0
-                    miPrincipal.cbOperaciones.EditValue = 0
+                    Select Case accion
 
-                    miPrincipal.LoadData()
-                    miPrincipal.loadDataOperaciones()
-                    miPrincipal.GridControl2.RefreshDataSource()
+                        Case configuracion.AccionAveria
+                            Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
+                                controencurso = misAverias
+
+
+
+                                misAverias.loadData()
+                                misAverias.Visible = True
+                                miPrincipal.Visible = False
+
+                            End Using
+
+                        Case Else
+                            cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and id=" & accion, dbProd)
+                            If Not IsDBNull(cmd.ExecuteScalar) Then miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar Else miPrincipal.cbAcciones.EditValue = 0
+                            miPrincipal.cbOperaciones.EditValue = 0
+
+                            miPrincipal.LoadData()
+                            miPrincipal.loadDataOperaciones()
+                            miPrincipal.GridControl2.RefreshDataSource()
+                    End Select
                 Else
                     miLinea = miLineacopia
                     idCabecera = idCabeceraCopia
@@ -157,6 +142,7 @@ Public Class Principal
                     miPrincipal.GridControl2.RefreshDataSource()
                     Exit Sub
                 End If
+
             Else
                 miTrans.Rollback()
                 miLinea = miLineacopia
@@ -180,4 +166,6 @@ Public Class Principal
       
 
     End Sub
+
+   
 End Class

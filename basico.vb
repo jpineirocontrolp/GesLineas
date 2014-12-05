@@ -13,6 +13,7 @@ Module basico
     Public xConnectionProd As String
     Public xConnectionString As String
     Public xConnectionGrupos As String
+    Public xConnectionMantenimiento As String
     Public strDATABASEPROD As String
     Public strSERVERPROD As String
     Public strUIDPROD As String
@@ -32,6 +33,7 @@ Module basico
     Public miPrincipal As Principal
     Public misRoturas As Roturas
     Public misEtiquetas As Etiquetas
+    Public misAverias As Averias
     Public NroOrden As Integer = 0
     Public miManejador As Integer = 0
     Public miTrans As OleDbTransaction

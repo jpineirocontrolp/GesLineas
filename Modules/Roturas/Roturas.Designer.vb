@@ -35,19 +35,19 @@ Partial Class Roturas
         Me.MateriasPrimasBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.colCANTIDADMATERIAPRIMA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colLOTE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.colPTERMINADODEFECTUOSO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIDENVASE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colENVASESDEFECTUOSO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCODEMPRESA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colEJERCICIO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.btCancelar = New DevExpress.XtraEditors.SimpleButton()
-        Me.btAceptar = New DevExpress.XtraEditors.SimpleButton()
         Me.txtCajas = New DevExpress.XtraEditors.TextEdit()
         Me.txtPales = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.btCancelar = New DevExpress.XtraEditors.SimpleButton()
+        Me.btAceptar = New DevExpress.XtraEditors.SimpleButton()
         Me.PL_ROTURASTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_ROTURASTableAdapter()
         Me.MateriasPrimasTableAdapter = New GesLineas.ProduccionSqlTableAdapters.MateriasPrimasTableAdapter()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
@@ -61,6 +61,7 @@ Partial Class Roturas
         Me.colCODEMPRESA1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colEJERCICIO1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCANTIDAD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.LotesMPADisponiblesBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.RepositoryItemImageComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox()
@@ -97,14 +98,14 @@ Partial Class Roturas
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1598, 61)
+        Me.PanelControl1.Size = New System.Drawing.Size(1595, 61)
         Me.PanelControl1.TabIndex = 56
         '
         'LabelControl4
         '
         Me.LabelControl4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(803, 17)
+        Me.LabelControl4.Location = New System.Drawing.Point(800, 17)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(274, 30)
         Me.LabelControl4.TabIndex = 2
@@ -133,7 +134,7 @@ Partial Class Roturas
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit1, Me.RepositoryItemButtonEdit2})
-        Me.GridControl1.Size = New System.Drawing.Size(794, 614)
+        Me.GridControl1.Size = New System.Drawing.Size(791, 627)
         Me.GridControl1.TabIndex = 57
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -209,12 +210,6 @@ Partial Class Roturas
         Me.colLOTE.Visible = True
         Me.colLOTE.VisibleIndex = 2
         '
-        'RepositoryItemButtonEdit2
-        '
-        Me.RepositoryItemButtonEdit2.AutoHeight = False
-        Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
-        '
         'colPTERMINADODEFECTUOSO
         '
         Me.colPTERMINADODEFECTUOSO.Caption = "Cantidad producto terminado defectuoso"
@@ -243,41 +238,23 @@ Partial Class Roturas
         Me.colEJERCICIO.FieldName = "EJERCICIO"
         Me.colEJERCICIO.Name = "colEJERCICIO"
         '
+        'RepositoryItemButtonEdit2
+        '
+        Me.RepositoryItemButtonEdit2.AutoHeight = False
+        Me.RepositoryItemButtonEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonEdit2.Name = "RepositoryItemButtonEdit2"
+        '
         'PanelControl2
         '
-        Me.PanelControl2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PanelControl2.Controls.Add(Me.btCancelar)
-        Me.PanelControl2.Controls.Add(Me.btAceptar)
+        Me.PanelControl2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PanelControl2.Controls.Add(Me.txtCajas)
         Me.PanelControl2.Controls.Add(Me.txtPales)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
-        Me.PanelControl2.Location = New System.Drawing.Point(803, 455)
+        Me.PanelControl2.Location = New System.Drawing.Point(797, 67)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(795, 229)
+        Me.PanelControl2.Size = New System.Drawing.Size(795, 97)
         Me.PanelControl2.TabIndex = 58
-        '
-        'btCancelar
-        '
-        Me.btCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btCancelar.Image = CType(resources.GetObject("btCancelar.Image"), System.Drawing.Image)
-        Me.btCancelar.Location = New System.Drawing.Point(63, 75)
-        Me.btCancelar.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
-        Me.btCancelar.Name = "btCancelar"
-        Me.btCancelar.Size = New System.Drawing.Size(190, 62)
-        Me.btCancelar.TabIndex = 6
-        Me.btCancelar.Text = "Cancelar"
-        '
-        'btAceptar
-        '
-        Me.btAceptar.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.btAceptar.Image = CType(resources.GetObject("btAceptar.Image"), System.Drawing.Image)
-        Me.btAceptar.Location = New System.Drawing.Point(557, 75)
-        Me.btAceptar.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
-        Me.btAceptar.Name = "btAceptar"
-        Me.btAceptar.Size = New System.Drawing.Size(190, 62)
-        Me.btAceptar.TabIndex = 5
-        Me.btAceptar.Text = "Aceptar"
         '
         'txtCajas
         '
@@ -325,6 +302,30 @@ Partial Class Roturas
         Me.LabelControl2.TabIndex = 1
         Me.LabelControl2.Text = "Palés Producidos.:"
         '
+        'btCancelar
+        '
+        Me.btCancelar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btCancelar.Image = CType(resources.GetObject("btCancelar.Image"), System.Drawing.Image)
+        Me.btCancelar.Location = New System.Drawing.Point(835, 625)
+        Me.btCancelar.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
+        Me.btCancelar.Name = "btCancelar"
+        Me.btCancelar.Size = New System.Drawing.Size(190, 62)
+        Me.btCancelar.TabIndex = 6
+        Me.btCancelar.Text = "Cancelar"
+        '
+        'btAceptar
+        '
+        Me.btAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btAceptar.DialogResult = System.Windows.Forms.DialogResult.OK
+        Me.btAceptar.Image = CType(resources.GetObject("btAceptar.Image"), System.Drawing.Image)
+        Me.btAceptar.Location = New System.Drawing.Point(1350, 625)
+        Me.btAceptar.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
+        Me.btAceptar.Name = "btAceptar"
+        Me.btAceptar.Size = New System.Drawing.Size(190, 62)
+        Me.btAceptar.TabIndex = 5
+        Me.btAceptar.Text = "Aceptar"
+        '
         'PL_ROTURASTableAdapter
         '
         Me.PL_ROTURASTableAdapter.ClearBeforeFill = True
@@ -339,12 +340,12 @@ Partial Class Roturas
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridControl2.Cursor = System.Windows.Forms.Cursors.Default
         Me.GridControl2.DataSource = Me.PLLOTESAUXILIARESBindingSource
-        Me.GridControl2.Location = New System.Drawing.Point(803, 70)
+        Me.GridControl2.Location = New System.Drawing.Point(800, 170)
         Me.GridControl2.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Name = "GridControl2"
         Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit2, Me.RepositoryItemLookUpEdit3, Me.RepositoryItemImageComboBox1, Me.RepositoryItemButtonEdit1})
-        Me.GridControl2.Size = New System.Drawing.Size(792, 379)
+        Me.GridControl2.Size = New System.Drawing.Size(792, 436)
         Me.GridControl2.TabIndex = 59
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -357,7 +358,7 @@ Partial Class Roturas
         '
         Me.GridView2.Appearance.Row.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GridView2.Appearance.Row.Options.UseFont = True
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colidcabecera1, Me.colidmateriaprima1, Me.colLOTE1, Me.colCODEMPRESA1, Me.colEJERCICIO1, Me.colCANTIDAD})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colidcabecera1, Me.colidmateriaprima1, Me.colLOTE1, Me.colCODEMPRESA1, Me.colEJERCICIO1, Me.colCANTIDAD, Me.GridColumn1})
         Me.GridView2.GridControl = Me.GridControl2
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom
@@ -365,6 +366,7 @@ Partial Class Roturas
         '
         'colID1
         '
+        Me.colID1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.colID1.FieldName = "ID"
         Me.colID1.Name = "colID1"
         Me.colID1.OptionsColumn.ReadOnly = True
@@ -400,7 +402,7 @@ Partial Class Roturas
         Me.colLOTE1.FieldName = "ID_LINCOMPRALOTE"
         Me.colLOTE1.Name = "colLOTE1"
         Me.colLOTE1.Visible = True
-        Me.colLOTE1.VisibleIndex = 1
+        Me.colLOTE1.VisibleIndex = 2
         '
         'colCODEMPRESA1
         '
@@ -418,7 +420,17 @@ Partial Class Roturas
         Me.colCANTIDAD.FieldName = "CANTIDAD"
         Me.colCANTIDAD.Name = "colCANTIDAD"
         Me.colCANTIDAD.Visible = True
-        Me.colCANTIDAD.VisibleIndex = 2
+        Me.colCANTIDAD.VisibleIndex = 3
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Producido"
+        Me.GridColumn1.FieldName = "Producido"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
         '
         'RepositoryItemLookUpEdit3
         '
@@ -461,12 +473,14 @@ Partial Class Roturas
         Me.Appearance.Options.UseBackColor = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.btAceptar)
+        Me.Controls.Add(Me.btCancelar)
         Me.Controls.Add(Me.GridControl2)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.GridControl1)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "Roturas"
-        Me.Size = New System.Drawing.Size(1598, 687)
+        Me.Size = New System.Drawing.Size(1595, 700)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -539,5 +553,6 @@ Partial Class Roturas
     Friend WithEvents RepositoryItemButtonEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
     Friend WithEvents LotesMPADisponiblesBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents LotesMPADisponiblesTableAdapter As GesLineas.ProduccionSqlTableAdapters.LotesMPADisponiblesTableAdapter
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 
 End Class

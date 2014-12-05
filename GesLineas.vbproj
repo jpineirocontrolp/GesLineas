@@ -130,6 +130,17 @@
     <Compile Include="FormMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Mantenimiento.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Mantenimiento.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Averia\Averias.Designer.vb">
+      <DependentUpon>Averias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Averia\Averias.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Modules\Etiquetas\Etiquetas.Designer.vb">
       <DependentUpon>Etiquetas.vb</DependentUpon>
     </Compile>
@@ -188,6 +199,9 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Averia\Averias.resx">
+      <DependentUpon>Averias.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Etiquetas\Etiquetas.resx">
       <DependentUpon>Etiquetas.vb</DependentUpon>
     </EmbeddedResource>
@@ -224,6 +238,17 @@
     </None>
     <None Include="DatosDataset.xss">
       <DependentUpon>DatosDataset.xsd</DependentUpon>
+    </None>
+    <None Include="Mantenimiento.xsc">
+      <DependentUpon>Mantenimiento.xsd</DependentUpon>
+    </None>
+    <None Include="Mantenimiento.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Mantenimiento.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Mantenimiento.xss">
+      <DependentUpon>Mantenimiento.xsd</DependentUpon>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
