@@ -12,6 +12,10 @@ Public Class miConfiguracion
     Private _AccionAveria As Integer
     Private _AccionParada As Integer
     Private _CodigoLinea As String
+    Private _AccionPesado As Integer
+    Private _AccionLoteado As Integer
+    Private _AccionAjuste As Integer
+
     <Category("Linea"), Description("Indique la linea de producción en donde se ubica este puesto.")> _
     Public Property Linea As Integer
         Set(value As Integer)
@@ -69,6 +73,36 @@ Public Class miConfiguracion
             Return _AccionParada
         End Get
     End Property
+
+
+    <Category("Loteado/Pesado"), Description("Indique la Acción que dispara el loteado.")> _
+    Public Property AccionLoteado As Integer
+        Set(value As Integer)
+            _AccionLoteado = value
+        End Set
+        Get
+            Return _AccionLoteado
+        End Get
+    End Property
+    <Category("Loteado/Pesado"), Description("Indique la Acción que dispara el Pesado.")> _
+    Public Property AccionPesado As Integer
+        Set(value As Integer)
+            _AccionPesado = value
+        End Set
+        Get
+            Return _AccionPesado
+        End Get
+    End Property
+
+    <Category("Ajuste"), Description("Indique la Acción que dispara el Ajuste.")> _
+    Public Property AccionAjuste As Integer
+        Set(value As Integer)
+            _AccionAjuste = value
+        End Set
+        Get
+            Return _AccionAjuste
+        End Get
+    End Property
     Public Sub SaveSettings()
         Dim key As RegistryKey = Registry.CurrentUser.OpenSubKey("Software\\VB and VBA Program Settings\\Gestion V.4\\TomaDatosProduccion\\Settings", True)
         If key Is Nothing Then
@@ -80,6 +114,9 @@ Public Class miConfiguracion
         key.SetValue("AccionAveria", _AccionAveria)
         key.SetValue("AccionParada", _AccionParada)
         key.SetValue("CodigoLinea", _CodigoLinea)
+        key.SetValue("AccionLoteado", _AccionLoteado)
+        key.SetValue("AccionPesado", _AccionPesado)
+        key.SetValue("AccionAjuste", _AccionAjuste)
     End Sub
 
     Public Sub LoadSettings()
@@ -91,6 +128,9 @@ Public Class miConfiguracion
             _AccionAveria = key.GetValue("AccionAveria")
             _AccionParada = key.GetValue("AccionParada")
             _CodigoLinea = key.GetValue("CodigoLinea")
+            _AccionLoteado = key.GetValue("AccionLoteado")
+            _AccionPesado = key.GetValue("AccionPesado")
+            _AccionAjuste = key.GetValue("AccionAjuste")
         Else
             key = Registry.CurrentUser.CreateSubKey("Software\\VB and VBA Program Settings\\Gestion V.4\\TomaDatosProduccion\\Settings")
             key.SetValue("Linea", 0)
@@ -99,6 +139,9 @@ Public Class miConfiguracion
             key.SetValue("AccionAveria", 0)
             key.SetValue("AccionParada", 0)
             key.SetValue("CodigoLinea", "000")
+            key.SetValue("AccionLoteado", 0)
+            key.SetValue("AccionPesado", 0)
+            key.SetValue("AccionAjuste", 0)
         End If
     End Sub
 End Class

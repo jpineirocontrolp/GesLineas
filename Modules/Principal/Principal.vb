@@ -2,6 +2,7 @@
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Grid
 Imports System.Data.OleDb
+Imports DevExpress.XtraBars.Docking2010.Customization
 
 Public Class Principal
 
@@ -75,7 +76,7 @@ Public Class Principal
         End If
     End Sub
 
-    
+
 
     Private Sub GridView2_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView2.RowStyle
         Dim View As GridView = sender
@@ -95,7 +96,7 @@ Public Class Principal
         Dim miLineacopia As Integer = miLinea
         Dim idCabeceraCopia As Integer = idCabecera
         Dim idLineaCopia As Integer = idLinea
-
+        Dim miLoteCopia As String = miLoteGlobal
 
         Dim operacion As Integer = IIf(miPrincipal.cbOperaciones.EditValue Is Nothing, 0, miPrincipal.cbOperaciones.EditValue)
         Dim accion As Integer = IIf(miPrincipal.cbAcciones.EditValue Is Nothing, 0, miPrincipal.cbAcciones.EditValue)
@@ -115,14 +116,118 @@ Public Class Principal
                             Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
                                 controencurso = misAverias
 
+                                misAverias.accion = accion
 
-
-                                misAverias.loadData()
+                                misAverias.loaddata()
                                 misAverias.Visible = True
                                 miPrincipal.Visible = False
 
                             End Using
+                        Case configuracion.AccionParada
+                            Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
+                                controencurso = misAverias
+                                misAverias.accion = accion
 
+
+                                misAverias.loaddata()
+                                misAverias.Visible = True
+                                miPrincipal.Visible = False
+
+                            End Using
+                        Case configuracion.AccionAjuste
+                            Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
+                                controencurso = misAverias
+                                misAverias.accion = accion
+
+
+                                misAverias.loaddata()
+                                misAverias.Visible = True
+                                miPrincipal.Visible = False
+
+                            End Using
+                        Case configuracion.AccionLoteado
+                            If FinDeLinea() Then
+                                'Dim rowHandle As Integer = GetRowHandleByColumnValue(miPrincipal.GridView2, "id", miLinea, miPrincipal.GridControl2)
+                                '' Dim Col As DevExpress.XtraGrid.Columns.GridColumn = miPrincipal.GridView2.Columns("id")
+                                '' Dim rowhandle As Integer = miPrincipal.GridView2.LocateByValue(miLinea, Col, "id")
+                                Dim Loteado As New Loteado
+                                
+                                Dim result As DialogResult = FlyoutDialog.Show(FormMain, Loteado)
+                                If result = System.Windows.Forms.DialogResult.Cancel Then
+                                    Loteado.Dispose()
+                                    Exit Sub
+                                Else
+                                    miLoteGlobal = Loteado.miLote
+                                    Loteado.Dispose()
+                                End If
+                                cmd = New OleDbCommand("Select id from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd, miTrans)
+                                miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+
+                                If InsertaCabecera(idArticulo, miTrans, miLoteGlobal) Then
+
+
+                                Else
+                                    miTrans.Rollback()
+                                    miLinea = miLineacopia
+                                    idCabecera = idCabeceraCopia
+                                    idLinea = idLineaCopia
+                                    miLoteGlobal = miLoteCopia
+                                    Exit Sub
+                                End If
+                                If InsertarLinea(miPrincipal.cbAcciones.EditValue, 0, Date.Now, Nothing, 0, Nothing) Then
+                                    miTrans.Commit()
+                                Else
+                                    miLinea = miLineacopia
+                                    idCabecera = idCabeceraCopia
+                                    idLinea = idLineaCopia
+                                    miLoteGlobal = miLoteCopia
+                                    miTrans.Rollback()
+
+                                    Exit Sub
+                                End If
+                            Else
+                                miTrans.Rollback()
+                                miLinea = miLineacopia
+                                idCabecera = idCabeceraCopia
+                                idLinea = idLineaCopia
+                                Exit Sub
+                            End If
+                            ' PONER COMO PRIMERA ACCION CAMBIO
+                            cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd)
+                            miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+
+                            miPrincipal.LoadData()
+                            miPrincipal.loadDataOperaciones()
+                            miPrincipal.GridControl2.RefreshDataSource()
+
+                            'miPrincipal.LoadData()
+                            ''Dim row As DataRow = miPrincipal.GridView2.GetDataRow(miManejador)
+                            ''row("ESTADO") = 4
+                            'miPrincipal.GridControl2.RefreshDataSource()
+
+
+
+
+
+
+
+
+
+
+
+                            Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
+                                controencurso = misRoturas
+                                FormMain.Envasar.Enabled = False
+                                FormMain.btRoturas.Enabled = False
+                                FormMain.Etiquetas.Enabled = False
+                                misRoturas.btEtiquetas = FormMain.Etiquetas
+                                misRoturas.btbtRoturas = FormMain.btRoturas
+                                misRoturas.btEnvasar = FormMain.Envasar
+                                misRoturas.loadData()
+                                misRoturas.Visible = True
+                                miPrincipal.Visible = False
+
+                            End Using
                         Case Else
                             cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and id=" & accion, dbProd)
                             If Not IsDBNull(cmd.ExecuteScalar) Then miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar Else miPrincipal.cbAcciones.EditValue = 0
@@ -163,9 +268,9 @@ Public Class Principal
             miPrincipal.loadDataOperaciones()
             miPrincipal.GridControl2.RefreshDataSource()
         End Try
-      
+
 
     End Sub
 
-   
+
 End Class

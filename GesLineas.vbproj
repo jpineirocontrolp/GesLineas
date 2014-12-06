@@ -147,6 +147,12 @@
     <Compile Include="Modules\Etiquetas\Etiquetas.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Modules\Loteado\Loteado.Designer.vb">
+      <DependentUpon>Loteado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Loteado\Loteado.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Modules\Ordenes\Ordenes.Designer.vb">
       <DependentUpon>Ordenes.vb</DependentUpon>
     </Compile>
@@ -204,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Etiquetas\Etiquetas.resx">
       <DependentUpon>Etiquetas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Loteado\Loteado.resx">
+      <DependentUpon>Loteado.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Ordenes\Ordenes.resx">
       <DependentUpon>Ordenes.vb</DependentUpon>

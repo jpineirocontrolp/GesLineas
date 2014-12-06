@@ -19,11 +19,13 @@ Public Class Etiquetas
     End Sub
     Private Sub btImprimir_Click(sender As Object, e As EventArgs) Handles btImprimir.Click
         Dim rowHandle As Integer = GetRowHandleByColumnValue(miPrincipal.GridView2, "id", miLinea, miPrincipal.GridControl2)
+
         ' Dim Col As DevExpress.XtraGrid.Columns.GridColumn = miPrincipal.GridView2.Columns("id")
         ' Dim rowhandle As Integer = miPrincipal.GridView2.LocateByValue(miLinea, Col, "id")
         Dim MITANQUE As Integer = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("TANQUE"))
         Dim MIfecha As Date = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("FechaConsumoPreferente"))
-        Dim MILote As String = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("LOTE"))
+        Dim MILote As String = miLoteGlobal
+
         ' primero comprobamos que todo esta correcto
         Dim cmd As New OleDbCommand
 

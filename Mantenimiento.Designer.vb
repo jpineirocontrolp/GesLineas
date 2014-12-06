@@ -537,15 +537,10 @@ Partial Public Class Mantenimiento
             Me.columnID.AllowDBNull = False
             Me.columnID.ReadOnly = True
             Me.columnID.Unique = True
-            Me.columnCODEMPRESA.AllowDBNull = False
             Me.columnCODEMPRESA.MaxLength = 2
-            Me.columnEJERCICIO.AllowDBNull = False
             Me.columnEJERCICIO.MaxLength = 4
-            Me.columnCODIGO.AllowDBNull = False
             Me.columnCODIGO.MaxLength = 10
-            Me.columnDESCRIPCION.AllowDBNull = False
             Me.columnDESCRIPCION.MaxLength = 100
-            Me.columnCodigoLinea.AllowDBNull = False
             Me.columnCodigoLinea.MaxLength = 3
         End Sub
 
@@ -1055,7 +1050,11 @@ Partial Public Class Mantenimiento
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property CODEMPRESA() As String
             Get
-                Return CType(Me(Me.tableMaquinas.CODEMPRESAColumn), String)
+                Try
+                    Return CType(Me(Me.tableMaquinas.CODEMPRESAColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CODEMPRESA' de la tabla 'Maquinas' es DBNull.", e)
+                End Try
             End Get
             Set(value As String)
                 Me(Me.tableMaquinas.CODEMPRESAColumn) = value
@@ -1066,7 +1065,11 @@ Partial Public Class Mantenimiento
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property EJERCICIO() As String
             Get
-                Return CType(Me(Me.tableMaquinas.EJERCICIOColumn), String)
+                Try
+                    Return CType(Me(Me.tableMaquinas.EJERCICIOColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'EJERCICIO' de la tabla 'Maquinas' es DBNull.", e)
+                End Try
             End Get
             Set(value As String)
                 Me(Me.tableMaquinas.EJERCICIOColumn) = value
@@ -1077,7 +1080,11 @@ Partial Public Class Mantenimiento
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property CODIGO() As String
             Get
-                Return CType(Me(Me.tableMaquinas.CODIGOColumn), String)
+                Try
+                    Return CType(Me(Me.tableMaquinas.CODIGOColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CODIGO' de la tabla 'Maquinas' es DBNull.", e)
+                End Try
             End Get
             Set(value As String)
                 Me(Me.tableMaquinas.CODIGOColumn) = value
@@ -1088,7 +1095,11 @@ Partial Public Class Mantenimiento
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property DESCRIPCION() As String
             Get
-                Return CType(Me(Me.tableMaquinas.DESCRIPCIONColumn), String)
+                Try
+                    Return CType(Me(Me.tableMaquinas.DESCRIPCIONColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'DESCRIPCION' de la tabla 'Maquinas' es DBNull.", e)
+                End Try
             End Get
             Set(value As String)
                 Me(Me.tableMaquinas.DESCRIPCIONColumn) = value
@@ -1099,7 +1110,11 @@ Partial Public Class Mantenimiento
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property CodigoLinea() As String
             Get
-                Return CType(Me(Me.tableMaquinas.CodigoLineaColumn), String)
+                Try
+                    Return CType(Me(Me.tableMaquinas.CodigoLineaColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'CodigoLinea' de la tabla 'Maquinas' es DBNull.", e)
+                End Try
             End Get
             Set(value As String)
                 Me(Me.tableMaquinas.CodigoLineaColumn) = value
@@ -1128,6 +1143,66 @@ Partial Public Class Mantenimiento
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetIDCLASEMAQUINANull()
             Me(Me.tableMaquinas.IDCLASEMAQUINAColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsCODEMPRESANull() As Boolean
+            Return Me.IsNull(Me.tableMaquinas.CODEMPRESAColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetCODEMPRESANull()
+            Me(Me.tableMaquinas.CODEMPRESAColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsEJERCICIONull() As Boolean
+            Return Me.IsNull(Me.tableMaquinas.EJERCICIOColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetEJERCICIONull()
+            Me(Me.tableMaquinas.EJERCICIOColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsCODIGONull() As Boolean
+            Return Me.IsNull(Me.tableMaquinas.CODIGOColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetCODIGONull()
+            Me(Me.tableMaquinas.CODIGOColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsDESCRIPCIONNull() As Boolean
+            Return Me.IsNull(Me.tableMaquinas.DESCRIPCIONColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetDESCRIPCIONNull()
+            Me(Me.tableMaquinas.DESCRIPCIONColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsCodigoLineaNull() As Boolean
+            Return Me.IsNull(Me.tableMaquinas.CodigoLineaColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetCodigoLineaNull()
+            Me(Me.tableMaquinas.CodigoLineaColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
 
@@ -1478,37 +1553,17 @@ Namespace MantenimientoTableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        Maquinas.ID, Maquinas.IDLINEA, Maquinas.IDCLASEMAQUINA, Maquinas.CO" & _
                 "DEMPRESA, Maquinas.EJERCICIO, Maquinas.CODIGO, Maquinas.DESCRIPCION, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "         " & _
-                "                Lineas.CODIGO AS CodigoLinea" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            Maquinas INNER JOI" & _
-                "N" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Lineas ON Maquinas.IDLINEA = Lineas.ID" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE       " & _
-                " (Maquinas.CODEMPRESA = @CodEmpresa) AND (Maquinas.EJERCICIO = @Ejercicio) AND (" & _
-                "Lineas.CODIGO = @CodigoLinea)"
+                "                Lineas.CODIGO AS CodigoLinea" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            Maquinas FULL OUTE" & _
+                "R JOIN" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         Lineas ON Maquinas.IDLINEA = Lineas.ID"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CodEmpresa", Global.System.Data.SqlDbType.[Char], 2, Global.System.Data.ParameterDirection.Input, 0, 0, "CODEMPRESA", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Ejercicio", Global.System.Data.SqlDbType.[Char], 4, Global.System.Data.ParameterDirection.Input, 0, 0, "EJERCICIO", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CodigoLinea", Global.System.Data.SqlDbType.[Char], 3, Global.System.Data.ParameterDirection.Input, 0, 0, "CodigoLinea", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, True)> _
-        Public Overridable Overloads Function Fill(ByVal dataTable As Mantenimiento.MaquinasDataTable, ByVal CodEmpresa As String, ByVal Ejercicio As String, ByVal CodigoLinea As String) As Integer
+        Public Overridable Overloads Function Fill(ByVal dataTable As Mantenimiento.MaquinasDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (CodEmpresa Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CodEmpresa")
-            Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(CodEmpresa, String)
-            End If
-            If (Ejercicio Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Ejercicio")
-            Else
-                Me.Adapter.SelectCommand.Parameters(1).Value = CType(Ejercicio, String)
-            End If
-            If (CodigoLinea Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CodigoLinea")
-            Else
-                Me.Adapter.SelectCommand.Parameters(2).Value = CType(CodigoLinea, String)
-            End If
             If (Me.ClearBeforeFill = True) Then
                 dataTable.Clear()
             End If
@@ -1520,23 +1575,8 @@ Namespace MantenimientoTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"), _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], True)> _
-        Public Overridable Overloads Function GetData(ByVal CodEmpresa As String, ByVal Ejercicio As String, ByVal CodigoLinea As String) As Mantenimiento.MaquinasDataTable
+        Public Overridable Overloads Function GetData() As Mantenimiento.MaquinasDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (CodEmpresa Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CodEmpresa")
-            Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(CodEmpresa, String)
-            End If
-            If (Ejercicio Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("Ejercicio")
-            Else
-                Me.Adapter.SelectCommand.Parameters(1).Value = CType(Ejercicio, String)
-            End If
-            If (CodigoLinea Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("CodigoLinea")
-            Else
-                Me.Adapter.SelectCommand.Parameters(2).Value = CType(CodigoLinea, String)
-            End If
             Dim dataTable As Mantenimiento.MaquinasDataTable = New Mantenimiento.MaquinasDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable

@@ -39,6 +39,7 @@ Module basico
     Public miTrans As OleDbTransaction
     Public idCabecera As Integer
     Public idArticulo As Integer
+    Public miLoteGlobal As String = ""
 
     Public Function LeerConfiguracion(File As String) As String
         ' We need to read into this List.
@@ -127,7 +128,8 @@ Module basico
                 transition1.Control = control
                 manager.Transitions.Add(transition1)
             End If
-            Dim trtype As DevExpress.Utils.Animation.Transitions = DevExpress.Utils.Animation.Transitions.Push
+            Dim trtype As DevExpress.Utils.Animation.Transitions = DevExpress.Utils.Animation.Transitions.Shape
+
             manager.Transitions(control).TransitionType = CreateTransitionInstance(trtype)
             manager.StartTransition(control)
         End Sub
@@ -168,7 +170,8 @@ Module basico
                 Dim row As DataRowView = view.GetRow(I)
                 'Change the Phone field via the bound data source 
                 miLinea = row.Row("ID")
-                idCabecera = clsNegocioProd.GetDatoTabla(miLinea, "PL_CABECERAPRODUCIDA", gCodEmpresa, gEjercicio, "ID", "IDORDEN")
+                idCabecera = clsNegocioProd.GetDatoTabla(miLinea, "PL_CABECERAPRODUCIDA", gCodEmpresa, gEjercicio, "MAX(ID)", "IDORDEN")
+                miLoteGlobal = clsNegocioProd.GetDatoTabla(idCabecera, "PL_CABECERAPRODUCIDA", gCodEmpresa, gEjercicio, "LOTEPRODUCIDO", "ID", True)
                 miPrincipal.Observaciones.Text = row.Row("OBSERVACIONES")
                 cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd)
                 miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
@@ -180,15 +183,20 @@ Module basico
 
     End Sub
 
-    Public Function InsertaCabecera(idArticulo As Integer, miTrans As OleDbTransaction) As Boolean
+    Public Function InsertaCabecera(idArticulo As Integer, miTrans As OleDbTransaction, Optional miLote As String = "") As Boolean
         Dim cmd As New OleDbCommand
 
         Dim misOperarios() As String = Split(FormMain.cmbOperarios.EditValue, ",")
         ' buscamos la cabecera por si hubo un cambio de turno
+        If miLote = "" Then
+            cmd = New OleDbCommand("Select lote from PL_PARTESPRODUCCION WHERE ID=" & miLinea, dbProd, miTrans)
+            miLote = cmd.ExecuteScalar
+        End If
+        cmd = New OleDbCommand("INSERT INTO PL_CABECERAPRODUCIDA (  IDTURNO, IDORDEN, IDARTICULO, PALESPRODUCIDODS, CAJASPRODUCIDAS, CODEMPRESA, EJERCICIO,INICIO,LOTEPRODUCIDO) VALUES     (" & FormMain.cmbTurno.EditValue & "," & miLinea & "," & idArticulo & ", 0, 0,'" & gCodEmpresa & "', '" & gEjercicio & "','" & Date.Now & "','" & miLote & "')", dbProd, miTrans)
 
-        cmd = New OleDbCommand("INSERT INTO PL_CABECERAPRODUCIDA (  IDTURNO, IDORDEN, IDARTICULO, PALESPRODUCIDODS, CAJASPRODUCIDAS, CODEMPRESA, EJERCICIO,INICIO) VALUES     (" & FormMain.cmbTurno.EditValue & "," & miLinea & "," & idArticulo & ", 0, 0,'" & gCodEmpresa & "', '" & gEjercicio & "','" & Date.Now & "')", dbProd, miTrans)
         Try
             cmd.ExecuteNonQuery()
+            miLoteGlobal = miLote
             cmd = New OleDbCommand("Select @@identity", dbProd, miTrans)
             idCabecera = cmd.ExecuteScalar
             ' inserto los operarios
