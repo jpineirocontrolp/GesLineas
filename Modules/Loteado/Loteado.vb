@@ -14,7 +14,7 @@ Public Class Loteado
     Private Sub grabar()
         Try
             If idCabecera <> 0 Then
-                Dim cmd As OleDbCommand = New OleDbCommand("UPDATE PL_CABECERAPRODUCIDA SET PALESPRODUCIDODS=" & clsNegocioNet.qc(txtPales.EditValue) & ",CAJASPRODUCIDAS=" & clsNegocioNet.qc(txtCajas.EditValue) & ",LOTEPRODUCIDO='" & TextEdit1.Text & "' WHERE ID=" & idCabecera, dbProd)
+                Dim cmd As OleDbCommand = New OleDbCommand("UPDATE PL_CABECERAPRODUCIDA SET PALESPRODUCIDODS=" & clsNegocioNet.qc(txtPales.EditValue) & ",CAJASPRODUCIDAS=" & clsNegocioNet.qc(txtCajas.EditValue) & " WHERE ID=" & idCabecera, dbProd)
                 cmd.ExecuteNonQuery()
             End If
         Catch ex As OleDbException

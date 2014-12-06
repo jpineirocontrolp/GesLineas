@@ -146,22 +146,22 @@ Public Class Principal
 
                             End Using
                         Case configuracion.AccionLoteado
+
+                            'Dim rowHandle As Integer = GetRowHandleByColumnValue(miPrincipal.GridView2, "id", miLinea, miPrincipal.GridControl2)
+                            '' Dim Col As DevExpress.XtraGrid.Columns.GridColumn = miPrincipal.GridView2.Columns("id")
+                            '' Dim rowhandle As Integer = miPrincipal.GridView2.LocateByValue(miLinea, Col, "id")
+                            Dim Loteado As New Loteado
+
+                            Dim result As DialogResult = FlyoutDialog.Show(FormMain, Loteado)
+                            If result = System.Windows.Forms.DialogResult.Cancel Then
+                                Loteado.Dispose()
+                                Exit Sub
+                            Else
+                                miLoteGlobal = Loteado.miLote
+                                Loteado.Dispose()
+                            End If
+                            miTrans = dbProd.BeginTransaction
                             If FinDeLinea() Then
-                                'Dim rowHandle As Integer = GetRowHandleByColumnValue(miPrincipal.GridView2, "id", miLinea, miPrincipal.GridControl2)
-                                '' Dim Col As DevExpress.XtraGrid.Columns.GridColumn = miPrincipal.GridView2.Columns("id")
-                                '' Dim rowhandle As Integer = miPrincipal.GridView2.LocateByValue(miLinea, Col, "id")
-                                Dim Loteado As New Loteado
-                                
-                                Dim result As DialogResult = FlyoutDialog.Show(FormMain, Loteado)
-                                If result = System.Windows.Forms.DialogResult.Cancel Then
-                                    Loteado.Dispose()
-                                    Exit Sub
-                                Else
-                                    miLoteGlobal = Loteado.miLote
-                                    Loteado.Dispose()
-                                End If
-                                cmd = New OleDbCommand("Select id from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd, miTrans)
-                                miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
 
                                 If InsertaCabecera(idArticulo, miTrans, miLoteGlobal) Then
 
@@ -193,41 +193,18 @@ Public Class Principal
                                 Exit Sub
                             End If
                             ' PONER COMO PRIMERA ACCION CAMBIO
+                            'cmd = New OleDbCommand("Select id from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd, miTrans)
+                            'miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+
                             cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and nuevareferencia<>0", dbProd)
                             miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
 
+                            controencurso = miPrincipal
                             miPrincipal.LoadData()
                             miPrincipal.loadDataOperaciones()
                             miPrincipal.GridControl2.RefreshDataSource()
 
-                            'miPrincipal.LoadData()
-                            ''Dim row As DataRow = miPrincipal.GridView2.GetDataRow(miManejador)
-                            ''row("ESTADO") = 4
-                            'miPrincipal.GridControl2.RefreshDataSource()
 
-
-
-
-
-
-
-
-
-
-
-                            Using TempBatchTransition As BatchTransition = New BatchTransition(TransitionManager1, PanelControl1)
-                                controencurso = misRoturas
-                                FormMain.Envasar.Enabled = False
-                                FormMain.btRoturas.Enabled = False
-                                FormMain.Etiquetas.Enabled = False
-                                misRoturas.btEtiquetas = FormMain.Etiquetas
-                                misRoturas.btbtRoturas = FormMain.btRoturas
-                                misRoturas.btEnvasar = FormMain.Envasar
-                                misRoturas.loadData()
-                                misRoturas.Visible = True
-                                miPrincipal.Visible = False
-
-                            End Using
                         Case Else
                             cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and id=" & accion, dbProd)
                             If Not IsDBNull(cmd.ExecuteScalar) Then miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar Else miPrincipal.cbAcciones.EditValue = 0

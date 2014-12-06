@@ -118,6 +118,7 @@ Partial Class Principal
         Me.PL_TURNOSTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_TURNOSTableAdapter()
         Me.PL_OPERACIONES1TableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_OPERACIONES1TableAdapter()
         Me.TANQUES1TableAdapter = New GesLineas.ProduccionSqlTableAdapters.TANQUES1TableAdapter()
+        Me.colLOTEPRODUCIDO = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -295,7 +296,7 @@ Partial Class Principal
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colIDOPERARIO, Me.colIDTURNO, Me.colIDORDEN, Me.colIDARTICULO, Me.colPALESPRODUCIDODS, Me.colCAJASPRODUCIDAS, Me.colCODEMPRESA, Me.colEJERCICIO, Me.colINICIO})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colIDOPERARIO, Me.colIDTURNO, Me.colIDORDEN, Me.colIDARTICULO, Me.colPALESPRODUCIDODS, Me.colCAJASPRODUCIDAS, Me.colCODEMPRESA, Me.colEJERCICIO, Me.colINICIO, Me.colLOTEPRODUCIDO})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -905,6 +906,13 @@ Partial Class Principal
         '
         Me.TANQUES1TableAdapter.ClearBeforeFill = True
         '
+        'colLOTEPRODUCIDO
+        '
+        Me.colLOTEPRODUCIDO.FieldName = "LOTEPRODUCIDO"
+        Me.colLOTEPRODUCIDO.Name = "colLOTEPRODUCIDO"
+        Me.colLOTEPRODUCIDO.Visible = True
+        Me.colLOTEPRODUCIDO.VisibleIndex = 6
+        '
         'Principal
         '
         Me.Appearance.BackColor = System.Drawing.Color.White
@@ -1055,5 +1063,6 @@ Partial Class Principal
     Friend WithEvents RepositoryItemLookUpEdit8 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents TANQUES1BindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents TANQUES1TableAdapter As GesLineas.ProduccionSqlTableAdapters.TANQUES1TableAdapter
+    Friend WithEvents colLOTEPRODUCIDO As DevExpress.XtraGrid.Columns.GridColumn
 
 End Class
