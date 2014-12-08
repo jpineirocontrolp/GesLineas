@@ -42,8 +42,8 @@ Public Class Ordenes
             '    Exit Sub
             'End If
             ' buscamos la fecha de inicio de la orden
-            cmd = New OleDbCommand("SELECT     MIN(PL_CABECERAPRODUCIDA.INICIO) AS Expr1 FROM PL_CABECERAPRODUCIDA INNER JOIN PL_PARTESPRODUCCION ON PL_CABECERAPRODUCIDA.IDORDEN = PL_PARTESPRODUCCION.id WHERE (PL_PARTESPRODUCCION.NroOrden =" & NroOrden & ")" & miLinea, dbProd)
-            miPrincipal.lblInicioOrden.Text = cmd.ExecuteScalar
+            cmd = New OleDbCommand("SELECT     MIN(PL_CABECERAPRODUCIDA.INICIO) AS Expr1 FROM PL_CABECERAPRODUCIDA INNER JOIN PL_PARTESPRODUCCION ON PL_CABECERAPRODUCIDA.IDORDEN = PL_PARTESPRODUCCION.id WHERE (PL_PARTESPRODUCCION.NroOrden =" & NroOrden & ")", dbProd)
+            miPrincipal.lblInicioOrden.Text = CDate(cmd.ExecuteScalar)
 
             FormMain.Timer1.Enabled = True
             cmd = New OleDbCommand("Select ARTICULO FROM PL_PARTESPRODUCCION WHERE CodEmpresa= '" & gCodEmpresa & "' and Ejercicio='" & gEjercicio & "' and ID=" & miLinea, dbProd)

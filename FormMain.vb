@@ -382,6 +382,8 @@ Public Class FormMain
         If miPrincipal.lblInicio.Text <> "" Then
             Dim timeSpan As TimeSpan = Date.Now.Subtract(CDate(miPrincipal.lblInicio.Text))
             miPrincipal.lblElapsed.Text = timeSpan.Hours.ToString & ":" & timeSpan.Minutes & ":" & timeSpan.Seconds
+            Dim miTime As TimeSpan = Date.Now.Subtract(CDate(miPrincipal.lblInicioOrden.Text))
+            miPrincipal.lblElapsedOrden.Text = miTime.Hours.ToString & ":" & miTime.Minutes & ":" & miTime.Seconds
         End If
     End Sub
 End Class
