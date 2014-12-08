@@ -116,6 +116,8 @@ Partial Class Principal
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.lblInicio = New DevExpress.XtraEditors.LabelControl()
+        Me.lblElapsed = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -718,6 +720,8 @@ Partial Class Principal
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.lblElapsed)
+        Me.PanelControl2.Controls.Add(Me.lblInicio)
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
@@ -874,6 +878,21 @@ Partial Class Principal
         Me.PanelControl5.Size = New System.Drawing.Size(577, 491)
         Me.PanelControl5.TabIndex = 7
         '
+        'lblInicio
+        '
+        Me.lblInicio.Location = New System.Drawing.Point(326, 25)
+        Me.lblInicio.Name = "lblInicio"
+        Me.lblInicio.Size = New System.Drawing.Size(0, 13)
+        Me.lblInicio.TabIndex = 3
+        '
+        'lblElapsed
+        '
+        Me.lblElapsed.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.lblElapsed.Location = New System.Drawing.Point(495, 25)
+        Me.lblElapsed.Name = "lblElapsed"
+        Me.lblElapsed.Size = New System.Drawing.Size(0, 13)
+        Me.lblElapsed.TabIndex = 4
+        '
         'Principal
         '
         Me.Appearance.BackColor = System.Drawing.Color.White
@@ -1023,5 +1042,7 @@ Partial Class Principal
     Friend WithEvents RepositoryItemGridLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit
     Friend WithEvents RepositoryItemComboBox1 As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents RepositoryItemLookUpEdit8 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents lblElapsed As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents lblInicio As DevExpress.XtraEditors.LabelControl
 
 End Class

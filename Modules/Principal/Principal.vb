@@ -3,6 +3,7 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Grid
 Imports System.Data.OleDb
 Imports DevExpress.XtraBars.Docking2010.Customization
+Imports System.Globalization
 
 Public Class Principal
 
@@ -10,7 +11,7 @@ Public Class Principal
         Try
             ' Llamada necesaria para el diseñador.
             InitializeComponent()
-           
+
             ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -276,13 +277,17 @@ Public Class Principal
     Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
         Dim View As GridView = sender
         If (e.RowHandle >= 0) Then
-            Dim miEstado As Double = View.GetDataRow(e.RowHandle)("ESTADO")
+            Dim miEstado As String = View.GetRowCellDisplayText(e.RowHandle, "IDARTICULO")
+            LabelControl2.Text = miEstado
+            lblInicio.Text = View.GetRowCellDisplayText(e.RowHandle, "INICIO")
+            Dim timeSpan As TimeSpan = Date.Now.Subtract(CDate(View.GetRowCellDisplayText(e.RowHandle, "INICIO")))
+            lblElapsed.Text = timeSpan.Hours.ToString & ":" & timeSpan.Minutes & ":" & timeSpan.Seconds
 
-            If miEstado = 3 Then
-                e.Appearance.BackColor = Color.IndianRed
-            ElseIf miEstado = 4 Then
-                e.Appearance.BackColor = Color.LawnGreen
-            End If
+            'If miEstado = 3 Then
+            '    e.Appearance.BackColor = Color.IndianRed
+            'ElseIf miEstado = 4 Then
+            '    e.Appearance.BackColor = Color.LawnGreen
+            'End If
         End If
     End Sub
 End Class

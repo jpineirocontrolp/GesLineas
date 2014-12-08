@@ -61,6 +61,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\prog\V8\Dropbox\cpNegocioProdNet.dll</HintPath>
     </Reference>
+    <Reference Include="cpVisorInfNet">
+      <HintPath>..\..\..\..\..\datos\Gestienda\cpVisorInfNet.dll</HintPath>
+    </Reference>
     <Reference Include="DevExpress.Data.v14.1, Version=14.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
