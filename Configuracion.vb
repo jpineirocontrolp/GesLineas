@@ -15,6 +15,7 @@ Public Class miConfiguracion
     Private _AccionPesado As Integer
     Private _AccionLoteado As Integer
     Private _AccionAjuste As Integer
+    Private _AccionDefecto As Integer
 
     <Category("Linea"), Description("Indique la linea de producción en donde se ubica este puesto.")> _
     Public Property Linea As Integer
@@ -103,6 +104,15 @@ Public Class miConfiguracion
             Return _AccionAjuste
         End Get
     End Property
+    <Category("Defecto"), Description("Indique la Acción que se dispara por defecto.")> _
+    Public Property AccionDefecto As Integer
+        Set(value As Integer)
+            _AccionDefecto = value
+        End Set
+        Get
+            Return _AccionDefecto
+        End Get
+    End Property
     Public Sub SaveSettings()
         Dim key As RegistryKey = Registry.CurrentUser.OpenSubKey("Software\\VB and VBA Program Settings\\Gestion V.4\\TomaDatosProduccion\\Settings", True)
         If key Is Nothing Then
@@ -117,6 +127,7 @@ Public Class miConfiguracion
         key.SetValue("AccionLoteado", _AccionLoteado)
         key.SetValue("AccionPesado", _AccionPesado)
         key.SetValue("AccionAjuste", _AccionAjuste)
+        key.SetValue("AccionDefecto", _AccionDefecto)
     End Sub
 
     Public Sub LoadSettings()
@@ -131,6 +142,7 @@ Public Class miConfiguracion
             _AccionLoteado = key.GetValue("AccionLoteado")
             _AccionPesado = key.GetValue("AccionPesado")
             _AccionAjuste = key.GetValue("AccionAjuste")
+            _AccionDefecto = key.GetValue("AccionDefecto")
         Else
             key = Registry.CurrentUser.CreateSubKey("Software\\VB and VBA Program Settings\\Gestion V.4\\TomaDatosProduccion\\Settings")
             key.SetValue("Linea", 0)
@@ -142,6 +154,7 @@ Public Class miConfiguracion
             key.SetValue("AccionLoteado", 0)
             key.SetValue("AccionPesado", 0)
             key.SetValue("AccionAjuste", 0)
+            key.SetValue("AccionDefecto", 0)
         End If
     End Sub
 End Class

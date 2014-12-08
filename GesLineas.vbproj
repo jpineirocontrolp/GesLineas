@@ -280,7 +280,7 @@
     <None Include="ProduccionSql.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ProduccionSql.Designer.vb</LastGenOutput>
+      <LastGenOutput>ProduccionSql1.Designer.vb</LastGenOutput>
     </None>
     <None Include="ProduccionSql.xss">
       <DependentUpon>ProduccionSql.xsd</DependentUpon>

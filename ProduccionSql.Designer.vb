@@ -79,8 +79,6 @@ Partial Public Class ProduccionSql
     
     Private relationFK_PL_LOTESAUXILIARES_MATERIASPRIMAS As Global.System.Data.DataRelation
     
-    Private relationFK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION As Global.System.Data.DataRelation
-    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -610,7 +608,6 @@ Partial Public Class ProduccionSql
         Me.relationFK_PL_ROTURAS_MATERIASPRIMAS = Me.Relations("FK_PL_ROTURAS_MATERIASPRIMAS")
         Me.relationFK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA = Me.Relations("FK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA")
         Me.relationFK_PL_LOTESAUXILIARES_MATERIASPRIMAS = Me.Relations("FK_PL_LOTESAUXILIARES_MATERIASPRIMAS")
-        Me.relationFK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION = Me.Relations("FK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -675,8 +672,6 @@ Partial Public Class ProduccionSql
         Me.Relations.Add(Me.relationFK_PL_LOTESAUXILIARES_PL_CABECERAPRODUCIDA)
         Me.relationFK_PL_LOTESAUXILIARES_MATERIASPRIMAS = New Global.System.Data.DataRelation("FK_PL_LOTESAUXILIARES_MATERIASPRIMAS", New Global.System.Data.DataColumn() {Me.tableMateriasPrimas.IdColumn}, New Global.System.Data.DataColumn() {Me.tablePL_LOTESAUXILIARES.idmateriaprimaColumn}, false)
         Me.Relations.Add(Me.relationFK_PL_LOTESAUXILIARES_MATERIASPRIMAS)
-        Me.relationFK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION = New Global.System.Data.DataRelation("FK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION", New Global.System.Data.DataColumn() {Me.tablePartes_de_produccion.idColumn}, New Global.System.Data.DataColumn() {Me.tablePL_CABECERAPRODUCIDA.IDORDENColumn}, false)
-        Me.Relations.Add(Me.relationFK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3716,17 +3711,14 @@ Partial Public Class ProduccionSql
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddPL_CABECERAPRODUCIDARow(ByVal ID As Integer, ByVal parentOPERARIOSRowByFK_PL_CABECERAPRODUCIDA_OPERARIOS As OPERARIOSRow, ByVal parentPL_TURNOSRowByFK_PL_CABECERAPRODUCIDA_PL_TURNOS As PL_TURNOSRow, ByVal parentPartes_de_produccionRowByFK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION As Partes_de_produccionRow, ByVal IDARTICULO As Integer, ByVal PALESPRODUCIDODS As Decimal, ByVal CAJASPRODUCIDAS As Decimal, ByVal CODEMPRESA As String, ByVal EJERCICIO As String, ByVal INICIO As Date, ByVal LOTEPRODUCIDO As String) As PL_CABECERAPRODUCIDARow
+        Public Overloads Function AddPL_CABECERAPRODUCIDARow(ByVal ID As Integer, ByVal parentOPERARIOSRowByFK_PL_CABECERAPRODUCIDA_OPERARIOS As OPERARIOSRow, ByVal parentPL_TURNOSRowByFK_PL_CABECERAPRODUCIDA_PL_TURNOS As PL_TURNOSRow, ByVal IDORDEN As Integer, ByVal IDARTICULO As Integer, ByVal PALESPRODUCIDODS As Decimal, ByVal CAJASPRODUCIDAS As Decimal, ByVal CODEMPRESA As String, ByVal EJERCICIO As String, ByVal INICIO As Date, ByVal LOTEPRODUCIDO As String) As PL_CABECERAPRODUCIDARow
             Dim rowPL_CABECERAPRODUCIDARow As PL_CABECERAPRODUCIDARow = CType(Me.NewRow,PL_CABECERAPRODUCIDARow)
-            Dim columnValuesArray() As Object = New Object() {ID, Nothing, Nothing, Nothing, IDARTICULO, PALESPRODUCIDODS, CAJASPRODUCIDAS, CODEMPRESA, EJERCICIO, INICIO, LOTEPRODUCIDO}
+            Dim columnValuesArray() As Object = New Object() {ID, Nothing, Nothing, IDORDEN, IDARTICULO, PALESPRODUCIDODS, CAJASPRODUCIDAS, CODEMPRESA, EJERCICIO, INICIO, LOTEPRODUCIDO}
             If (Not (parentOPERARIOSRowByFK_PL_CABECERAPRODUCIDA_OPERARIOS) Is Nothing) Then
                 columnValuesArray(1) = parentOPERARIOSRowByFK_PL_CABECERAPRODUCIDA_OPERARIOS(0)
             End If
             If (Not (parentPL_TURNOSRowByFK_PL_CABECERAPRODUCIDA_PL_TURNOS) Is Nothing) Then
                 columnValuesArray(2) = parentPL_TURNOSRowByFK_PL_CABECERAPRODUCIDA_PL_TURNOS(0)
-            End If
-            If (Not (parentPartes_de_produccionRowByFK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION) Is Nothing) Then
-                columnValuesArray(3) = parentPartes_de_produccionRowByFK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION(28)
             End If
             rowPL_CABECERAPRODUCIDARow.ItemArray = columnValuesArray
             Me.Rows.Add(rowPL_CABECERAPRODUCIDARow)
@@ -8239,16 +8231,6 @@ Partial Public Class ProduccionSql
         Public Sub SetidEnvaseNull()
             Me(Me.tablePartes_de_produccion.idEnvaseColumn) = Global.System.Convert.DBNull
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function GetPL_CABECERAPRODUCIDARows() As PL_CABECERAPRODUCIDARow()
-            If (Me.Table.ChildRelations("FK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION") Is Nothing) Then
-                Return New PL_CABECERAPRODUCIDARow(-1) {}
-            Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("FK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION")),PL_CABECERAPRODUCIDARow())
-            End If
-        End Function
     End Class
     
     '''<summary>
@@ -9161,17 +9143,6 @@ Partial Public Class ProduccionSql
             End Get
             Set
                 Me.SetParentRow(value, Me.Table.ParentRelations("FK_PL_CABECERAPRODUCIDA_PL_TURNOS"))
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Partes_de_produccionRow() As Partes_de_produccionRow
-            Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION")),Partes_de_produccionRow)
-            End Get
-            Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("FK_PL_CABECERAPRODUCIDA_PL_PARTESPRODUCCION"))
             End Set
         End Property
         

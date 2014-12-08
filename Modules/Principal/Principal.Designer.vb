@@ -19,59 +19,58 @@ Partial Class Principal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIDCABECERA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIDACCION = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.PLACCIONESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PLACCIONESBindingSource = New System.Windows.Forms.BindingSource()
         Me.ProduccionSql = New GesLineas.ProduccionSql()
         Me.colIDOPERACION = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.PLOPERACIONES1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PLOPERACIONES1BindingSource = New System.Windows.Forms.BindingSource()
         Me.colINICIO1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colFIN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCODEMPRESA1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colEJERCICIO1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colESTIMADO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.PLCABECERAPRODUCIDABindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PLCABECERAPRODUCIDABindingSource = New System.Windows.Forms.BindingSource()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIDOPERARIO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIDTURNO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.PLTURNOSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PLTURNOSBindingSource = New System.Windows.Forms.BindingSource()
         Me.colIDORDEN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.PartesDeProduccionBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PartesDeProduccionBindingSource = New System.Windows.Forms.BindingSource()
         Me.colIDARTICULO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.ARTICULOSBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ARTICULOSBindingSource1 = New System.Windows.Forms.BindingSource()
         Me.DatosDataset = New GesLineas.DatosDataset()
         Me.colPALESPRODUCIDODS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCAJASPRODUCIDAS = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCODEMPRESA = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colEJERCICIO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colINICIO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PLOPERACIONESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.colLOTEPRODUCIDO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemGridLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit()
+        Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.RepositoryItemLookUpEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.TANQUES1BindingSource = New System.Windows.Forms.BindingSource()
+        Me.PLOPERACIONESBindingSource = New System.Windows.Forms.BindingSource()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colOrden = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colArticulo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemGridLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit()
-        Me.ARTICULOSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.RepositoryItemGridLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colPalesFabricar = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCajasFabricar = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colFechaProduccion = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colLOTE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colESTADO = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.colIdEnvase = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colObservaciones = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colFechaConsumoPreferente = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -94,10 +93,7 @@ Partial Class Principal
         Me.colid2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIdLinea = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colTANQUE = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemLookUpEdit8 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.TANQUES1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.RepositoryItemLookUpEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.RepositoryItemLookUpEdit7 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.ARTICULOSBindingSource = New System.Windows.Forms.BindingSource()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.Observaciones = New DevExpress.XtraEditors.MemoEdit()
@@ -105,7 +101,6 @@ Partial Class Principal
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.Partes_de_produccionTableAdapter = New GesLineas.ProduccionSqlTableAdapters.Partes_de_produccionTableAdapter()
         Me.ARTICULOSTableAdapter = New GesLineas.DatosDatasetTableAdapters.ARTICULOSTableAdapter()
-        Me.SplitContainerControl2 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.AceptaAccion = New DevExpress.XtraEditors.SimpleButton()
         Me.cbAcciones = New DevExpress.XtraEditors.LookUpEdit()
@@ -118,7 +113,9 @@ Partial Class Principal
         Me.PL_TURNOSTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_TURNOSTableAdapter()
         Me.PL_OPERACIONES1TableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_OPERACIONES1TableAdapter()
         Me.TANQUES1TableAdapter = New GesLineas.ProduccionSqlTableAdapters.TANQUES1TableAdapter()
-        Me.colLOTEPRODUCIDO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,28 +132,27 @@ Partial Class Principal
         CType(Me.RepositoryItemLookUpEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ARTICULOSBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DatosDataset, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainerControl1.SuspendLayout()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemGridLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ARTICULOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemGridLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TANQUES1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemLookUpEdit6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemLookUpEdit7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ARTICULOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.Observaciones.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.SplitContainerControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainerControl2.SuspendLayout()
         CType(Me.cbAcciones.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbOperaciones.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
         Me.SuspendLayout()
         '
         'GridView3
@@ -277,15 +273,15 @@ Partial Class Principal
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridControl1.Cursor = System.Windows.Forms.Cursors.Default
         Me.GridControl1.DataSource = Me.PLCABECERAPRODUCIDABindingSource
-        GridLevelNode1.LevelTemplate = Me.GridView3
-        GridLevelNode1.RelationName = "FK_PL_LINEASPRODUCIDAS_PL_CABECERAPRODUCIDA"
-        Me.GridControl1.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-        Me.GridControl1.Location = New System.Drawing.Point(3, 51)
+        GridLevelNode2.LevelTemplate = Me.GridView3
+        GridLevelNode2.RelationName = "FK_PL_LINEASPRODUCIDAS_PL_CABECERAPRODUCIDA"
+        Me.GridControl1.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
+        Me.GridControl1.Location = New System.Drawing.Point(5, 53)
         Me.GridControl1.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[False]
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemLookUpEdit3, Me.RepositoryItemLookUpEdit4, Me.RepositoryItemLookUpEdit5})
-        Me.GridControl1.Size = New System.Drawing.Size(614, 570)
+        Me.GridControl1.Size = New System.Drawing.Size(611, 264)
         Me.GridControl1.TabIndex = 0
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView3})
         '
@@ -302,6 +298,7 @@ Partial Class Principal
         Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsCustomization.AllowGroup = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GridView1.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colINICIO, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'colID
         '
@@ -423,32 +420,52 @@ Partial Class Principal
         Me.colINICIO.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.colINICIO.FieldName = "INICIO"
         Me.colINICIO.Name = "colINICIO"
+        Me.colINICIO.SortMode = DevExpress.XtraGrid.ColumnSortMode.Value
         Me.colINICIO.Visible = True
         Me.colINICIO.VisibleIndex = 5
+        '
+        'colLOTEPRODUCIDO
+        '
+        Me.colLOTEPRODUCIDO.FieldName = "LOTEPRODUCIDO"
+        Me.colLOTEPRODUCIDO.Name = "colLOTEPRODUCIDO"
+        Me.colLOTEPRODUCIDO.Visible = True
+        Me.colLOTEPRODUCIDO.VisibleIndex = 6
+        '
+        'RepositoryItemGridLookUpEdit1
+        '
+        Me.RepositoryItemGridLookUpEdit1.AutoHeight = False
+        Me.RepositoryItemGridLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemGridLookUpEdit1.DataSource = Me.ARTICULOSBindingSource1
+        Me.RepositoryItemGridLookUpEdit1.DisplayMember = "Descripcion"
+        Me.RepositoryItemGridLookUpEdit1.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[False]
+        Me.RepositoryItemGridLookUpEdit1.Name = "RepositoryItemGridLookUpEdit1"
+        Me.RepositoryItemGridLookUpEdit1.ValueMember = "Id"
+        '
+        'RepositoryItemComboBox1
+        '
+        Me.RepositoryItemComboBox1.AutoHeight = False
+        Me.RepositoryItemComboBox1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemComboBox1.Items.AddRange(New Object() {"Pendiente", "En Cola", "En Produccion", "Finalizado"})
+        Me.RepositoryItemComboBox1.Name = "RepositoryItemComboBox1"
+        '
+        'RepositoryItemLookUpEdit8
+        '
+        Me.RepositoryItemLookUpEdit8.AutoHeight = False
+        Me.RepositoryItemLookUpEdit8.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemLookUpEdit8.DataSource = Me.TANQUES1BindingSource
+        Me.RepositoryItemLookUpEdit8.DisplayMember = "CODIGO"
+        Me.RepositoryItemLookUpEdit8.Name = "RepositoryItemLookUpEdit8"
+        Me.RepositoryItemLookUpEdit8.ValueMember = "ID"
+        '
+        'TANQUES1BindingSource
+        '
+        Me.TANQUES1BindingSource.DataMember = "TANQUES1"
+        Me.TANQUES1BindingSource.DataSource = Me.ProduccionSql
         '
         'PLOPERACIONESBindingSource
         '
         Me.PLOPERACIONESBindingSource.DataMember = "PL_OPERACIONES"
         Me.PLOPERACIONESBindingSource.DataSource = Me.ProduccionSql
-        '
-        'SplitContainerControl1
-        '
-        Me.SplitContainerControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(626, 3)
-        Me.SplitContainerControl1.Name = "SplitContainerControl1"
-        Me.SplitContainerControl1.Panel1.Controls.Add(Me.GridControl2)
-        Me.SplitContainerControl1.Panel1.Controls.Add(Me.PanelControl1)
-        Me.SplitContainerControl1.Panel1.Text = "Panel1"
-        Me.SplitContainerControl1.Panel2.Appearance.BackColor = System.Drawing.SystemColors.Info
-        Me.SplitContainerControl1.Panel2.Appearance.Options.UseBackColor = True
-        Me.SplitContainerControl1.Panel2.Controls.Add(Me.Observaciones)
-        Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(969, 782)
-        Me.SplitContainerControl1.SplitterPosition = 613
-        Me.SplitContainerControl1.TabIndex = 0
-        Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
         'GridControl2
         '
@@ -457,12 +474,11 @@ Partial Class Principal
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridControl2.Cursor = System.Windows.Forms.Cursors.Default
         Me.GridControl2.DataSource = Me.PartesDeProduccionBindingSource
-        Me.GridControl2.Location = New System.Drawing.Point(0, 47)
+        Me.GridControl2.Location = New System.Drawing.Point(5, 54)
         Me.GridControl2.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemGridLookUpEdit1, Me.RepositoryItemComboBox1, Me.RepositoryItemLookUpEdit6, Me.RepositoryItemLookUpEdit7, Me.RepositoryItemLookUpEdit8})
-        Me.GridControl2.Size = New System.Drawing.Size(963, 565)
+        Me.GridControl2.Size = New System.Drawing.Size(567, 261)
         Me.GridControl2.TabIndex = 0
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -496,34 +512,11 @@ Partial Class Principal
         'colArticulo
         '
         Me.colArticulo.Caption = "Articulo"
-        Me.colArticulo.ColumnEdit = Me.RepositoryItemGridLookUpEdit1
         Me.colArticulo.FieldName = "Articulo"
         Me.colArticulo.Name = "colArticulo"
         Me.colArticulo.Visible = True
         Me.colArticulo.VisibleIndex = 2
         Me.colArticulo.Width = 194
-        '
-        'RepositoryItemGridLookUpEdit1
-        '
-        Me.RepositoryItemGridLookUpEdit1.AutoHeight = False
-        Me.RepositoryItemGridLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemGridLookUpEdit1.DataSource = Me.ARTICULOSBindingSource
-        Me.RepositoryItemGridLookUpEdit1.DisplayMember = "Descripcion"
-        Me.RepositoryItemGridLookUpEdit1.Name = "RepositoryItemGridLookUpEdit1"
-        Me.RepositoryItemGridLookUpEdit1.ValueMember = "Id"
-        Me.RepositoryItemGridLookUpEdit1.View = Me.RepositoryItemGridLookUpEdit1View
-        '
-        'ARTICULOSBindingSource
-        '
-        Me.ARTICULOSBindingSource.DataMember = "ARTICULOS"
-        Me.ARTICULOSBindingSource.DataSource = Me.DatosDataset
-        '
-        'RepositoryItemGridLookUpEdit1View
-        '
-        Me.RepositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.RepositoryItemGridLookUpEdit1View.Name = "RepositoryItemGridLookUpEdit1View"
-        Me.RepositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.RepositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'colPalesFabricar
         '
@@ -564,13 +557,6 @@ Partial Class Principal
         Me.colESTADO.Visible = True
         Me.colESTADO.VisibleIndex = 1
         Me.colESTADO.Width = 66
-        '
-        'RepositoryItemComboBox1
-        '
-        Me.RepositoryItemComboBox1.AutoHeight = False
-        Me.RepositoryItemComboBox1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemComboBox1.Items.AddRange(New Object() {"Pendiente", "En Cola", "En Produccion", "Finalizado"})
-        Me.RepositoryItemComboBox1.Name = "RepositoryItemComboBox1"
         '
         'colIdEnvase
         '
@@ -690,47 +676,23 @@ Partial Class Principal
         '
         'colTANQUE
         '
-        Me.colTANQUE.ColumnEdit = Me.RepositoryItemLookUpEdit8
         Me.colTANQUE.FieldName = "TANQUE"
         Me.colTANQUE.Name = "colTANQUE"
         Me.colTANQUE.Visible = True
         Me.colTANQUE.VisibleIndex = 5
         '
-        'RepositoryItemLookUpEdit8
+        'ARTICULOSBindingSource
         '
-        Me.RepositoryItemLookUpEdit8.AutoHeight = False
-        Me.RepositoryItemLookUpEdit8.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemLookUpEdit8.DataSource = Me.TANQUES1BindingSource
-        Me.RepositoryItemLookUpEdit8.DisplayMember = "CODIGO"
-        Me.RepositoryItemLookUpEdit8.Name = "RepositoryItemLookUpEdit8"
-        Me.RepositoryItemLookUpEdit8.ValueMember = "ID"
-        '
-        'TANQUES1BindingSource
-        '
-        Me.TANQUES1BindingSource.DataMember = "TANQUES1"
-        Me.TANQUES1BindingSource.DataSource = Me.ProduccionSql
-        '
-        'RepositoryItemLookUpEdit6
-        '
-        Me.RepositoryItemLookUpEdit6.AutoHeight = False
-        Me.RepositoryItemLookUpEdit6.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemLookUpEdit6.Name = "RepositoryItemLookUpEdit6"
-        '
-        'RepositoryItemLookUpEdit7
-        '
-        Me.RepositoryItemLookUpEdit7.AutoHeight = False
-        Me.RepositoryItemLookUpEdit7.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemLookUpEdit7.DisplayMember = "descripcion"
-        Me.RepositoryItemLookUpEdit7.Name = "RepositoryItemLookUpEdit7"
-        Me.RepositoryItemLookUpEdit7.ValueMember = "ID"
+        Me.ARTICULOSBindingSource.DataMember = "ARTICULOS"
+        Me.ARTICULOSBindingSource.DataSource = Me.DatosDataset
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(969, 46)
+        Me.PanelControl1.Size = New System.Drawing.Size(573, 46)
         Me.PanelControl1.TabIndex = 1
         '
         'LabelControl1
@@ -738,7 +700,7 @@ Partial Class Principal
         Me.LabelControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(5, 11)
+        Me.LabelControl1.Location = New System.Drawing.Point(30, 11)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(94, 30)
         Me.LabelControl1.TabIndex = 3
@@ -746,21 +708,21 @@ Partial Class Principal
         '
         'Observaciones
         '
-        Me.Observaciones.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Observaciones.Location = New System.Drawing.Point(0, 0)
+        Me.Observaciones.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.Observaciones.Location = New System.Drawing.Point(2, 321)
         Me.Observaciones.Name = "Observaciones"
         Me.Observaciones.Properties.Appearance.BackColor = System.Drawing.SystemColors.Info
         Me.Observaciones.Properties.Appearance.Options.UseBackColor = True
-        Me.Observaciones.Size = New System.Drawing.Size(969, 164)
+        Me.Observaciones.Size = New System.Drawing.Size(573, 168)
         Me.Observaciones.TabIndex = 0
         '
         'PanelControl2
         '
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(620, 45)
+        Me.PanelControl2.Size = New System.Drawing.Size(617, 45)
         Me.PanelControl2.TabIndex = 1
         '
         'LabelControl2
@@ -768,7 +730,7 @@ Partial Class Principal
         Me.LabelControl2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(5, 5)
+        Me.LabelControl2.Location = New System.Drawing.Point(5, 10)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(129, 30)
         Me.LabelControl2.TabIndex = 2
@@ -782,37 +744,10 @@ Partial Class Principal
         '
         Me.ARTICULOSTableAdapter.ClearBeforeFill = True
         '
-        'SplitContainerControl2
-        '
-        Me.SplitContainerControl2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SplitContainerControl2.Horizontal = False
-        Me.SplitContainerControl2.Location = New System.Drawing.Point(3, 3)
-        Me.SplitContainerControl2.Name = "SplitContainerControl2"
-        Me.SplitContainerControl2.Panel1.Appearance.BackColor = System.Drawing.Color.White
-        Me.SplitContainerControl2.Panel1.Appearance.Options.UseBackColor = True
-        Me.SplitContainerControl2.Panel1.Controls.Add(Me.PanelControl2)
-        Me.SplitContainerControl2.Panel1.Controls.Add(Me.GridControl1)
-        Me.SplitContainerControl2.Panel1.Text = "Panel1"
-        Me.SplitContainerControl2.Panel2.Appearance.BackColor = System.Drawing.SystemColors.Menu
-        Me.SplitContainerControl2.Panel2.Appearance.Options.UseBackColor = True
-        Me.SplitContainerControl2.Panel2.Controls.Add(Me.LabelControl3)
-        Me.SplitContainerControl2.Panel2.Controls.Add(Me.AceptaAccion)
-        Me.SplitContainerControl2.Panel2.Controls.Add(Me.cbAcciones)
-        Me.SplitContainerControl2.Panel2.Controls.Add(Me.LabelControl4)
-        Me.SplitContainerControl2.Panel2.Controls.Add(Me.cbOperaciones)
-        Me.SplitContainerControl2.Panel2.Text = "Panel2"
-        Me.SplitContainerControl2.Size = New System.Drawing.Size(620, 782)
-        Me.SplitContainerControl2.SplitterPosition = 625
-        Me.SplitContainerControl2.TabIndex = 1
-        Me.SplitContainerControl2.Text = "SplitContainerControl2"
-        '
         'LabelControl3
         '
-        Me.LabelControl3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl3.Location = New System.Drawing.Point(-45, 24)
+        Me.LabelControl3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.LabelControl3.Location = New System.Drawing.Point(19, 2)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(38, 13)
         Me.LabelControl3.TabIndex = 1
@@ -820,23 +755,21 @@ Partial Class Principal
         '
         'AceptaAccion
         '
-        Me.AceptaAccion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.AceptaAccion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.AceptaAccion.Enabled = False
         Me.AceptaAccion.Image = CType(resources.GetObject("AceptaAccion.Image"), System.Drawing.Image)
         Me.AceptaAccion.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.AceptaAccion.Location = New System.Drawing.Point(484, 68)
+        Me.AceptaAccion.Location = New System.Drawing.Point(495, 55)
         Me.AceptaAccion.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[True]
         Me.AceptaAccion.Name = "AceptaAccion"
-        Me.AceptaAccion.Size = New System.Drawing.Size(90, 81)
+        Me.AceptaAccion.Size = New System.Drawing.Size(97, 87)
         Me.AceptaAccion.TabIndex = 4
         Me.AceptaAccion.ToolTip = "Aceptar"
         '
         'cbAcciones
         '
-        Me.cbAcciones.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbAcciones.Location = New System.Drawing.Point(-45, 43)
+        Me.cbAcciones.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cbAcciones.Location = New System.Drawing.Point(19, 21)
         Me.cbAcciones.Name = "cbAcciones"
         Me.cbAcciones.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbAcciones.Properties.Appearance.Options.UseFont = True
@@ -852,9 +785,8 @@ Partial Class Principal
         '
         'LabelControl4
         '
-        Me.LabelControl4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelControl4.Location = New System.Drawing.Point(-45, 91)
+        Me.LabelControl4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.LabelControl4.Location = New System.Drawing.Point(19, 76)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(56, 13)
         Me.LabelControl4.TabIndex = 3
@@ -862,9 +794,8 @@ Partial Class Principal
         '
         'cbOperaciones
         '
-        Me.cbOperaciones.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbOperaciones.Location = New System.Drawing.Point(-45, 107)
+        Me.cbOperaciones.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cbOperaciones.Location = New System.Drawing.Point(19, 100)
         Me.cbOperaciones.Name = "cbOperaciones"
         Me.cbOperaciones.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbOperaciones.Properties.Appearance.Options.UseFont = True
@@ -906,12 +837,42 @@ Partial Class Principal
         '
         Me.TANQUES1TableAdapter.ClearBeforeFill = True
         '
-        'colLOTEPRODUCIDO
+        'PanelControl3
         '
-        Me.colLOTEPRODUCIDO.FieldName = "LOTEPRODUCIDO"
-        Me.colLOTEPRODUCIDO.Name = "colLOTEPRODUCIDO"
-        Me.colLOTEPRODUCIDO.Visible = True
-        Me.colLOTEPRODUCIDO.VisibleIndex = 6
+        Me.PanelControl3.Controls.Add(Me.LabelControl3)
+        Me.PanelControl3.Controls.Add(Me.AceptaAccion)
+        Me.PanelControl3.Controls.Add(Me.cbAcciones)
+        Me.PanelControl3.Controls.Add(Me.cbOperaciones)
+        Me.PanelControl3.Controls.Add(Me.LabelControl4)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(2, 323)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(617, 171)
+        Me.PanelControl3.TabIndex = 5
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Controls.Add(Me.PanelControl2)
+        Me.PanelControl4.Controls.Add(Me.PanelControl3)
+        Me.PanelControl4.Controls.Add(Me.GridControl1)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(621, 496)
+        Me.PanelControl4.TabIndex = 6
+        '
+        'PanelControl5
+        '
+        Me.PanelControl5.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PanelControl5.Controls.Add(Me.Observaciones)
+        Me.PanelControl5.Controls.Add(Me.GridControl2)
+        Me.PanelControl5.Controls.Add(Me.PanelControl1)
+        Me.PanelControl5.Location = New System.Drawing.Point(627, 3)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(577, 491)
+        Me.PanelControl5.TabIndex = 7
         '
         'Principal
         '
@@ -920,10 +881,10 @@ Partial Class Principal
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Controls.Add(Me.SplitContainerControl2)
-        Me.Controls.Add(Me.SplitContainerControl1)
+        Me.Controls.Add(Me.PanelControl5)
+        Me.Controls.Add(Me.PanelControl4)
         Me.Name = "Principal"
-        Me.Size = New System.Drawing.Size(1598, 888)
+        Me.Size = New System.Drawing.Size(1207, 496)
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -940,19 +901,14 @@ Partial Class Principal
         CType(Me.RepositoryItemLookUpEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ARTICULOSBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DatosDataset, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainerControl1.ResumeLayout(False)
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemGridLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ARTICULOSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemGridLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemComboBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TANQUES1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemLookUpEdit6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemLookUpEdit7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PLOPERACIONESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ARTICULOSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -960,14 +916,18 @@ Partial Class Principal
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.SplitContainerControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainerControl2.ResumeLayout(False)
         CType(Me.cbAcciones.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbOperaciones.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl5.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents SplitContainerControl1 As DevExpress.XtraEditors.SplitContainerControl
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
@@ -1006,13 +966,9 @@ Partial Class Principal
     Friend WithEvents colMENSAJELASER As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colIdLinea As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Partes_de_produccionTableAdapter As GesLineas.ProduccionSqlTableAdapters.Partes_de_produccionTableAdapter
-    Friend WithEvents RepositoryItemGridLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit
     Friend WithEvents ARTICULOSBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents DatosDataset As GesLineas.DatosDataset
-    Friend WithEvents RepositoryItemGridLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents RepositoryItemComboBox1 As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
     Friend WithEvents ARTICULOSTableAdapter As GesLineas.DatosDatasetTableAdapters.ARTICULOSTableAdapter
-    Friend WithEvents SplitContainerControl2 As DevExpress.XtraEditors.SplitContainerControl
     Friend WithEvents cbAcciones As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents AceptaAccion As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
@@ -1057,12 +1013,15 @@ Partial Class Principal
     Friend WithEvents PLOPERACIONES1BindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents PL_OPERACIONES1TableAdapter As GesLineas.ProduccionSqlTableAdapters.PL_OPERACIONES1TableAdapter
     Friend WithEvents colid2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemLookUpEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
-    Friend WithEvents RepositoryItemLookUpEdit7 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents colTANQUE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RepositoryItemLookUpEdit8 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents TANQUES1BindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents TANQUES1TableAdapter As GesLineas.ProduccionSqlTableAdapters.TANQUES1TableAdapter
     Friend WithEvents colLOTEPRODUCIDO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents RepositoryItemGridLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit
+    Friend WithEvents RepositoryItemComboBox1 As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents RepositoryItemLookUpEdit8 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 
 End Class

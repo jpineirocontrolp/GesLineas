@@ -113,6 +113,7 @@ Public Class Etiquetas
         Dim cajas As Double
         Dim udescja As Double
         Dim txtArticulo As String
+        'TODO: COMPROBAR QUE DESCUENTA BIEN LOS LOTES DE LOS ARTICULOS PRODUCIDOS QUE LLEVAN MAS DE UN LOTE
         For Each rowhandle In view.GetSelectedRows
 
             Dim row As DataRowView = view.GetRow(rowhandle)

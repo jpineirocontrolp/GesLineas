@@ -10,8 +10,7 @@ Public Class Principal
         Try
             ' Llamada necesaria para el diseñador.
             InitializeComponent()
-
-
+           
             ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -48,6 +47,16 @@ Public Class Principal
         gle.ValueMember = "id"
         gle.DisplayMember = "Descripcion"
         GridView2.Columns("idEnvase").ColumnEdit = gle
+        gle = New RepositoryItemLookUpEdit
+        gle.DataSource = ProduccionSql.TANQUES1
+        gle.ValueMember = "ID"
+        gle.DisplayMember = "CODIGO"
+        GridView2.Columns("TANQUE").ColumnEdit = gle
+        gle = New RepositoryItemLookUpEdit
+        gle.DataSource = DatosDataset.ARTICULOS
+        gle.ValueMember = "Id"
+        gle.DisplayMember = "Descripcion"
+        GridView2.Columns("Articulo").ColumnEdit = gle
 
         GridView2.BestFitColumns()
         GridView1.BestFitColumns()
@@ -60,6 +69,7 @@ Public Class Principal
         Me.PL_LINEASPRODUCIDASTableAdapter.Fill(Me.ProduccionSql.PL_LINEASPRODUCIDAS, gCodEmpresa, gEjercicio)
         Me.PL_TURNOSTableAdapter.Fill(Me.ProduccionSql.PL_TURNOS, gCodEmpresa, gEjercicio)
         Me.PL_OPERACIONES1TableAdapter.Fill(Me.ProduccionSql.PL_OPERACIONES1, gCodEmpresa, gEjercicio)
+
         ExpandAllRows(GridView1)
         GridView3.FocusedRowHandle = GridView3.DataRowCount - 1
     End Sub
@@ -151,7 +161,7 @@ Public Class Principal
                             '' Dim Col As DevExpress.XtraGrid.Columns.GridColumn = miPrincipal.GridView2.Columns("id")
                             '' Dim rowhandle As Integer = miPrincipal.GridView2.LocateByValue(miLinea, Col, "id")
                             Dim Loteado As New Loteado
-
+                            Loteado.loadData()
                             Dim result As DialogResult = FlyoutDialog.Show(FormMain, Loteado)
                             If result = System.Windows.Forms.DialogResult.Cancel Then
                                 Loteado.Dispose()
@@ -174,6 +184,15 @@ Public Class Principal
                                     miLoteGlobal = miLoteCopia
                                     Exit Sub
                                 End If
+
+                                cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and ID=" & configuracion.AccionLoteado, dbProd, miTrans)
+                                Try
+                                    miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+                                Catch EX As Exception
+                                    cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and ID=" & configuracion.AccionDefecto, dbProd, miTrans)
+                                    miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+                                End Try
+
                                 If InsertarLinea(miPrincipal.cbAcciones.EditValue, 0, Date.Now, Nothing, 0, Nothing) Then
                                     miTrans.Commit()
                                 Else
@@ -250,4 +269,20 @@ Public Class Principal
     End Sub
 
 
+    Private Sub GridControl2_Click(sender As Object, e As EventArgs) Handles GridControl2.Click
+
+    End Sub
+
+    Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
+        Dim View As GridView = sender
+        If (e.RowHandle >= 0) Then
+            Dim miEstado As Double = View.GetDataRow(e.RowHandle)("ESTADO")
+
+            If miEstado = 3 Then
+                e.Appearance.BackColor = Color.IndianRed
+            ElseIf miEstado = 4 Then
+                e.Appearance.BackColor = Color.LawnGreen
+            End If
+        End If
+    End Sub
 End Class

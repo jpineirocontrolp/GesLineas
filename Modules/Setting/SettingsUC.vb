@@ -82,6 +82,7 @@ Public Class SettingsUC
         PropertyGridControl1.GetRowByFieldName("AccionLoteado").Properties.RowEdit = cmbAcciones
         PropertyGridControl1.GetRowByFieldName("AccionPesado").Properties.RowEdit = cmbAcciones
         PropertyGridControl1.GetRowByFieldName("AccionAjuste").Properties.RowEdit = cmbAcciones
+        PropertyGridControl1.GetRowByFieldName("AccionDefecto").Properties.RowEdit = cmbAcciones
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click

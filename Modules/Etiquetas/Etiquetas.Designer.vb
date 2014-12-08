@@ -19,7 +19,6 @@ Partial Class Etiquetas
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Etiquetas))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.btImprimir = New DevExpress.XtraEditors.SimpleButton()
@@ -29,17 +28,17 @@ Partial Class Etiquetas
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.btCancelar = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.PalesPendientesTicarBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PalesPendientesTicarBindingSource = New System.Windows.Forms.BindingSource()
         Me.ProduccionSql = New GesLineas.ProduccionSql()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIdOperario = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colIdTanque = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.TANQUESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TANQUESBindingSource = New System.Windows.Forms.BindingSource()
         Me.colIdArti = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.ARTICULOSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ARTICULOSBindingSource = New System.Windows.Forms.BindingSource()
         Me.DatosDataset = New GesLineas.DatosDataset()
         Me.colNumLote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colContador = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,12 +51,12 @@ Partial Class Etiquetas
         Me.colNroOrden = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colImpresa = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.colFecha = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PalesPendientesTicarTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PalesPendientesTicarTableAdapter()
         Me.TANQUESTableAdapter = New GesLineas.ProduccionSqlTableAdapters.TANQUESTableAdapter()
         Me.ARTICULOSTableAdapter = New GesLineas.DatosDatasetTableAdapters.ARTICULOSTableAdapter()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.colFecha = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.txtCajas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -333,6 +332,14 @@ Partial Class Etiquetas
         Me.RepositoryItemCheckEdit1.AutoHeight = False
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         '
+        'colFecha
+        '
+        Me.colFecha.Caption = "Fecha"
+        Me.colFecha.FieldName = "Fecha"
+        Me.colFecha.Name = "colFecha"
+        Me.colFecha.Visible = True
+        Me.colFecha.VisibleIndex = 7
+        '
         'PalesPendientesTicarTableAdapter
         '
         Me.PalesPendientesTicarTableAdapter.ClearBeforeFill = True
@@ -370,14 +377,6 @@ Partial Class Etiquetas
         Me.SimpleButton2.Size = New System.Drawing.Size(138, 91)
         Me.SimpleButton2.TabIndex = 13
         Me.SimpleButton2.Text = "Ticar Etiquietas " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Pales Seleccionados"
-        '
-        'colFecha
-        '
-        Me.colFecha.Caption = "Fecha"
-        Me.colFecha.FieldName = "Fecha"
-        Me.colFecha.Name = "colFecha"
-        Me.colFecha.Visible = True
-        Me.colFecha.VisibleIndex = 7
         '
         'Etiquetas
         '
