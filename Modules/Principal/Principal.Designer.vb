@@ -19,7 +19,7 @@ Partial Class Principal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -98,6 +98,8 @@ Partial Class Principal
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.Observaciones = New DevExpress.XtraEditors.MemoEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.lblElapsed = New DevExpress.XtraEditors.LabelControl()
+        Me.lblInicio = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.Partes_de_produccionTableAdapter = New GesLineas.ProduccionSqlTableAdapters.Partes_de_produccionTableAdapter()
         Me.ARTICULOSTableAdapter = New GesLineas.DatosDatasetTableAdapters.ARTICULOSTableAdapter()
@@ -116,8 +118,8 @@ Partial Class Principal
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.lblInicio = New DevExpress.XtraEditors.LabelControl()
-        Me.lblElapsed = New DevExpress.XtraEditors.LabelControl()
+        Me.lblElapsedOrden = New DevExpress.XtraEditors.LabelControl()
+        Me.lblInicioOrden = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLACCIONESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -275,9 +277,9 @@ Partial Class Principal
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridControl1.Cursor = System.Windows.Forms.Cursors.Default
         Me.GridControl1.DataSource = Me.PLCABECERAPRODUCIDABindingSource
-        GridLevelNode2.LevelTemplate = Me.GridView3
-        GridLevelNode2.RelationName = "FK_PL_LINEASPRODUCIDAS_PL_CABECERAPRODUCIDA"
-        Me.GridControl1.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
+        GridLevelNode1.LevelTemplate = Me.GridView3
+        GridLevelNode1.RelationName = "FK_PL_LINEASPRODUCIDAS_PL_CABECERAPRODUCIDA"
+        Me.GridControl1.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.GridControl1.Location = New System.Drawing.Point(5, 53)
         Me.GridControl1.LookAndFeel.TouchUIMode = DevExpress.LookAndFeel.TouchUIMode.[False]
         Me.GridControl1.MainView = Me.GridView1
@@ -690,6 +692,8 @@ Partial Class Principal
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.lblElapsedOrden)
+        Me.PanelControl1.Controls.Add(Me.lblInicioOrden)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(2, 2)
@@ -728,6 +732,21 @@ Partial Class Principal
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(617, 45)
         Me.PanelControl2.TabIndex = 1
+        '
+        'lblElapsed
+        '
+        Me.lblElapsed.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.lblElapsed.Location = New System.Drawing.Point(562, 23)
+        Me.lblElapsed.Name = "lblElapsed"
+        Me.lblElapsed.Size = New System.Drawing.Size(0, 13)
+        Me.lblElapsed.TabIndex = 4
+        '
+        'lblInicio
+        '
+        Me.lblInicio.Location = New System.Drawing.Point(503, 10)
+        Me.lblInicio.Name = "lblInicio"
+        Me.lblInicio.Size = New System.Drawing.Size(0, 13)
+        Me.lblInicio.TabIndex = 3
         '
         'LabelControl2
         '
@@ -878,20 +897,20 @@ Partial Class Principal
         Me.PanelControl5.Size = New System.Drawing.Size(577, 491)
         Me.PanelControl5.TabIndex = 7
         '
-        'lblInicio
+        'lblElapsedOrden
         '
-        Me.lblInicio.Location = New System.Drawing.Point(326, 25)
-        Me.lblInicio.Name = "lblInicio"
-        Me.lblInicio.Size = New System.Drawing.Size(0, 13)
-        Me.lblInicio.TabIndex = 3
+        Me.lblElapsedOrden.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.lblElapsedOrden.Location = New System.Drawing.Point(514, 24)
+        Me.lblElapsedOrden.Name = "lblElapsedOrden"
+        Me.lblElapsedOrden.Size = New System.Drawing.Size(0, 13)
+        Me.lblElapsedOrden.TabIndex = 6
         '
-        'lblElapsed
+        'lblInicioOrden
         '
-        Me.lblElapsed.Appearance.ForeColor = System.Drawing.Color.Red
-        Me.lblElapsed.Location = New System.Drawing.Point(495, 25)
-        Me.lblElapsed.Name = "lblElapsed"
-        Me.lblElapsed.Size = New System.Drawing.Size(0, 13)
-        Me.lblElapsed.TabIndex = 4
+        Me.lblInicioOrden.Location = New System.Drawing.Point(455, 11)
+        Me.lblInicioOrden.Name = "lblInicioOrden"
+        Me.lblInicioOrden.Size = New System.Drawing.Size(0, 13)
+        Me.lblInicioOrden.TabIndex = 5
         '
         'Principal
         '
@@ -1044,5 +1063,7 @@ Partial Class Principal
     Friend WithEvents RepositoryItemLookUpEdit8 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents lblElapsed As DevExpress.XtraEditors.LabelControl
     Friend WithEvents lblInicio As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents lblElapsedOrden As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents lblInicioOrden As DevExpress.XtraEditors.LabelControl
 
 End Class

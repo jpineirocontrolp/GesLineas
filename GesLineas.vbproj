@@ -50,10 +50,6 @@
     <ApplicationIcon>Resources\AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ActualizaProd, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\prog\V8\Dropbox\ActualizaProd.dll</HintPath>
-    </Reference>
     <Reference Include="cpNegocioNet">
       <HintPath>..\..\..\..\prog\V8\Dropbox\cpNegocioNet.dll</HintPath>
     </Reference>
@@ -364,6 +360,12 @@
     <Content Include="Resources\Toolbar\Task.png" />
     <Content Include="Resources\Toolbar\ZoomIn.png" />
     <Content Include="Resources\Toolbar\ZoomOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\actualizaprod\actualizaprod\ActualizaProd\ActualizaProd.vbproj">
+      <Project>{98d47da5-89ec-4f5f-bc1b-0af6fbe8cd25}</Project>
+      <Name>ActualizaProd</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

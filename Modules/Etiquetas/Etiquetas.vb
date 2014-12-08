@@ -23,7 +23,7 @@ Public Class Etiquetas
         ' Dim Col As DevExpress.XtraGrid.Columns.GridColumn = miPrincipal.GridView2.Columns("id")
         ' Dim rowhandle As Integer = miPrincipal.GridView2.LocateByValue(miLinea, Col, "id")
         Dim MITANQUE As Integer = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("TANQUE"))
-        Dim MIfecha As Date = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("FechaConsumoPreferente"))
+        Dim MIfecha As Date = miPrincipal.GridView2.GetRowCellValue(rowHandle, miPrincipal.GridView2.Columns("FechaProduccion"))
         Dim MILote As String = miLoteGlobal
 
         ' primero comprobamos que todo esta correcto
@@ -128,7 +128,7 @@ Public Class Etiquetas
             If CDbl(row.Row("ubicacion")) <> 0 Then
                 cajas = CDbl(row.Row("ubicacion"))
             Else
-                cajas = clsNegocioNet.GetDatoTabla(row.Row("idarti"), "ARTICULOS", gCodEmpresa, gEjercicio, "CAJASPALET", "ID")
+                cajas = clsNegocioProd.GetDatoTabla(miLinea, "PL_PARTESPRODUCCION", gCodEmpresa, gEjercicio, "CANTIDAD", "ID")
             End If
             udescja = cajas * clsNegocioNet.GetDatoTabla(row.Row("idarti"), "ARTICULOS", gCodEmpresa, gEjercicio, "UDES_CAJA", "ID")
             txtArticulo = clsNegocioNet.GetDatoTabla(row.Row("idarti"), "ARTICULOS", gCodEmpresa, gEjercicio, "descripcion", "ID", True)

@@ -136,7 +136,7 @@ Public Class Roturas
         Dim udesCja As Double
         Dim cjaspalet As Double
         udesCja = clsNegocioNet.GetDatoTabla(idArticulo, "ARTICULOS", gCodEmpresa, gEjercicio, "UDES_CAJA", "ID")
-        cjaspalet = clsNegocioNet.GetDatoTabla(idArticulo, "ARTICULOS", gCodEmpresa, gEjercicio, "CAJASPALET", "ID")
+        cjaspalet = clsNegocioProd.GetDatoTabla(miLinea, "PL_PARTESPRODUCCION", gCodEmpresa, gEjercicio, "CANTIDAD", "ID")
         Dim TotalUdes As Double = udesCja * cjaspalet * txtPales.EditValue
         TotalUdes = TotalUdes + (udesCja * txtCajas.EditValue)
         Return Math.Round(udesEscandallo * TotalUdes, 0)

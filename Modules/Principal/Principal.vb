@@ -280,8 +280,7 @@ Public Class Principal
             Dim miEstado As String = View.GetRowCellDisplayText(e.RowHandle, "IDARTICULO")
             LabelControl2.Text = miEstado
             lblInicio.Text = View.GetRowCellDisplayText(e.RowHandle, "INICIO")
-            Dim timeSpan As TimeSpan = Date.Now.Subtract(CDate(View.GetRowCellDisplayText(e.RowHandle, "INICIO")))
-            lblElapsed.Text = timeSpan.Hours.ToString & ":" & timeSpan.Minutes & ":" & timeSpan.Seconds
+         
 
             'If miEstado = 3 Then
             '    e.Appearance.BackColor = Color.IndianRed
@@ -290,4 +289,6 @@ Public Class Principal
             'End If
         End If
     End Sub
+
+    
 End Class

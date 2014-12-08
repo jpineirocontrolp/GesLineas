@@ -23,19 +23,19 @@ Partial Class FormMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
-        Dim TileItemElement5 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim SuperToolTip4 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem4 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim ToolTipItem4 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
-        Dim TileItemElement6 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement7 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim SuperToolTip5 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem5 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim ToolTipItem5 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
-        Dim TileItemElement8 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim SuperToolTip6 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem6 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
-        Dim ToolTipItem6 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
+        Dim TileItemElement1 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim ToolTipItem1 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
+        Dim TileItemElement2 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement3 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem2 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim ToolTipItem2 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
+        Dim TileItemElement4 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim SuperToolTip3 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem3 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim ToolTipItem3 As DevExpress.Utils.ToolTipItem = New DevExpress.Utils.ToolTipItem()
         Me.TileNavPane1 = New DevExpress.XtraBars.Navigation.TileNavPane()
         Me.navButtonHome = New DevExpress.XtraBars.Navigation.NavButton()
         Me.navButtonOrden = New DevExpress.XtraBars.Navigation.NavButton()
@@ -61,6 +61,7 @@ Partial Class FormMain
         Me.OPERARIOSTableAdapter = New GesLineas.ProduccionSqlTableAdapters.OPERARIOSTableAdapter()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.Timer1 = New System.Windows.Forms.Timer()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cmbTurno.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PLTURNOSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -181,31 +182,31 @@ Partial Class FormMain
         Me.BuscarOrdenes.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.BuscarOrdenes.AppearanceItem.Normal.Options.UseBackColor = True
         Me.BuscarOrdenes.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement5.Appearance.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
-        TileItemElement5.Appearance.Normal.Options.UseBackColor = True
-        TileItemElement5.Image = CType(resources.GetObject("TileItemElement5.Image"), System.Drawing.Image)
-        TileItemElement5.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter
-        TileItemElement5.Text = "Ordenes"
-        Me.BuscarOrdenes.Elements.Add(TileItemElement5)
+        TileItemElement1.Appearance.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        TileItemElement1.Appearance.Normal.Options.UseBackColor = True
+        TileItemElement1.Image = CType(resources.GetObject("TileItemElement1.Image"), System.Drawing.Image)
+        TileItemElement1.ImageAlignment = DevExpress.XtraEditors.TileItemContentAlignment.TopCenter
+        TileItemElement1.Text = "Ordenes"
+        Me.BuscarOrdenes.Elements.Add(TileItemElement1)
         Me.BuscarOrdenes.Id = 2
         Me.BuscarOrdenes.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
         Me.BuscarOrdenes.Name = "BuscarOrdenes"
-        ToolTipTitleItem4.Text = "Cargar Ordenes de trabajo"
-        ToolTipItem4.LeftIndent = 6
-        ToolTipItem4.Text = "Pulse aqui para cargar las ordenes de trabajo disponibles para el proceso de prod" & _
+        ToolTipTitleItem1.Text = "Cargar Ordenes de trabajo"
+        ToolTipItem1.LeftIndent = 6
+        ToolTipItem1.Text = "Pulse aqui para cargar las ordenes de trabajo disponibles para el proceso de prod" & _
     "ucción"
-        SuperToolTip4.Items.Add(ToolTipTitleItem4)
-        SuperToolTip4.Items.Add(ToolTipItem4)
-        Me.BuscarOrdenes.SuperTip = SuperToolTip4
+        SuperToolTip1.Items.Add(ToolTipTitleItem1)
+        SuperToolTip1.Items.Add(ToolTipItem1)
+        Me.BuscarOrdenes.SuperTip = SuperToolTip1
         '
         'Envasar
         '
         Me.Envasar.AppearanceItem.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Envasar.AppearanceItem.Normal.Options.UseBackColor = True
         Me.Envasar.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement6.Image = CType(resources.GetObject("TileItemElement6.Image"), System.Drawing.Image)
-        TileItemElement6.Text = "Envasar"
-        Me.Envasar.Elements.Add(TileItemElement6)
+        TileItemElement2.Image = CType(resources.GetObject("TileItemElement2.Image"), System.Drawing.Image)
+        TileItemElement2.Text = "Envasar"
+        Me.Envasar.Elements.Add(TileItemElement2)
         Me.Envasar.Id = 4
         Me.Envasar.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
         Me.Envasar.Name = "Envasar"
@@ -215,18 +216,18 @@ Partial Class FormMain
         Me.btRoturas.AppearanceItem.Normal.BackColor = System.Drawing.Color.Red
         Me.btRoturas.AppearanceItem.Normal.Options.UseBackColor = True
         Me.btRoturas.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement7.Image = CType(resources.GetObject("TileItemElement7.Image"), System.Drawing.Image)
-        TileItemElement7.Text = "Roturas"
-        Me.btRoturas.Elements.Add(TileItemElement7)
+        TileItemElement3.Image = CType(resources.GetObject("TileItemElement3.Image"), System.Drawing.Image)
+        TileItemElement3.Text = "Roturas"
+        Me.btRoturas.Elements.Add(TileItemElement3)
         Me.btRoturas.Id = 5
         Me.btRoturas.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Medium
         Me.btRoturas.Name = "btRoturas"
-        ToolTipTitleItem5.Text = "Roturas/Defectos"
-        ToolTipItem5.LeftIndent = 6
-        ToolTipItem5.Text = "Informa de las roturas/defectos encontrados en el proceso de envasado"
-        SuperToolTip5.Items.Add(ToolTipTitleItem5)
-        SuperToolTip5.Items.Add(ToolTipItem5)
-        Me.btRoturas.SuperTip = SuperToolTip5
+        ToolTipTitleItem2.Text = "Roturas/Defectos"
+        ToolTipItem2.LeftIndent = 6
+        ToolTipItem2.Text = "Informa de las roturas/defectos encontrados en el proceso de envasado"
+        SuperToolTip2.Items.Add(ToolTipTitleItem2)
+        SuperToolTip2.Items.Add(ToolTipItem2)
+        Me.btRoturas.SuperTip = SuperToolTip2
         '
         'TileBarGroup3
         '
@@ -236,19 +237,19 @@ Partial Class FormMain
         'Etiquetas
         '
         Me.Etiquetas.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement8.Image = CType(resources.GetObject("TileItemElement8.Image"), System.Drawing.Image)
-        TileItemElement8.Text = "Generar Etiqueta"
-        TileItemElement8.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter
-        Me.Etiquetas.Elements.Add(TileItemElement8)
+        TileItemElement4.Image = CType(resources.GetObject("TileItemElement4.Image"), System.Drawing.Image)
+        TileItemElement4.Text = "Generar Etiqueta"
+        TileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.BottomCenter
+        Me.Etiquetas.Elements.Add(TileItemElement4)
         Me.Etiquetas.Id = 6
         Me.Etiquetas.ItemSize = DevExpress.XtraBars.Navigation.TileBarItemSize.Wide
         Me.Etiquetas.Name = "Etiquetas"
-        ToolTipTitleItem6.Text = "Generar Etiqueta"
-        ToolTipItem6.LeftIndent = 6
-        ToolTipItem6.Text = "Genera Etiqueta palet producido"
-        SuperToolTip6.Items.Add(ToolTipTitleItem6)
-        SuperToolTip6.Items.Add(ToolTipItem6)
-        Me.Etiquetas.SuperTip = SuperToolTip6
+        ToolTipTitleItem3.Text = "Generar Etiqueta"
+        ToolTipItem3.LeftIndent = 6
+        ToolTipItem3.Text = "Genera Etiqueta palet producido"
+        SuperToolTip3.Items.Add(ToolTipTitleItem3)
+        SuperToolTip3.Items.Add(ToolTipItem3)
+        Me.Etiquetas.SuperTip = SuperToolTip3
         '
         'TileBarGroup4
         '
@@ -392,4 +393,5 @@ Partial Class FormMain
     Friend WithEvents TileBarGroup3 As DevExpress.XtraBars.Navigation.TileBarGroup
     Friend WithEvents Etiquetas As DevExpress.XtraBars.Navigation.TileBarItem
     Friend WithEvents TileBarGroup4 As DevExpress.XtraBars.Navigation.TileBarGroup
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
 End Class

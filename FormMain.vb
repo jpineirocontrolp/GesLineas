@@ -133,7 +133,7 @@ Public Class FormMain
             Dim blnContinuar As Boolean = False
             Dim cmd As New OleDbCommand
             ' poner controles editables
-
+            Timer1.Enabled = True
             If miLinea <> 0 Then
                 If MsgBox("Desea finalizar el envasado de esta referencia?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                     ' pido roturas
@@ -375,6 +375,13 @@ Public Class FormMain
         Else
             MsgBox("Debe de tener una linea en produccion")
             'End If
+        End If
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        If miPrincipal.lblInicio.Text <> "" Then
+            Dim timeSpan As TimeSpan = Date.Now.Subtract(CDate(miPrincipal.lblInicio.Text))
+            miPrincipal.lblElapsed.Text = timeSpan.Hours.ToString & ":" & timeSpan.Minutes & ":" & timeSpan.Seconds
         End If
     End Sub
 End Class
