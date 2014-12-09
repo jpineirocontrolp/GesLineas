@@ -158,9 +158,7 @@ Public Class Principal
                             End Using
                         Case configuracion.AccionLoteado
 
-                            'Dim rowHandle As Integer = GetRowHandleByColumnValue(miPrincipal.GridView2, "id", miLinea, miPrincipal.GridControl2)
-                            '' Dim Col As DevExpress.XtraGrid.Columns.GridColumn = miPrincipal.GridView2.Columns("id")
-                            '' Dim rowhandle As Integer = miPrincipal.GridView2.LocateByValue(miLinea, Col, "id")
+                          
                             Dim Loteado As New Loteado
                             Loteado.loadData()
                             Dim result As DialogResult = FlyoutDialog.Show(FormMain, Loteado)
@@ -224,7 +222,68 @@ Public Class Principal
                             miPrincipal.loadDataOperaciones()
                             miPrincipal.GridControl2.RefreshDataSource()
 
+                        Case configuracion.AccionPesado
+                            miTrans = dbProd.BeginTransaction
+                            If FinDeLinea() Then
+                                If InsertarLinea(miPrincipal.cbAcciones.EditValue, 0, Date.Now, Nothing, 0, Nothing) Then
+                                    Dim Pesado As New Grifos
+                                    Pesado.loadData()
+                                    Dim result As DialogResult = FlyoutDialog.Show(FormMain, Pesado)
+                                    If result = System.Windows.Forms.DialogResult.Cancel Then
+                                        Pesado.Dispose()
+                                        miLinea = miLineacopia
+                                        idCabecera = idCabeceraCopia
+                                        idLinea = idLineaCopia
+                                        miLoteGlobal = miLoteCopia
+                                        miTrans.Rollback()
 
+                                        Exit Sub
+
+                                    Else
+
+                                        Pesado.Dispose()
+                                    End If
+                                    If FinDeLinea() Then
+                                        cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and ID=" & configuracion.AccionPesado, dbProd, miTrans)
+                                        Try
+                                            miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+                                        Catch EX As Exception
+                                            cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and ID=" & configuracion.AccionDefecto, dbProd, miTrans)
+                                            miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar
+                                        End Try
+                                        miTrans.Commit()
+                                    Else
+                                        miLinea = miLineacopia
+                                        idCabecera = idCabeceraCopia
+                                        idLinea = idLineaCopia
+                                        miLoteGlobal = miLoteCopia
+                                        miTrans.Rollback()
+
+                                        Exit Sub
+                                    End If
+
+                                Else
+                                    miLinea = miLineacopia
+                                    idCabecera = idCabeceraCopia
+                                    idLinea = idLineaCopia
+                                    miLoteGlobal = miLoteCopia
+                                    miTrans.Rollback()
+
+                                    Exit Sub
+                                End If
+                            Else
+                                miTrans.Rollback()
+                                miLinea = miLineacopia
+                                idCabecera = idCabeceraCopia
+                                idLinea = idLineaCopia
+                                Exit Sub
+                            End If
+
+
+                            controencurso = miPrincipal
+                            miPrincipal.LoadData()
+                            miPrincipal.loadDataOperaciones()
+                            miPrincipal.GridControl2.RefreshDataSource()
                         Case Else
                             cmd = New OleDbCommand("Select desencadena from pl_acciones where codempresa='" & gCodEmpresa & "' and ejercicio='" & gEjercicio & "' and id=" & accion, dbProd)
                             If Not IsDBNull(cmd.ExecuteScalar) Then miPrincipal.cbAcciones.EditValue = cmd.ExecuteScalar Else miPrincipal.cbAcciones.EditValue = 0

@@ -95,6 +95,7 @@ Public Class FormMain
         Me.PanelControl1.Controls.Add(misAverias)
         misAverias.Dock = DockStyle.Fill
         misAverias.Visible = False
+       
         If NroOrden = 0 Then
             Envasar.Enabled = False
             btRoturas.Enabled = False

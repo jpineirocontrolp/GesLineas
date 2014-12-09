@@ -343,6 +343,9 @@ Partial Class FormMain
         Me.LabelControl2.TabIndex = 7
         Me.LabelControl2.Text = "Operarios"
         '
+        'Timer1
+        '
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)

@@ -19,15 +19,14 @@ Partial Class SettingsUC
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.CABECERAFABRICACIONBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.CABECERAFABRICACIONBindingSource = New System.Windows.Forms.BindingSource()
         Me.ProduccionSql = New GesLineas.ProduccionSql()
         Me.CABECERAFABRICACIONTableAdapter = New GesLineas.ProduccionSqlTableAdapters.CABECERAFABRICACIONTableAdapter()
         Me.emptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.PropertyGridControl1 = New DevExpress.XtraVerticalGrid.PropertyGridControl()
-        Me.PLACCIONESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PLACCIONESBindingSource = New System.Windows.Forms.BindingSource()
         Me.PL_ACCIONESTableAdapter = New GesLineas.ProduccionSqlTableAdapters.PL_ACCIONESTableAdapter()
         CType(Me.CABECERAFABRICACIONBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProduccionSql, System.ComponentModel.ISupportInitialize).BeginInit()

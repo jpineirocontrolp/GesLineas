@@ -34,6 +34,7 @@ Module basico
     Public misRoturas As Roturas
     Public misEtiquetas As Etiquetas
     Public misAverias As Averias
+    Public misGrifos As Grifos
     Public NroOrden As Integer = 0
     Public miManejador As Integer = 0
     Public miTrans As OleDbTransaction

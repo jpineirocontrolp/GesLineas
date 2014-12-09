@@ -187,4 +187,8 @@ Public Class Loteado
         End If
     End Sub
 
+    Private Sub btCancelar_Click(sender As Object, e As EventArgs) Handles btCancelar.Click
+        Me.Dispose()
+
+    End Sub
 End Class

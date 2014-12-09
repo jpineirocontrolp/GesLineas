@@ -88,4 +88,6 @@ Public Class SettingsUC
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         configuracion.SaveSettings()
     End Sub
+
+    
 End Class
